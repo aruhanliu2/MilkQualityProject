@@ -10,11 +10,12 @@ import { SignupPage } from '../pages/signup/signup';
 
 //table pages
 import { TeatPage } from '../pages/teat/teat';
-//import { PostmilkPage } from '../pages/postmilk/postmilk;
+import { PostmilkPage } from '../pages/postmilk/postmilk';
 import { HgyienePage } from '../pages/hgyiene/hgyiene';
 import { AlignmentPage } from '../pages/alignment/alignment';
 import { StripPage } from '../pages/strip/strip';
-import { LactocoderPage } from '../pages/lactocoder/lactocoder'; 
+import { LactocoderPage } from '../pages/lactocoder/lactocoder';
+import { Lactocoder2Page } from '../pages/lactocoder2/lactocoder2';
 
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -32,7 +33,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     AlignmentPage,
     StripPage,
     LactocoderPage,
-    //PostmilkPage
+    PostmilkPage,
+    Lactocoder2Page,
   ],
   imports: [
     BrowserModule,
@@ -50,7 +52,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     AlignmentPage,
     StripPage,
     LactocoderPage,
-    //PostmilkPage
+    PostmilkPage,
+    Lactocoder2Page,
   ],
   providers: [
     StatusBar,
