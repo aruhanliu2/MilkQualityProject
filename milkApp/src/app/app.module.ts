@@ -5,13 +5,15 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
+import { SigninPage } from '../pages/signin/signin';
+import { SignupPage } from '../pages/signup/signup';
 
 //table pages
 import { TeatPage } from '../pages/teat/teat';
+//import { PostmilkPage } from '../pages/postmilk/postmilk;
 import { HgyienePage } from '../pages/hgyiene/hgyiene';
 import { AlignmentPage } from '../pages/alignment/alignment';
 import { StripPage } from '../pages/strip/strip';
-//import { PostmilkPage } from '../pages/postmilk/postmilk;
 import { LactocoderPage } from '../pages/lactocoder/lactocoder'; 
 
 
@@ -23,11 +25,14 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     MyApp,
     HomePage,
     ListPage,
+    SigninPage,
+    SignupPage,
     TeatPage,
     HgyienePage,
     AlignmentPage,
     StripPage,
-    LactocoderPage
+    LactocoderPage,
+    //PostmilkPage
   ],
   imports: [
     BrowserModule,
@@ -38,11 +43,14 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     MyApp,
     HomePage,
     ListPage,
+    SigninPage,
+    SignupPage,
     TeatPage,
     HgyienePage,
     AlignmentPage,
     StripPage,
-    LactocoderPage
+    LactocoderPage,
+    //PostmilkPage
   ],
   providers: [
     StatusBar,
