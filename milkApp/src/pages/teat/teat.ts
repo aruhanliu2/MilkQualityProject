@@ -20,11 +20,6 @@ export class TeatPage {
   public smallDirt: number = 0;
   public largeDirt: number = 0;
   myDate: String = new Date().toISOString();
-  public event = {
-    month: '1990-02-19',
-    timeStarts: '07:43',
-    timeEnds: '1990-02-20'
-  }
   constructor(public alerCtrl: AlertController) {
 
   }

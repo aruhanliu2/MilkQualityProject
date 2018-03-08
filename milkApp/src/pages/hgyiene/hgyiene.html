@@ -14,5 +14,52 @@
 
 
 <ion-content padding>
+  <ion-list>
+
+    <ion-item>
+      <ion-label fixed>Farm</ion-label>
+      <ion-input text-right type="text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Date</ion-label>
+      <ion-datetime displayFormat="MMM DD, h:mm A" [(ngModel)]="myDate"></ion-datetime>
+    </ion-item>
+
+    <ion-item>
+      <ion-label fixed>Group/Pen</ion-label>
+      <ion-input text-right type="text"></ion-input>
+    </ion-item>
+
+  </ion-list>
+
+
+  <Button ion-button (tap)="tapDecrease($event,1)"> - </Button>
+  <Button>Clean: {{clean}}</Button>
+  <Button ion-button (tap)="tapIncrease($event,1)"> + </Button>
+
+  <hr>
+
+  <Button ion-button (tap)="tapDecrease($event,2)"> - </Button>
+  <Button>Slightly Dirt: {{slightlyDirt}}</Button>
+  <Button ion-button (tap)="tapIncrease($event,2)"> + </Button>
+
+  <hr>
+
+  <Button ion-button (tap)="tapDecrease($event,3)"> - </Button>
+  <Button>Moderately Dirt: {{moderatelyDirt}}</Button>
+  <Button ion-button (tap)="tapIncrease($event,3)"> + </Button>
+
+  <hr>
+
+  <Button ion-button (tap)="tapDecrease($event,4)"> - </Button>
+  <Button>Caked On Dirt: {{cakedOnDirt}}</Button>
+  <Button ion-button (tap)="tapIncrease($event,4)"> + </Button>
+
+  <hr>
+  <hr>
+  <Button ion-button (click)="saveData()"> Save </Button>
+  <Button ion-button (click)="submitData()"> Submit </Button>
+  <Button ion-button navPop> Back </Button>
 
 </ion-content>
