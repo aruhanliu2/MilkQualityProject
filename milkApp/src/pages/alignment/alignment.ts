@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { AlertController } from 'ionic-angular';
 
 /**
  * Generated class for the AlignmentPage page.
@@ -15,8 +16,48 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class AlignmentPage {
   myDate: String = new Date().toISOString();
+  public good: number = 0;
+  public bad: number = 0;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+
+  constructor(public alerCtrl: AlertController) {
+  }
+
+
+  tapDecrease(e,param:number){
+    if(param==1){
+      this.good = Math.max(this.good-1,0)
+    } else if(param==2){
+      this.bad = Math.max(this.bad-1,0)
+    } 
+
+  }
+  tapIncrease(e,param:number) {
+    if(param==1){
+      this.good++
+    } else if(param==2){
+      this.bad++
+    } 
+  }
+  saveData() {
+    let alert = this.alerCtrl.create({
+      title: 'Saved!',
+      message: 'Data have been saved locally!',
+      buttons: ['Ok']
+    });
+    alert.present()
+  }
+  submitData() {
+    let alert = this.alerCtrl.create({
+      title: 'Submitted!',
+      message: 'Data have been submitted!',
+      buttons: ['Ok']
+    });
+    alert.present()
+
+    this.good = 0
+    this.bad = 0
+
   }
 
   ionViewDidLoad() {

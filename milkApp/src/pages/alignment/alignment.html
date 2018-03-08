@@ -21,7 +21,7 @@
     <ion-label fixed>Farm</ion-label>
     <ion-input type="text" value=""></ion-input>
   </ion-item>
-  
+
   <ion-item>
     <ion-datetime displayFormat="MMM DD, h:mm A" [(ngModel)]="myDate"></ion-datetime>
 
@@ -29,4 +29,27 @@
 
 
 </ion-list>
+
+<ion-content padding>
+  <Button ion-button (tap)="tapDecrease($event,1)"> - </Button>
+  <Button>Good: {{good}}</Button>
+  <Button ion-button (tap)="tapIncrease($event,1)"> + </Button>
+
+  <hr>
+
+  <Button ion-button (tap)="tapDecrease($event,2)"> - </Button>
+  <Button>Bad: {{bad}}</Button>
+  <Button ion-button (tap)="tapIncrease($event,2)"> + </Button>
+
+
+  <hr>
+  
+  <Button ion-button (click)="saveData()"> Save </Button>
+  <Button ion-button (click)="submitData()"> Submit </Button>
+  <Button ion-button navPop> Back </Button>
+
+</ion-content>
+
+
+
 </ion-content>
