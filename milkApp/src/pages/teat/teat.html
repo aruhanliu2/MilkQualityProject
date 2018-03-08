@@ -14,6 +14,26 @@
 
 
 <ion-content padding>
+  <ion-list>
+
+  <ion-item>
+    <ion-label fixed>Farm</ion-label>
+    <ion-input text-right type="text"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Date</ion-label>
+    <ion-datetime displayFormat="MMM DD, h:mm A" [(ngModel)]="myDate"></ion-datetime>
+  </ion-item>
+
+  <ion-item>
+    <ion-label fixed>Milker</ion-label>
+    <ion-input text-right type="text"></ion-input>
+  </ion-item>
+
+</ion-list>
+
+
   <Button ion-button (tap)="tapDecrease($event,1)"> - </Button>
   <Button>Clean: {{clean}}</Button>
   <Button ion-button (tap)="tapIncrease($event,1)"> + </Button>

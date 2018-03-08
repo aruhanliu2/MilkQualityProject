@@ -19,6 +19,12 @@ export class TeatPage {
   public deepPresent: number = 0;
   public smallDirt: number = 0;
   public largeDirt: number = 0;
+  myDate: String = new Date().toISOString();
+  public event = {
+    month: '1990-02-19',
+    timeStarts: '07:43',
+    timeEnds: '1990-02-20'
+  }
   constructor(public alerCtrl: AlertController) {
 
   }
@@ -60,6 +66,11 @@ export class TeatPage {
       buttons: ['Ok']
     });
     alert.present()
+
+    this.clean = 0
+    this.deepPresent = 0
+    this.smallDirt = 0
+    this.largeDirt = 0
   }
 
   ionViewDidLoad() {
