@@ -14,6 +14,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'alignment.html',
 })
 export class AlignmentPage {
+  myDate: String = new Date().toISOString();
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
