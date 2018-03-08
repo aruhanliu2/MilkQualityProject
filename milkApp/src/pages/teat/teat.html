@@ -7,12 +7,39 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>teat</ion-title>
+    <ion-title>Teat Cleanliness</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
+  <Button ion-button (tap)="tapDecrease($event,1)"> - </Button>
+  <Button>Clean: {{clean}}</Button>
+  <Button ion-button (tap)="tapIncrease($event,1)"> + </Button>
+
+  <hr>
+
+  <Button ion-button (tap)="tapDecrease($event,2)"> - </Button>
+  <Button>Deep Present: {{deepPresent}}</Button>
+  <Button ion-button (tap)="tapIncrease($event,2)"> + </Button>
+
+  <hr>
+
+  <Button ion-button (tap)="tapDecrease($event,3)"> - </Button>
+  <Button>Small Dirt: {{smallDirt}}</Button>
+  <Button ion-button (tap)="tapIncrease($event,3)"> + </Button>
+
+  <hr>
+
+  <Button ion-button (tap)="tapDecrease($event,4)"> - </Button>
+  <Button>Large Dirt: {{largeDirt}}</Button>
+  <Button ion-button (tap)="tapIncrease($event,4)"> + </Button>
+
+  <hr>
+  <hr>
+  <Button ion-button (click)="saveData()"> Save </Button>
+  <Button ion-button (click)="submitData()"> Submit </Button>
+  <Button ion-button navPop> Back </Button>
 
 </ion-content>
