@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {Validators, FormBuilder, FormGroup } from '@angular/forms';
+import * as moment from 'moment';
+
 @IonicPage()
 @Component({
   selector: 'page-strip',
@@ -8,6 +10,7 @@ import {Validators, FormBuilder, FormGroup } from '@angular/forms';
 })
 export class StripPage {
   private todo : FormGroup;
+    myDate: String = moment().format();
 
   constructor( private formBuilder: FormBuilder ) {
     this.todo = this.formBuilder.group({

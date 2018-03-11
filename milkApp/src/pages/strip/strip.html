@@ -7,13 +7,27 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Strip</ion-title>
+    <ion-title>Strip Yields</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
+  <h2>General Info:</h2>
+  <ion-list>
+    <ion-item>
+      <ion-label fixed>Farm</ion-label>
+      <ion-input text-right type="text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Date</ion-label>
+      <ion-datetime displayFormat="MMM DD, h:mm A" [(ngModel)]="myDate"></ion-datetime>
+    </ion-item>
+  </ion-list>
+
+  <h2>Cows Info:</h2>
   <form [formGroup]="todo" (ngSubmit)="logForm()">
     <ion-item>
       <ion-label>Stall No:</ion-label>

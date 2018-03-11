@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
+import * as moment from 'moment';
 
 /**
  * Generated class for the AlignmentPage page.
@@ -15,7 +16,7 @@ import { AlertController } from 'ionic-angular';
   templateUrl: 'alignment.html',
 })
 export class AlignmentPage {
-  myDate: String = new Date().toISOString();
+  myDate: String = moment().format();
   public good: number = 0;
   public bad: number = 0;
 
@@ -29,7 +30,7 @@ export class AlignmentPage {
       this.good = Math.max(this.good-1,0)
     } else if(param==2){
       this.bad = Math.max(this.bad-1,0)
-    } 
+    }
 
   }
   tapIncrease(e,param:number) {
@@ -37,7 +38,7 @@ export class AlignmentPage {
       this.good++
     } else if(param==2){
       this.bad++
-    } 
+    }
   }
   saveData() {
     let alert = this.alerCtrl.create({

@@ -1,12 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the LactocoderPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import {Validators, FormBuilder, FormGroup } from '@angular/forms';
+import * as moment from 'moment';
 
 @IonicPage()
 @Component({
@@ -14,12 +9,36 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'lactocoder.html',
 })
 export class LactocoderPage {
+  myDate: String = moment().format();
+  private todo : FormGroup;
+  private todo2: FormGroup;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor( private formBuilder: FormBuilder ) {
+    this.todo = this.formBuilder.group({
+      farm:[''],
+      parlor:[''],
+      pre_milking:[''],
+      herd_size:[''],
+      size:[''],
+      procedures:[''],
+      frequency:[''],
+      operators:[''],
+      prep:[''],
+      routine:[''],
+    });
+    this.todo2 = this.formBuilder.group({
+      cow: ['', Validators.required],
+      attach: [''],
+      remove: [''],
+      dip: [''],
+      lag: [''],
+      unit: [''],
+      total: [''],
+      remarks: [''],
+    });
   }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad LactocoderPage');
+  logForm(){
+    this.todo2.reset()
   }
 
 }

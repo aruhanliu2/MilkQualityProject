@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
+import * as moment from 'moment';
 
 /**
  * Generated class for the HgyienePage page.
@@ -19,7 +20,7 @@ export class HgyienePage {
   public slightlyDirt: number = 0;
   public moderatelyDirt: number = 0;
   public cakedOnDirt: number = 0;
-  myDate: String = new Date().toISOString();
+  myDate: String = moment().format();
   constructor(public alerCtrl: AlertController) {
 
   }
