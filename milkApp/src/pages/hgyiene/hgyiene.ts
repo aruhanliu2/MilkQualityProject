@@ -27,11 +27,11 @@ export class HgyienePage {
     if(param==1){
       this.clean = Math.max(this.clean-1,0)
     } else if(param==2){
-      this.slightlyDirt = Math.max(this.deepPresent-1,0)
+      this.slightlyDirt = Math.max(this.slightlyDirt-1,0)
     } else if(param==3){
-      this.moderatelyDirt = Math.max(this.smallDirt-1,0)
+      this.moderatelyDirt = Math.max(this.moderatelyDirt-1,0)
     } else if(param==4){
-      this.cakedOnDirt = Math.max(this.largeDirt-1,0)
+      this.cakedOnDirt = Math.max(this.cakedOnDirt-1,0)
     }
 
   }
