@@ -1,25 +1,44 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the StripPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
-@IonicPage()
+import {Validators, FormBuilder, FormGroup } from '@angular/forms';
 @Component({
-  selector: 'page-strip',
-  templateUrl: 'strip.html',
+  template: `
+    <form [formGroup]="todo" (ngSubmit)="logForm()">
+      <ion-item>
+        <ion-label>Stall No:</ion-label>
+        <ion-input type="text" formControlName="title"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>ML</ion-label>
+        <ion-input type="text" formControlName="ml"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Balanced</ion-label>
+        <ion-checkbox formControlName="balanced" ></ion-checkbox>
+      </ion-item>
+      <ion-item>
+        <ion-label>Not Balanced</ion-label>
+        <ion-checkbox formControlName="unbalanced" ></ion-checkbox>
+      </ion-item>
+      <button ion-button type="submit" [disabled]="!todo.valid">Save</button>
+      <button ion-button type="submit" >Submit</button>
+    </form>
+  `
 })
 export class StripPage {
+  private todo : FormGroup;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor( private formBuilder: FormBuilder ) {
+    this.todo = this.formBuilder.group({
+      title: ['', Validators.required],
+      ml: [''],
+      balanced:[false],
+      unbalanced:[false],
+    });
   }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad StripPage');
+  logForm(){
+    console.log(this.todo.value)
+    this.todo.reset()
   }
 
 }
