@@ -7,31 +7,31 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>strip</ion-title>
+    <ion-title>Strip</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-  <h1>Strip Yields</h1>
-  <ion-list>
-  
+  <form [formGroup]="todo" (ngSubmit)="logForm()">
     <ion-item>
-      <ion-label fixed>Farm</ion-label>
-      <ion-input type="text" value=""></ion-input>
+      <ion-label>Stall No:</ion-label>
+      <ion-input type="text" formControlName="title"></ion-input>
     </ion-item>
-  
     <ion-item>
-      <ion-datetime displayFormat="MMM DD, h:mm A" [(ngModel)]="myDate"></ion-datetime>
-  
+      <ion-label>ML</ion-label>
+      <ion-input type="text" formControlName="ml"></ion-input>
     </ion-item>
-  
-  
-  </ion-list>
-  
-
-  
-  
-  
-  </ion-content>
+    <ion-item>
+      <ion-label>Balanced</ion-label>
+      <ion-checkbox formControlName="balanced" ></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>Not Balanced</ion-label>
+      <ion-checkbox formControlName="unbalanced" ></ion-checkbox>
+    </ion-item>
+    <button ion-button type="submit" [disabled]="!todo.valid">Save</button>
+    <button ion-button type="submit" >Submit</button>
+  </form>
+</ion-content>
