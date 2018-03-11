@@ -14,5 +14,121 @@
 
 
 <ion-content padding>
+  <h2>General Info:</h2>
+  <ion-list>
+    <ion-item>
+      <ion-label fixed>Farm</ion-label>
+      <ion-input text-right type="text"></ion-input>
+    </ion-item>
 
+    <ion-item>
+      <ion-label>Date</ion-label>
+      <ion-datetime displayFormat="MMM DD, h:mm A" [(ngModel)]="myDate"></ion-datetime>
+    </ion-item>
+    <ion-item>
+      <ion-label fixed>Observer</ion-label>
+      <ion-input text-right type="text"></ion-input>
+    </ion-item>
+  </ion-list>
+
+  <h2>Cows Info:</h2>
+  <form [formGroup]="todo" (ngSubmit)="logForm()">
+    <ion-item>
+      <ion-label>Group No:</ion-label>
+      <ion-input type="text" formControlName="group"></ion-input>
+    </ion-item>
+
+    <p>Teat Skin Condition: Normal, Dry, Open Lesions, Hemorrhages</p>
+    <ion-item>
+      <ion-label>LH</ion-label>
+      <ion-checkbox formControlName="lh1" ></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>LF</ion-label>
+      <ion-checkbox formControlName="lf1" ></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>RH</ion-label>
+      <ion-checkbox formControlName="rh1" ></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>RF</ion-label>
+      <ion-checkbox formControlName="rf1" ></ion-checkbox>
+    </ion-item>
+
+    <p>Teat Color: Normal, Red, Dark Skin</p>
+    <ion-item>
+      <ion-label>LH</ion-label>
+      <ion-checkbox formControlName="lh2" ></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>LF</ion-label>
+      <ion-checkbox formControlName="lf2" ></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>RH</ion-label>
+      <ion-checkbox formControlName="rh2" ></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>RF</ion-label>
+      <ion-checkbox formControlName="rf2" ></ion-checkbox>
+    </ion-item>
+
+    <p>Swelling Near Teat Base: Normal, Swollen</p>
+    <ion-item>
+      <ion-label>LH</ion-label>
+      <ion-checkbox formControlName="lh3" ></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>LF</ion-label>
+      <ion-checkbox formControlName="lf3" ></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>RH</ion-label>
+      <ion-checkbox formControlName="rh3" ></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>RF</ion-label>
+      <ion-checkbox formControlName="rf3" ></ion-checkbox>
+    </ion-item>
+
+    <p>Hardness at Teat End: Wedged</p>
+    <ion-item>
+      <ion-label>LH</ion-label>
+      <ion-checkbox formControlName="lh4" ></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>LF</ion-label>
+      <ion-checkbox formControlName="lf4" ></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>RH</ion-label>
+      <ion-checkbox formControlName="rh4" ></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>RF</ion-label>
+      <ion-checkbox formControlName="rf4" ></ion-checkbox>
+    </ion-item>
+
+    <p>Teat End Score: Normal Smooth or Slightly Rough, Rough, Very Rough</p>
+    <ion-item>
+      <ion-label>LH</ion-label>
+      <ion-checkbox formControlName="lh5" ></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>LF</ion-label>
+      <ion-checkbox formControlName="lf5" ></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>RH</ion-label>
+      <ion-checkbox formControlName="rh5" ></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>RF</ion-label>
+      <ion-checkbox formControlName="rf5" ></ion-checkbox>
+    </ion-item>
+
+    <button ion-button type="submit" [disabled]="!todo.valid">Save</button>
+    <button ion-button type="submit" >Submit</button>
+  </form>
 </ion-content>
