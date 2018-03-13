@@ -21,7 +21,6 @@ export class AlignmentPage {
   public good: number = 0;
   public bad: number = 0;
 
-
   constructor(public alerCtrl: AlertController,
     private navParams: NavParams) {
   }

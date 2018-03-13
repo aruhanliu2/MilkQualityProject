@@ -16,6 +16,7 @@ import { AlignmentPage } from '../pages/alignment/alignment';
 import { StripPage } from '../pages/strip/strip';
 import { LactocoderPage } from '../pages/lactocoder/lactocoder';
 import { AuthService } from "../services/auth";
+import { TeatService } from "../services/teat";
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -56,6 +57,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     StatusBar,
     SplashScreen,
     AuthService,
+    TeatService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

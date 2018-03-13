@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
+import { TeatService } from '../../services/teat';
 import * as moment from 'moment';
 
 @IonicPage()
@@ -13,11 +14,12 @@ export class TeatPage {
   public deepPresent: number = 0;
   public smallDirt: number = 0;
   public largeDirt: number = 0;
-  public farm: String = "";
-  public myDate: String = moment().format();
-  public observer: String = "";
-  public milker: String = "";
-  constructor(public alerCtrl: AlertController) {
+  public farm: string = "";
+  public myDate: string = moment().format();
+  public observer: string = "";
+  public milker: string = "";
+  constructor(public alerCtrl: AlertController,
+    private teatService: TeatService) {
 
   }
   tapDecrease(e,param:number){
@@ -49,6 +51,18 @@ export class TeatPage {
       message: 'Data have been saved locally!',
       buttons: ['Ok']
     });
+    //add new item
+    this.teatService.addItem(this.farm, 
+      this.myDate, 
+      this.myDate,
+      this.observer, 
+      this.milker, 
+      this.clean, 
+      this.deepPresent,
+      this.smallDirt,
+      this.largeDirt
+    );
+    console.log(this.teatService.getItems());
     alert.present()
   }
   submitData() {
