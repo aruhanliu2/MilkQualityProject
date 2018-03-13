@@ -52,10 +52,6 @@ export class LactocoderPage {
     });
   }
 
-  reset(param: number){
-
-  }
-
   timer(e,param: number,timer: Object){
     if(timer!="Finished"){
       if(param==1){
