@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
+import { HygieneService } from '../../services/hygiene';
 import * as moment from 'moment';
 
 /**
@@ -12,19 +13,20 @@ import * as moment from 'moment';
 
 @IonicPage()
 @Component({
-  selector: 'page-hgyiene',
-  templateUrl: 'hgyiene.html',
+  selector: 'page-hygiene',
+  templateUrl: 'hygiene.html',
 })
-export class HgyienePage {
+export class HygienePage {
   public clean: number = 0;
   public slightlyDirt: number = 0;
   public moderatelyDirt: number = 0;
   public cakedOnDirt: number = 0;
-  public farm: String = "";
-  public myDate: String = moment().format();
-  public observer: String = "";
-  public group: String = "";
-  constructor(public alerCtrl: AlertController) {
+  public farm: string = "";
+  public myDate: string = moment().format();
+  public observer: string = "";
+  public group: string = "";
+  constructor(public alerCtrl: AlertController,
+    private hygieneService: HygieneService) {
 
   }
   tapDecrease(e,param:number){
@@ -56,6 +58,18 @@ export class HgyienePage {
       message: 'Data have been saved locally!',
       buttons: ['Ok']
     });
+    this.hygieneService.addItem(
+      this.farm,
+      this.myDate,
+      this.myDate,
+      this.observer,
+      this.group,
+      this.clean,
+      this.slightlyDirt,
+      this.moderatelyDirt,
+      this.cakedOnDirt
+    );
+    console.log(this.hygieneService.getItems());
     alert.present()
   }
   submitData() {
@@ -77,7 +91,7 @@ export class HgyienePage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad HgyienePage');
+    console.log('ionViewDidLoad HygienePage');
   }
 
 }

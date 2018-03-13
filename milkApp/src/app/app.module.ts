@@ -11,12 +11,13 @@ import { SignupPage } from '../pages/signup/signup';
 //table pages
 import { TeatPage } from '../pages/teat/teat';
 import { PostmilkPage } from '../pages/postmilk/postmilk';
-import { HgyienePage } from '../pages/hgyiene/hgyiene';
+import { HygienePage } from '../pages/hygiene/hygiene';
 import { AlignmentPage } from '../pages/alignment/alignment';
 import { StripPage } from '../pages/strip/strip';
 import { LactocoderPage } from '../pages/lactocoder/lactocoder';
 import { AuthService } from "../services/auth";
 import { TeatService } from "../services/teat";
+import { HygieneService } from "../services/hygiene";
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -29,7 +30,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     SigninPage,
     SignupPage,
     TeatPage,
-    HgyienePage,
+    HygienePage,
     AlignmentPage,
     StripPage,
     LactocoderPage,
@@ -47,7 +48,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     SigninPage,
     SignupPage,
     TeatPage,
-    HgyienePage,
+    HygienePage,
     AlignmentPage,
     StripPage,
     LactocoderPage,
@@ -58,6 +59,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     SplashScreen,
     AuthService,
     TeatService,
+    HygieneService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

@@ -4,7 +4,7 @@ export default [
         date: '03-12-2018',
         time: '12:59pm',
         observer: 'Paul',
-        group: '24',
+        group: 3,
         teat_skin_condition: {
             LH: 'Normal',
             LF: 'Dry',
