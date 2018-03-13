@@ -1,7 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform } from 'ionic-angular';
+import { Nav, Platform, NavController, MenuController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import * as firebase from 'firebase'
 
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
@@ -12,26 +13,21 @@ import { SignupPage } from '../pages/signup/signup';
   templateUrl: 'app.html'
 })
 export class MyApp {
-  @ViewChild(Nav) nav: Nav;
-  
-  rootPage: any = HomePage;
+  homePage = HomePage;
+  signinPage = SigninPage;
+  signupPage = SignupPage;
+  listPage = ListPage;
+  @ViewChild('nav') nav: NavController;
+  constructor(public platform: Platform, 
+    public statusBar: StatusBar, 
+    public splashScreen: SplashScreen,
+    private menuCtrl: MenuController) {
 
-  pages: Array<{title: string, component: any}>;
+    firebase.initializeApp({
+      apiKey: "AIzaSyBABKi1BFgwBDFfgW_U3jS57kfPdDLrowg",
+      authDomain: "cornell-mrmilk.firebaseapp.com"
+    });
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
-    this.initializeApp();
-
-    // used for an example of ngFor and navigation
-    this.pages = [
-      { title: 'Sign In', component: SigninPage },
-      { title: 'Sign Up', component: SignupPage },
-      { title: 'Home', component: HomePage },
-      { title: 'List', component: ListPage }
-    ];
-
-  }
-
-  initializeApp() {
     this.platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
@@ -40,9 +36,12 @@ export class MyApp {
     });
   }
 
-  openPage(page) {
-    // Reset the content nav to have just this page
-    // we wouldn't want the back button to show in this scenario
-    this.nav.setRoot(page.component);
+  onLoad(page: any) {
+    this.nav.setRoot(page);
+    this.menuCtrl.close();
+  }
+
+  onLogout() {
+
   }
 }
