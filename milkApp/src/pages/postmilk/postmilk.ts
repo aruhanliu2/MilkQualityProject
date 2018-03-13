@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {Validators, FormBuilder, FormGroup } from '@angular/forms';
+import { AlertController } from 'ionic-angular';
 import * as moment from 'moment';
 
 /**
@@ -16,10 +17,13 @@ import * as moment from 'moment';
   templateUrl: 'postmilk.html',
 })
 export class PostmilkPage {
+  public farm: String = "";
+  public myDate: String = moment().format();
+  public observer: String = "";
   private todo : FormGroup;
-    myDate: String = moment().format();
 
-  constructor( private formBuilder: FormBuilder ) {
+
+  constructor( private formBuilder: FormBuilder, public alerCtrl: AlertController ) {
     this.todo = this.formBuilder.group({
       group:[''],
       lh1: [false],
@@ -47,6 +51,19 @@ export class PostmilkPage {
   logForm(){
     console.log(this.todo.value)
     this.todo.reset()
+  }
+
+  saveForm(){
+  }
+  submitForm(){
+    let alert = this.alerCtrl.create({
+      title: 'Submitted!',
+      message: 'Data have been submitted!',
+      buttons: ['Ok']
+    });
+    this.farm = ""
+    this.myDate = moment().format()
+    this.observer = ""
   }
 
 }

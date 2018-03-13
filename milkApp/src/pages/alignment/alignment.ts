@@ -16,7 +16,8 @@ import * as moment from 'moment';
   templateUrl: 'alignment.html',
 })
 export class AlignmentPage {
-  myDate: String = moment().format();
+  public farm: String = "";
+  public myDate: String = moment().format();
   public good: number = 0;
   public bad: number = 0;
 
@@ -58,6 +59,8 @@ export class AlignmentPage {
 
     this.good = 0
     this.bad = 0
+    this.farm = ""
+    this.myDate = moment().format()
 
   }
 

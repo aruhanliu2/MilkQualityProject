@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import {Validators, FormBuilder, FormGroup } from '@angular/forms';
+import { AlertController } from 'ionic-angular';
 import * as moment from 'moment';
 
 @IonicPage()
@@ -9,20 +9,31 @@ import * as moment from 'moment';
   templateUrl: 'strip.html',
 })
 export class StripPage {
-  private todo : FormGroup;
-    myDate: String = moment().format();
+  public farm: String = "";
+  public myDate: String = moment().format();
+  public stall: String = "";
+  public ml: String = "";
+  public balance: String = "balanced";
 
-  constructor( private formBuilder: FormBuilder ) {
-    this.todo = this.formBuilder.group({
-      title: ['', Validators.required],
-      ml: [''],
-      balanced:[false],
-      unbalanced:[false],
-    });
+  constructor(public alerCtrl: AlertController) {
   }
-  logForm(){
-    console.log(this.todo.value)
-    this.todo.reset()
+
+  saveData() {
+    this.stall = ""
+    this.ml = ""
+    this.balance = "balanced"
+  }
+
+  submitData() {
+    let alert = this.alerCtrl.create({
+      title: 'Submitted!',
+      message: 'Data have been submitted!',
+      buttons: ['Ok']
+    });
+    alert.present()
+    this.saveData()
+    this.farm = ""
+    this.myDate = moment().format()
   }
 
 }

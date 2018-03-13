@@ -18,7 +18,7 @@
   <ion-list>
     <ion-item>
       <ion-label fixed>Farm</ion-label>
-      <ion-input text-right type="text"></ion-input>
+      <ion-input text-right type="text" [(ngModel)]="farm"></ion-input>
     </ion-item>
 
     <ion-item>
@@ -28,24 +28,35 @@
   </ion-list>
 
   <h2>Cows Info:</h2>
-  <form [formGroup]="todo" (ngSubmit)="logForm()">
+  <ion-list>
     <ion-item>
       <ion-label>Stall No:</ion-label>
-      <ion-input text-right type="text" formControlName="title"></ion-input>
+      <ion-input text-right type="text" [(ngModel)]="stall"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label>ML</ion-label>
-      <ion-input text-right type="text" formControlName="ml"></ion-input>
+      <ion-input text-right type="text" [(ngModel)]="ml"></ion-input>
     </ion-item>
     <ion-item>
+    <ion-label>If Balanced</ion-label>
+    <ion-select [(ngModel)]="balance" interface="popover">
+      <ion-option value="balanced">Balanced</ion-option>
+      <ion-option value="unbalanced">Unbalanced</ion-option>
+    </ion-select>
+  </ion-item>
+
+<!--
+    <ion-item>
       <ion-label>Balanced</ion-label>
-      <ion-checkbox formControlName="balanced" ></ion-checkbox>
+      <ion-checkbox [(ngModel)]="balanced" ></ion-checkbox>
     </ion-item>
     <ion-item>
       <ion-label>Not Balanced</ion-label>
-      <ion-checkbox formControlName="unbalanced" ></ion-checkbox>
+      <ion-checkbox [(ngModel)]="unbalanced" ></ion-checkbox>
     </ion-item>
-    <button ion-button type="submit" [disabled]="!todo.valid">Save</button>
-    <button ion-button type="submit" >Submit</button>
-  </form>
+-->
+  </ion-list>
+  <Button ion-button (click)="saveData()"> Save </Button>
+  <Button ion-button (click)="submitData()"> Submit </Button>
+  <Button ion-button navPop> Back </Button>
 </ion-content>

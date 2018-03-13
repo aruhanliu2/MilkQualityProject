@@ -3,13 +3,6 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 import * as moment from 'moment';
 
-/**
- * Generated class for the TeatPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
 @IonicPage()
 @Component({
   selector: 'page-teat',
@@ -20,7 +13,9 @@ export class TeatPage {
   public deepPresent: number = 0;
   public smallDirt: number = 0;
   public largeDirt: number = 0;
-  myDate: String = moment().format();
+  public farm: String = "";
+  public myDate: String = moment().format();
+  public milker: String = "";
   constructor(public alerCtrl: AlertController) {
 
   }
@@ -67,6 +62,9 @@ export class TeatPage {
     this.deepPresent = 0
     this.smallDirt = 0
     this.largeDirt = 0
+    this.farm = ""
+    this.myDate = moment().format();
+    this.milker = ""
   }
 
   ionViewDidLoad() {

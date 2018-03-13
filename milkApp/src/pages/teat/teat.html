@@ -17,7 +17,7 @@
   <ion-list>
     <ion-item>
       <ion-label fixed>Farm</ion-label>
-      <ion-input text-right type="text"></ion-input>
+      <ion-input text-right type="text" [(ngModel)]="farm"></ion-input>
     </ion-item>
 
     <ion-item>
@@ -27,19 +27,51 @@
 
     <ion-item>
       <ion-label fixed>Milker</ion-label>
-      <ion-input text-right type="text"></ion-input>
+      <ion-input text-right type="text" [(ngModel)]="milker"></ion-input>
     </ion-item>
   </ion-list>
-
 <!--
   <ion-card>
     <img src="assets/imgs/clean.png"/>
     <ion-card-content>
       <ion-card-title>
-        <Button ion-button (tap)="tapDecrease($event,1)"> - </Button>
-        <Button>Clean: {{clean}}</Button>
-        <Button ion-button (tap)="tapIncrease($event,1)"> + </Button>
+        <p>Normal Clean: {{clean}}</p>
       </ion-card-title>
+      <Button ion-button (tap)="tapDecrease($event,1)"> - </Button>
+      <Button ion-button (tap)="tapIncrease($event,1)"> + </Button>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <img src="assets/imgs/clean.png"/>
+    <ion-card-content>
+      <ion-card-title>
+        <p>Deep Present: {{deepPresent}}</p>
+      </ion-card-title>
+      <Button ion-button (tap)="tapDecrease($event,2)"> - </Button>
+      <Button ion-button (tap)="tapIncrease($event,2)"> + </Button>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <img src="assets/imgs/clean.png"/>
+    <ion-card-content>
+      <ion-card-title>
+        <p>Small Dirt: {{smallDirt}}</p>
+      </ion-card-title>
+      <Button ion-button (tap)="tapDecrease($event,3)"> - </Button>
+      <Button ion-button (tap)="tapIncrease($event,3)"> + </Button>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <img src="assets/imgs/clean.png"/>
+    <ion-card-content>
+      <ion-card-title>
+        <p>Large Dirt: {{largeDirt}}</p>
+      </ion-card-title>
+      <Button ion-button (tap)="tapDecrease($event,4)"> - </Button>
+      <Button ion-button (tap)="tapIncrease($event,4)"> + </Button>
     </ion-card-content>
   </ion-card>
 -->

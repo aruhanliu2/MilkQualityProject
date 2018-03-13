@@ -20,7 +20,9 @@ export class HgyienePage {
   public slightlyDirt: number = 0;
   public moderatelyDirt: number = 0;
   public cakedOnDirt: number = 0;
-  myDate: String = moment().format();
+  public farm: String = "";
+  public myDate: String = moment().format();
+  public group: String = "";
   constructor(public alerCtrl: AlertController) {
 
   }
@@ -67,6 +69,9 @@ export class HgyienePage {
     this.slightlyDirt = 0
     this.moderatelyDirt = 0
     this.cakedOnDirt = 0
+    this.farm = ""
+    this.myDate = moment().format()
+    this.group = ""
   }
 
   ionViewDidLoad() {
