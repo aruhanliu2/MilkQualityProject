@@ -15,7 +15,6 @@
 
 <ion-content padding>
   <ion-list>
-
     <ion-item>
       <ion-label fixed>Farm</ion-label>
       <ion-input text-right type="text" [(ngModel)]="farm"></ion-input>
@@ -30,10 +29,54 @@
       <ion-label fixed>Group/Pen</ion-label>
       <ion-input text-right type="text" [(ngModel)]="group"></ion-input>
     </ion-item>
-
   </ion-list>
 
 
+  <ion-card class="card" margin="0px">
+    <img src="assets/imgs/clean.png"/>
+    <ion-card-content>
+      <ion-card-title>
+        <p>Clean: {{clean}}</p>
+      </ion-card-title>
+      <Button ion-button (tap)="tapDecrease($event,1)"> - </Button>
+      <Button ion-button (tap)="tapIncrease($event,1)"> + </Button>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card class="card" margin="0px">
+    <img src="assets/imgs/clean.png"/>
+    <ion-card-content>
+      <ion-card-title>
+        <p>Slightly Dirt: {{slightlyDirt}}</p>
+      </ion-card-title>
+      <Button ion-button (tap)="tapDecrease($event,2)"> - </Button>
+      <Button ion-button (tap)="tapIncrease($event,2)"> + </Button>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card class="card" margin="0px">
+    <img src="assets/imgs/clean.png"/>
+    <ion-card-content>
+      <ion-card-title>
+        <p>Moderately Dirt: {{moderatelyDirt}}</p>
+      </ion-card-title>
+      <Button ion-button (tap)="tapDecrease($event,3)"> - </Button>
+      <Button ion-button (tap)="tapIncrease($event,3)"> + </Button>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card class="card" margin="0px">
+    <img src="assets/imgs/clean.png"/>
+    <ion-card-content>
+      <ion-card-title>
+        <p>Caked On Dirt: {{cakedOnDirt}}</p>
+      </ion-card-title>
+      <Button ion-button (tap)="tapDecrease($event,4)"> - </Button>
+      <Button ion-button (tap)="tapIncrease($event,4)"> + </Button>
+    </ion-card-content>
+  </ion-card>
+
+  <!--
   <Button ion-button (tap)="tapDecrease($event,1)"> - </Button>
   <Button>Clean: {{clean}}</Button>
   <Button ion-button (tap)="tapIncrease($event,1)"> + </Button>
@@ -55,11 +98,12 @@
   <Button ion-button (tap)="tapDecrease($event,4)"> - </Button>
   <Button>Caked On Dirt: {{cakedOnDirt}}</Button>
   <Button ion-button (tap)="tapIncrease($event,4)"> + </Button>
+-->
 
   <hr>
   <hr>
-  <Button ion-button (click)="saveData()"> Save </Button>
-  <Button ion-button (click)="submitData()"> Submit </Button>
-  <Button ion-button navPop> Back </Button>
+  <Button class="btn" ion-button (click)="saveData()"> Save </Button>
+  <Button class="btn" ion-button (click)="submitData()"> Submit </Button>
+  <Button class="btn" ion-button navPop> Back </Button>
 
 </ion-content>

@@ -48,12 +48,10 @@ export class PostmilkPage {
       rf5: [false],
     });
   }
-  logForm(){
-    console.log(this.todo.value)
-    this.todo.reset()
-  }
 
   saveForm(){
+    console.log(this.todo.value)
+    this.todo.reset()
   }
   submitForm(){
     let alert = this.alerCtrl.create({
@@ -61,6 +59,7 @@ export class PostmilkPage {
       message: 'Data have been submitted!',
       buttons: ['Ok']
     });
+    this.saveForm()
     this.farm = ""
     this.myDate = moment().format()
     this.observer = ""

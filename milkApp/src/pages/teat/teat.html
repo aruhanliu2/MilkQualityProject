@@ -30,19 +30,19 @@
       <ion-input text-right type="text" [(ngModel)]="milker"></ion-input>
     </ion-item>
   </ion-list>
-<!--
-  <ion-card>
+
+  <ion-card class="card" margin="0px">
     <img src="assets/imgs/clean.png"/>
     <ion-card-content>
       <ion-card-title>
-        <p>Normal Clean: {{clean}}</p>
+        <p>Clean: {{clean}}</p>
       </ion-card-title>
       <Button ion-button (tap)="tapDecrease($event,1)"> - </Button>
       <Button ion-button (tap)="tapIncrease($event,1)"> + </Button>
     </ion-card-content>
   </ion-card>
 
-  <ion-card>
+  <ion-card class="card" margin="0px">
     <img src="assets/imgs/clean.png"/>
     <ion-card-content>
       <ion-card-title>
@@ -53,7 +53,8 @@
     </ion-card-content>
   </ion-card>
 
-  <ion-card>
+
+  <ion-card class="card" margin="0px">
     <img src="assets/imgs/clean.png"/>
     <ion-card-content>
       <ion-card-title>
@@ -64,7 +65,7 @@
     </ion-card-content>
   </ion-card>
 
-  <ion-card>
+  <ion-card class="card" margin="0px">
     <img src="assets/imgs/clean.png"/>
     <ion-card-content>
       <ion-card-title>
@@ -74,7 +75,9 @@
       <Button ion-button (tap)="tapIncrease($event,4)"> + </Button>
     </ion-card-content>
   </ion-card>
--->
+
+
+<!--
 
 
   <Button ion-button (tap)="tapDecrease($event,1)"> - </Button>
@@ -98,11 +101,12 @@
   <Button ion-button (tap)="tapDecrease($event,4)"> - </Button>
   <Button>Large Dirt: {{largeDirt}}</Button>
   <Button ion-button (tap)="tapIncrease($event,4)"> + </Button>
+-->
+  <hr>
+  <hr>
 
-  <hr>
-  <hr>
-  <Button ion-button (click)="saveData()"> Save </Button>
-  <Button ion-button (click)="submitData()"> Submit </Button>
-  <Button ion-button navPop> Back </Button>
+  <Button class="btn" ion-button (click)="saveData()"> Save </Button>
+  <Button class="btn" ion-button (click)="submitData()"> Submit </Button>
+  <Button class="btn" ion-button navPop> Back </Button>
 
 </ion-content>
