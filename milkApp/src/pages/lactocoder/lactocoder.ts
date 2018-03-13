@@ -17,7 +17,7 @@ export class LactocoderPage {
   milk1: String = ""
   remark1: String = ""
   timer1: String = "Start"
-  cowList1: String = []
+  cowList1: String[];
   timer1Current: String = ""
 
 
@@ -25,14 +25,14 @@ export class LactocoderPage {
   milk2: String = ""
   remark2: String = ""
   timer2: String = "Start"
-  cowList2: String = []
+  cowList2: String[];
   timer2Current: String = ""
 
   cowName3: String = ""
   milk3: String = ""
   remark3: String = ""
   timer3: String = "Start"
-  cowList3: String = []
+  cowList3: String[];
   timer3Current: String = ""
 
   private todo : FormGroup;
@@ -52,7 +52,7 @@ export class LactocoderPage {
     });
   }
 
-  timer(e,param: number,timer: Object){
+  timer(e,param: number,timer: String){
     if(timer!="Finished"){
       if(param==1){
         this.cowList1.push(moment().format())
@@ -88,8 +88,6 @@ export class LactocoderPage {
     } else if(param==3){
       this.timer3 = timer
     }
-
-
   }
 
   saveForm() {
