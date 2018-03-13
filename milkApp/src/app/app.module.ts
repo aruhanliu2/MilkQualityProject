@@ -15,7 +15,6 @@ import { HgyienePage } from '../pages/hgyiene/hgyiene';
 import { AlignmentPage } from '../pages/alignment/alignment';
 import { StripPage } from '../pages/strip/strip';
 import { LactocoderPage } from '../pages/lactocoder/lactocoder';
-import { Lactocoder2Page } from '../pages/lactocoder2/lactocoder2';
 
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -34,7 +33,6 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     StripPage,
     LactocoderPage,
     PostmilkPage,
-    Lactocoder2Page,
   ],
   imports: [
     BrowserModule,
@@ -53,7 +51,6 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     StripPage,
     LactocoderPage,
     PostmilkPage,
-    Lactocoder2Page,
   ],
   providers: [
     StatusBar,
