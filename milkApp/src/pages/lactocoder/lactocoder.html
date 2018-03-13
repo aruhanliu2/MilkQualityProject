@@ -63,40 +63,52 @@
   </form>
 
   <h2>Cows Info:</h2>
-  <form [formGroup]="todo2" (ngSubmit)="logForm()">
     <ion-item>
-      <ion-label>Cow</ion-label>
-      <ion-input text-right type="text" formControlName="cow"></ion-input>
+      <ion-label fixed>Cow1</ion-label>
+      <ion-input text-right type="text" [(ngModel)]="cowName1"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label>Attach</ion-label>
-      <ion-input text-right type="text" formControlName="attach"></ion-input>
+      <ion-label fixed>Total Milk</ion-label>
+      <ion-input text-right type="text" [(ngModel)]="milk1"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label>Remove</ion-label>
-      <ion-input text-right type="text" formControlName="remove"></ion-input>
+      <ion-label fixed>Remark</ion-label>
+      <ion-input text-right type="text" [(ngModel)]="remark1"></ion-input>
+    </ion-item>
+    <Button ion-button (tap)="timer($event,1,timer1)" > {{timer1}} </Button>
+    <Button ion-button> {{timer1Current}} </Button>
+    <hr>
+    <ion-item>
+      <ion-label fixed>Cow2</ion-label>
+      <ion-input text-right type="text" [(ngModel)]="cowName2"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label>Dip Contact Time</ion-label>
-      <ion-input text-right type="text" formControlName="dip"></ion-input>
+      <ion-label fixed>Total Milk</ion-label>
+      <ion-input text-right type="text" [(ngModel)]="milk2"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label>Lag Time From Stim to Attach</ion-label>
-      <ion-input text-right type="text" formControlName="lag"></ion-input>
+      <ion-label fixed>Remark</ion-label>
+      <ion-input text-right type="text" [(ngModel)]="remark2"></ion-input>
+    </ion-item>
+    <Button ion-button (tap)="timer($event,2,timer2)" > {{timer2}} </Button>
+    <Button ion-button> {{timer2Current}} </Button>
+    <hr>
+    <ion-item>
+      <ion-label fixed>Cow3</ion-label>
+      <ion-input text-right type="text" [(ngModel)]="cowName3"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label>Unit on Time</ion-label>
-      <ion-input text-right type="text" formControlName="unit"></ion-input>
+      <ion-label fixed>Total Milk</ion-label>
+      <ion-input text-right type="text" [(ngModel)]="milk3"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label>Total Milk</ion-label>
-      <ion-input text-right type="text" formControlName="total"></ion-input>
+      <ion-label fixed>Remark</ion-label>
+      <ion-input text-right type="text" [(ngModel)]="remark3"></ion-input>
     </ion-item>
-    <ion-item>
-      <ion-label>Remarks</ion-label>
-      <ion-input text-right type="text" formControlName="remarks"></ion-input>
-    </ion-item>
-    <button ion-button type="submit" >Save</button>
-    <button ion-button type="submit" >Submit</button>
-  </form>
+    <Button ion-button (tap)="timer($event,3,timer3)" > {{timer3}} </Button>
+    <Button ion-button> {{timer3Current}} </Button>
+    <hr>
+
+    <button ion-button (click)="saveForm()">Save</button>
+    <button ion-button (click)="submitForm()">Submit</button>
 </ion-content>
