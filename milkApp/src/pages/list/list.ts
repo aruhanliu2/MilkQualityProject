@@ -6,7 +6,6 @@ import { AlignmentPage } from '../alignment/alignment';
 import { StripPage } from '../strip/strip';
 import { PostmilkPage } from '../postmilk/postmilk';
 import { LactocoderPage } from '../lactocoder/lactocoder';
-import { Lactocoder2Page } from '../lactocoder2/lactocoder2';
 
 @Component({
   selector: 'page-list',
@@ -19,7 +18,6 @@ export class ListPage {
   stripPage = StripPage;
   postmilkPage = PostmilkPage;
   lactocoderPage = LactocoderPage;
-  lactocoder2Page = Lactocoder2Page;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 }
