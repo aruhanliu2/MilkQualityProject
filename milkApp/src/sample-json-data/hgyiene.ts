@@ -9,8 +9,5 @@ export default [
         slightly_dirt: '10',
         moderately_dirt: '5',
         caked_on_dirt: '2'
-        /* score 1, 2, 3, 4
-         * total_scores
-        */
     }
 ];
