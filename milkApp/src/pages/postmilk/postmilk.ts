@@ -19,6 +19,7 @@ export class PostmilkPage {
   public farm: String = "";
   public myDate: String = moment().format();
   public observer: String = "";
+  
   public group: String = "";
   public teatSkinLH: String = "teatSkinLH1";
   public teatSkinLF: String = "teatSkinLF1";
@@ -50,6 +51,31 @@ export class PostmilkPage {
   }
 
   saveForm(){
+    this.group = "";
+    this.teatSkinLH = "teatSkinLH1";
+    this.teatSkinLF = "teatSkinLF1";
+    this.teatSkinRH = "teatSkinRH1";
+    this.teatSkinRF = "teatSkinRF1";
+
+    this.teatColorLH = "teatColorLH1";
+    this.teatColorLF = "teatColorLF1";
+    this.teatColorRH = "teatColorRH1";
+    this.teatColorRF = "teatColorRF1";
+
+    this.swellingLH = "swellingLH1";
+    this.swellingLF = "swellingLF1";
+    this.swellingRH = "swellingRH1";
+    this.swellingRF = "swellingRF1";
+
+    this.hardnessLH = "hardnessLH1";
+    this.hardnessLF = "hardnessLF1";
+    this.hardnessRH = "hardnessRH1";
+    this.hardnessRF = "hardnessRF1";
+
+    this.scoreLH = "scoreLH1";
+    this.scoreLF = "scoreLF1";
+    this.scoreRH = "scoreRH1";
+    this.scoreRF = "scoreRF1";
   }
   submitForm(){
     let alert = this.alerCtrl.create({
@@ -57,6 +83,7 @@ export class PostmilkPage {
       message: 'Data have been submitted!',
       buttons: ['Ok']
     });
+    alert.present()
     this.saveForm()
     this.farm = ""
     this.myDate = moment().format()
