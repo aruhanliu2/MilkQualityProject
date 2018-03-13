@@ -62,9 +62,6 @@ export class AlignmentPage {
     this.bad = 0
     this.farm = ""
     this.myDate = moment().format()
-
-    console.log()
-
   }
 
   ionViewDidLoad() {
