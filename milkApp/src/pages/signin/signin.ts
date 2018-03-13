@@ -17,7 +17,7 @@ export class SigninPage {
       });
       loading.present();
 
-      this.authService.signup(form.value.email, form.value.password)
+      this.authService.signin(form.value.email, form.value.password)
 	  	.then(data => {
 	  		loading.dismiss();
 	  	})
