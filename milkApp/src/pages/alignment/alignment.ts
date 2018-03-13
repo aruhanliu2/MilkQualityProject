@@ -22,7 +22,8 @@ export class AlignmentPage {
   public bad: number = 0;
 
 
-  constructor(public alerCtrl: AlertController) {
+  constructor(public alerCtrl: AlertController,
+    private navParams: NavParams) {
   }
 
 
@@ -61,6 +62,8 @@ export class AlignmentPage {
     this.bad = 0
     this.farm = ""
     this.myDate = moment().format()
+
+    console.log()
 
   }
 
