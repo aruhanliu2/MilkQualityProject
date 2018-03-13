@@ -15,6 +15,7 @@ export class TeatPage {
   public largeDirt: number = 0;
   public farm: String = "";
   public myDate: String = moment().format();
+  public observer: String = "";
   public milker: String = "";
   constructor(public alerCtrl: AlertController) {
 
@@ -63,7 +64,8 @@ export class TeatPage {
     this.smallDirt = 0
     this.largeDirt = 0
     this.farm = ""
-    this.myDate = moment().format();
+    this.myDate = moment().format()
+    this.observer = ""
     this.milker = ""
   }
 

@@ -22,6 +22,7 @@ export class HgyienePage {
   public cakedOnDirt: number = 0;
   public farm: String = "";
   public myDate: String = moment().format();
+  public observer: String = "";
   public group: String = "";
   constructor(public alerCtrl: AlertController) {
 
@@ -71,6 +72,7 @@ export class HgyienePage {
     this.cakedOnDirt = 0
     this.farm = ""
     this.myDate = moment().format()
+    this.observer = ""
     this.group = ""
   }
 
