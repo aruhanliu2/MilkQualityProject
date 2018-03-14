@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
+import { AlignmentService } from '../../services/alignment';
 import * as moment from 'moment';
 
 /**
@@ -16,14 +17,14 @@ import * as moment from 'moment';
   templateUrl: 'alignment.html',
 })
 export class AlignmentPage {
-  public farm: String = "";
-  public myDate: String = moment().format();
+  public farm: string = "";
+  public myDate: string = moment().format();
   public good: number = 0;
   public bad: number = 0;
 
   constructor(public alerCtrl: AlertController,
-    private navParams: NavParams) {
-  }
+    private navParams: NavParams,
+    private alignmentService: AlignmentService) {}
 
 
   tapDecrease(e,param:number){
@@ -32,7 +33,6 @@ export class AlignmentPage {
     } else if(param==2){
       this.bad = Math.max(this.bad-1,0)
     }
-
   }
   tapIncrease(e,param:number) {
     if(param==1){
@@ -47,6 +47,15 @@ export class AlignmentPage {
       message: 'Data have been saved locally!',
       buttons: ['Ok']
     });
+    
+    this.alignmentService.addItem(
+      this.farm, 
+      this.myDate, 
+      this.myDate, 
+      this.good, 
+      this.bad);
+
+    console.log(this.alignmentService.getItems());
     alert.present()
   }
   submitData() {

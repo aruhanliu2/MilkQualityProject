@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
+import { StripService } from "../../services/strip";
 import * as moment from 'moment';
 
 @IonicPage()
