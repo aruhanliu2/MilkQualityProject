@@ -13,7 +13,7 @@ export class LactocoderPage {
   myDate: String = moment().format();
 
 
-  /*cowName1: String = ""
+  cowName1: String = ""
   milk1: String = ""
   remark1: String = ""
   timer1: String = "Start"
@@ -123,6 +123,6 @@ export class LactocoderPage {
 
     this.todo.reset()
     this.myDate = moment().format()
-  }*/
+  }
 
 }
