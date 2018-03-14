@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 import { TeatService } from '../../services/teat';
+import { AuthService } from "../../services/auth";
+import { Http } from "@angular/http";
 import * as moment from 'moment';
 
 @IonicPage()
@@ -19,7 +21,9 @@ export class TeatPage {
   public observer: string = "";
   public milker: string = "";
   constructor(public alerCtrl: AlertController,
-    private teatService: TeatService) {
+    private teatService: TeatService,
+    private http: Http,
+    private authService: AuthService) {
 
   }
   tapDecrease(e,param:number){
@@ -52,7 +56,8 @@ export class TeatPage {
       buttons: ['Ok']
     });
     //add new item
-    this.teatService.addItem(this.farm, 
+    this.teatService.updateItems(0,
+      this.farm, 
       this.myDate, 
       this.myDate,
       this.observer, 
@@ -73,6 +78,21 @@ export class TeatPage {
     });
     alert.present()
 
+    //pushing data to database
+    this.authService.getActiveUser().getToken()
+      .then(
+        (token: string) => {
+          this.teatService.storeList(token)
+            .subscribe(
+              () => console.log('Success!'),
+              error => {
+                console.log(error);
+              }
+            );
+        }
+      );
+
+    //reset the data
     this.clean = 0
     this.deepPresent = 0
     this.smallDirt = 0

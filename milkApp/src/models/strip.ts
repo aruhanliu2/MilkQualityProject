@@ -4,7 +4,8 @@ export class Item {
         date: string,
         time: string,
         observer: string,
-        stall_no: number,
-        volume: number
+        stall_no: string,
+        volume: string,
+        balance: string
     ){};
 }

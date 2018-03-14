@@ -4,14 +4,6 @@ import { AlertController } from 'ionic-angular';
 import { AlignmentService } from '../../services/alignment';
 import * as moment from 'moment';
 
-/**
- * Generated class for the AlignmentPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
-@IonicPage()
 @Component({
   selector: 'page-alignment',
   templateUrl: 'alignment.html',
@@ -48,7 +40,7 @@ export class AlignmentPage {
       buttons: ['Ok']
     });
     
-    this.alignmentService.addItem(
+    this.alignmentService.updateItems(0,
       this.farm, 
       this.myDate, 
       this.myDate, 

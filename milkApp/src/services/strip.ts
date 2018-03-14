@@ -8,9 +8,10 @@ export class StripService {
         date: string,
         time: string,
         observer: string,
-        stall_no: number,
-        volume: number) {
-            this.items.push(new Item(farm, date, time, observer, stall_no, volume));
+        stall_no: string,
+        volume: string,
+        balance: string) {
+            this.items.push(new Item(farm, date, time, observer, stall_no, volume, balance));
             console.log(this.items);
        }
 
@@ -23,9 +24,10 @@ export class StripService {
         date: string,
         time: string,
         observer: string,
-        stall_no: number,
-        volume: number) {
-            this.items[index] = new Item(farm, date, time, observer, stall_no, volume);
+        stall_no: string,
+        volume: string,
+        balance: string) {
+            this.items[index] = new Item(farm, date, time, observer, stall_no, volume, balance);
        }
 
        removeItem(index: number) {

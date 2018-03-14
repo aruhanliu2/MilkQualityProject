@@ -58,7 +58,7 @@ export class HygienePage {
       message: 'Data have been saved locally!',
       buttons: ['Ok']
     });
-    this.hygieneService.addItem(
+    this.hygieneService.updateItems(0,
       this.farm,
       this.myDate,
       this.myDate,

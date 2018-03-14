@@ -10,19 +10,40 @@ import * as moment from 'moment';
   templateUrl: 'strip.html',
 })
 export class StripPage {
-  public farm: String = "";
-  public myDate: String = moment().format();
-  public stall: String = "";
-  public ml: String = "";
-  public balance: String = "balanced";
+  public farm: string = "";
+  public myDate: string = moment().format();
+  public observer: string = "";
+  public stall: string = "";
+  public ml: string = "";
+  public balance: string = "balanced";
 
-  constructor(public alerCtrl: AlertController) {
+  constructor(public alerCtrl: AlertController,
+    private stripService: StripService) {
   }
 
   saveData() {
-    this.stall = ""
-    this.ml = ""
-    this.balance = "balanced"
+    let alert = this.alerCtrl.create({
+      title: 'Saved!',
+      message: 'Data have been saved locally!',
+      buttons: ['Ok']
+    });
+
+    alert.present()
+    
+    //add Item
+    this.stripService.addItem(this.farm, 
+      this.myDate, 
+      this.myDate, 
+      this.observer,
+      this.stall, 
+      this.ml, 
+      this.balance);
+
+    console.log(this.stripService.getItems());
+
+    this.stall = "";
+    this.ml = "";
+    this.balance = "balanced";
   }
 
   submitData() {

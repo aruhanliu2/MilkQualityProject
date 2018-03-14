@@ -12,7 +12,6 @@ import * as moment from 'moment';
 export class LactocoderPage {
   myDate: String = moment().format();
 
-
   cowName1: String = ""
   milk1: String = ""
   remark1: String = ""
