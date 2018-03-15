@@ -29,14 +29,14 @@ export class StripPage {
     });
 
     alert.present()
-    
+
     //add Item
-    this.stripService.addItem(this.farm, 
-      this.myDate, 
-      this.myDate, 
+    this.stripService.addItem(this.farm,
+      this.myDate,
+      this.myDate,
       this.observer,
-      this.stall, 
-      this.ml, 
+      this.stall,
+      this.ml,
       this.balance);
 
     console.log(this.stripService.getItems());
@@ -56,6 +56,7 @@ export class StripPage {
     this.saveData()
     this.farm = ""
     this.myDate = moment().format()
+    this.observer = ""
   }
 
 }
