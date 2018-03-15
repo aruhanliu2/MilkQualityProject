@@ -51,7 +51,7 @@ export class LactocoderPage {
     });
   }
 
-  timer(e,param: number,timer: Object){
+  timer(e,param: number,timer: String){
     if(timer!="Finished"){
       if(param==1){
         this.cowList1.push(moment().format())
