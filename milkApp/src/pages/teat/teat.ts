@@ -23,11 +23,8 @@ export class TeatPage {
   public myDate: string = moment().format();
   public observer: string = "";
   public milker: string = "";
-<<<<<<< HEAD
   public beforeAfter: String = "beforeAfter1";
-=======
 
->>>>>>> 6abea3c1b401cf7e8a93f5f0f43fc559d5c1fdf6
   constructor(public alerCtrl: AlertController,
     private teatService: TeatService,
     private http: Http,
@@ -66,12 +63,11 @@ export class TeatPage {
     });
     //add new item
     this.teatService.updateItems(0,
-      this.farm, 
-      this.myDate, 
+      this.farm,
       this.myDate,
-      this.observer, 
-      this.milker, 
-      this.clean, 
+      this.observer,
+      this.milker,
+      this.clean,
       this.deepPresent,
       this.smallDirt,
       this.largeDirt
@@ -88,14 +84,14 @@ export class TeatPage {
     alert.present()
 
     //pushing data to sqlite databse
-    this.database.addTeatData(this.farm, 
-      this.myDate, 
-      this.myDate, 
-      this.observer, 
-      this.milker, 
-      this.clean, 
-      this.deepPresent, 
-      this.smallDirt, 
+    this.database.addTeatData(
+      this.farm,
+      this.myDate,
+      this.observer,
+      this.milker,
+      this.clean,
+      this.deepPresent,
+      this.smallDirt,
       this.largeDirt).then((data) => {
         console.log(data);
       }, (error) => {
