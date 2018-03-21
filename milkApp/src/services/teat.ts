@@ -11,6 +11,7 @@ export class TeatService {
 
     constructor(private http: Http,
         private authService: AuthService) {}
+
        addItem(farm: string,
         date: string,
         time: string,

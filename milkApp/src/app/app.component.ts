@@ -3,6 +3,7 @@ import { Nav, Platform, NavController, MenuController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { AuthService } from "../services/auth";
+import { SQLite, SQLiteObject } from '@ionic-native/sqlite';
 import * as firebase from 'firebase'
 
 import { HomePage } from '../pages/home/home';
