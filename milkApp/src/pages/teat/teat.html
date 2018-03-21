@@ -36,6 +36,14 @@
     </ion-item>
   </ion-list>
 
+  <ion-item>
+    <ion-label>Before or After Milking</ion-label>
+    <ion-select [(ngModel)]="beforeAfter" interface="popover">
+      <ion-option value="beforeAfter1">Before</ion-option>
+      <ion-option value="beforeAfter2">After</ion-option>
+    </ion-select>
+  </ion-item>
+
   <ion-card class="card" margin="0px">
     <img src="assets/imgs/clean.png"/>
     <ion-card-content>

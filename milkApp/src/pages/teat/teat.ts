@@ -20,6 +20,7 @@ export class TeatPage {
   public myDate: string = moment().format();
   public observer: string = "";
   public milker: string = "";
+  public beforeAfter: String = "beforeAfter1";
   constructor(public alerCtrl: AlertController,
     private teatService: TeatService,
     private http: Http,
