@@ -1,8 +1,11 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Storage } from '@ionic/storage';
+import { SQLite, SQLiteObject } from '@ionic-native/sqlite';
 import { AlertController } from 'ionic-angular';
 import { TeatService } from '../../services/teat';
 import { AuthService } from "../../services/auth";
+import { DatabaseProvider } from '../../providers/database/database';
 import { Http } from "@angular/http";
 import * as moment from 'moment';
 
@@ -20,11 +23,13 @@ export class TeatPage {
   public myDate: string = moment().format();
   public observer: string = "";
   public milker: string = "";
+
   constructor(public alerCtrl: AlertController,
     private teatService: TeatService,
     private http: Http,
-    private authService: AuthService) {
-
+    private authService: AuthService,
+    private sqlite: SQLite,
+    private database: DatabaseProvider) {
   }
   tapDecrease(e,param:number){
     if(param==1){
@@ -78,7 +83,22 @@ export class TeatPage {
     });
     alert.present()
 
-    //pushing data to database
+    //pushing data to sqlite databse
+    this.database.addTeatData(this.farm, 
+      this.myDate, 
+      this.myDate, 
+      this.observer, 
+      this.milker, 
+      this.clean, 
+      this.deepPresent, 
+      this.smallDirt, 
+      this.largeDirt).then((data) => {
+        console.log(data);
+      }, (error) => {
+        console.log(error);
+      });
+
+    //pushing data to firebase database
     this.authService.getActiveUser().getToken()
       .then(
         (token: string) => {
