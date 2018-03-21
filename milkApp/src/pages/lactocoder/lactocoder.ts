@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import {Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { AlertController } from 'ionic-angular';
 import * as moment from 'moment';
 
@@ -10,7 +9,18 @@ import * as moment from 'moment';
   templateUrl: 'lactocoder.html',
 })
 export class LactocoderPage {
-  myDate: string = moment().format();
+  farm: string = ""
+  myDate: string = moment().format()
+  parlor: string = ""
+  pre_milking: string = ""
+  herd_size: string = ""
+  size: string = ""
+  procedures: string = ""
+  frequency: string = "frequency2X"
+  operators: string = ""
+  prep: string = ""
+  routine: string = ""
+
 
   cowName1: string = ""
   milk1: string = ""
@@ -33,21 +43,7 @@ export class LactocoderPage {
   cowList3: string[] = []
   DLU3: string[] = []
 
-  private todo : FormGroup;
-
-  constructor( public alerCtrl: AlertController, private formBuilder: FormBuilder ) {
-    this.todo = this.formBuilder.group({
-      farm:[''],
-      parlor:[''],
-      pre_milking:[''],
-      herd_size:[''],
-      size:[''],
-      procedures:[''],
-      frequency:[''],
-      operators:[''],
-      prep:[''],
-      routine:[''],
-    });
+  constructor( public alerCtrl: AlertController) {
   }
 
   timer(e,param: number,timer: string){
@@ -139,8 +135,17 @@ export class LactocoderPage {
     });
     alert.present()
 
-    this.todo.reset()
+    this.farm = ""
     this.myDate = moment().format()
+    this.parlor = ""
+    this.pre_milking = ""
+    this.herd_size = ""
+    this.size = ""
+    this.procedures = ""
+    this.frequency = "frequency2X"
+    this.operators = ""
+    this.prep = ""
+    this.routine = ""
   }
 
 }
