@@ -15,15 +15,15 @@ import * as moment from 'moment';
   templateUrl: 'teat.html',
 })
 export class TeatPage {
-  public clean: number = 0;
-  public deepPresent: number = 0;
-  public smallDirt: number = 0;
-  public largeDirt: number = 0;
-  public farm: string = "";
-  public myDate: string = moment().format();
-  public observer: string = "";
-  public milker: string = "";
-  public beforeAfter: String = "beforeAfter1";
+  public farm: string = ""
+  public myDate: string = moment().format()
+  public observer: string = ""
+  public milker: string = ""
+  public clean: number = 0
+  public deepPresent: number = 0
+  public smallDirt: number = 0
+  public largeDirt: number = 0
+  public beforeAfter: string = "beforeAfter1"
 
   constructor(public alerCtrl: AlertController,
     private teatService: TeatService,
@@ -70,7 +70,8 @@ export class TeatPage {
       this.clean,
       this.deepPresent,
       this.smallDirt,
-      this.largeDirt
+      this.largeDirt,
+      this.beforeAfter
     );
     console.log(this.teatService.getItems());
     alert.present()
@@ -92,7 +93,8 @@ export class TeatPage {
       this.clean,
       this.deepPresent,
       this.smallDirt,
-      this.largeDirt).then((data) => {
+      this.largeDirt,
+      this.beforeAfter).then((data) => {
         console.log(data);
       }, (error) => {
         console.log(error);
@@ -113,18 +115,19 @@ export class TeatPage {
       );
 
     //reset the data
-    this.clean = 0
-    this.deepPresent = 0
-    this.smallDirt = 0
-    this.largeDirt = 0
     this.farm = ""
     this.myDate = moment().format()
     this.observer = ""
     this.milker = ""
+    this.clean = 0
+    this.deepPresent = 0
+    this.smallDirt = 0
+    this.largeDirt = 0
+    this.beforeAfter = "beforeAfter1"
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad TeatPage');
+    console.log('ionViewDidLoad TeatPage')
   }
 
 }

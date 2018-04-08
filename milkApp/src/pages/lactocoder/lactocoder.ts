@@ -26,22 +26,22 @@ export class LactocoderPage {
   milk1: string = ""
   remark1: string = ""
   timer1: string = "Dip"
-  cowList1: string[] = []
-  DLU1: string[] = []
+  cowList1: number[] = []
+  DLU1: number[] = []
 
   cowName2: string = ""
   milk2: string = ""
   remark2: string = ""
   timer2: string = "Dip"
-  cowList2: string[] = []
-  DLU2: string[] = []
+  cowList2: number[] = []
+  DLU2: number[] = []
 
   cowName3: string = ""
   milk3: string = ""
   remark3: string = ""
   timer3: string = "Dip"
-  cowList3: string[] = []
-  DLU3: string[] = []
+  cowList3: number[] = []
+  DLU3: number[] = []
 
   constructor( public alerCtrl: AlertController) {
   }
@@ -49,18 +49,18 @@ export class LactocoderPage {
   timer(e,param: number,timer: string){
     if(timer!="Finished"){
       if(param==1){
-        this.cowList1.push(moment().format("X"))
+        this.cowList1.push(+moment().format("X"))
         if(this.cowList1.length==3){
           this.DLU1.push(this.cowList1[2]-this.cowList1[0])
         } else if(this.cowList1.length==4){
-          this.DLU1.push(this.cowList1[3]-this.cowList1[1])
+          this.DLU1.push(+this.cowList1[3]-this.cowList1[1])
         } else if(this.cowList1.length==5){
-          this.DLU1.push(this.cowList1[4]-this.cowList1[3])
+          this.DLU1.push(+this.cowList1[4]-this.cowList1[3])
         }
         console.log(this.cowList1)
         console.log(this.DLU1)
       } else if(param==2){
-        this.cowList2.push(moment().format("X"))
+        this.cowList2.push(+moment().format("X"))
         if(this.cowList2.length==3){
           this.DLU2.push(this.cowList2[2]-this.cowList2[0])
         } else if(this.cowList2.length==4){
@@ -71,7 +71,7 @@ export class LactocoderPage {
         console.log(this.cowList2)
         console.log(this.DLU2)
       } else if(param==3){
-        this.cowList3.push(moment().format("X"))
+        this.cowList3.push(+moment().format("X"))
         if(this.cowList3.length==3){
           this.DLU3.push(this.cowList3[2]-this.cowList3[0])
         } else if(this.cowList3.length==4){
@@ -110,7 +110,6 @@ export class LactocoderPage {
     this.remark1 = ""
     this.timer1 = "Dip"
     this.cowList1 = []
-    this.timer1Current = ""
 
 
     this.cowName2 = ""
@@ -118,14 +117,12 @@ export class LactocoderPage {
     this.remark2 = ""
     this.timer2 = "Dip"
     this.cowList2 = []
-    this.timer2Current = ""
 
     this.cowName3 = ""
     this.milk3 = ""
     this.remark3 = ""
     this.timer3 = "Dip"
     this.cowList3 = []
-    this.timer3Current = ""
   }
   submitForm() {
     let alert = this.alerCtrl.create({

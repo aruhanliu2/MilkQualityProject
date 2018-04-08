@@ -8,7 +8,7 @@ import { Platform } from 'ionic-angular';
 export class DatabaseProvider {
   database: SQLiteObject;
   isOpen: boolean;
-  
+
   constructor(public http: HttpClient,
     private storage: Storage,
     private sqlite: SQLite,
@@ -19,18 +19,18 @@ export class DatabaseProvider {
         this.sqlite.create({
           name: 'milkdata.db',
           location: 'default'
-        }).then((db: SQLiteObject) =>{ 
+        }).then((db: SQLiteObject) =>{
           this.database = db;
           db.executeSql('CREATE TABLE IF NOT EXISTS teat(\
             farm TEXT,\
             date TEXT,\
-            time TEXT,\
             observer TEXT,\
             milker TEXT,\
             clean INTEGER,\
             deep_present INTEGER,\
             small_dirt INTEGER,\
-            large_dirt INTEGER))', {});
+            large_dirt INTEGER,\
+            beforeAfter TEXT))', {});
           this.isOpen = true;
         }).catch((error) => {
           console.log(error);
@@ -39,14 +39,14 @@ export class DatabaseProvider {
     });
   }
 
-  addTeatData(farm, date, time, observer, milker, clean, deep_present, small_dirt, large_dirt) {
-    let data = [farm, date, time, observer, milker, clean, deep_present, small_dirt, large_dirt];
-    let q = "INSERT INTO teat(farm, date, time, observer, milker, deep_present, small_dirt, large_dirt) VALUES(?,?,?,?,?,?,?,?)";
+  addTeatData(farm, date, observer, milker, clean, deep_present, small_dirt, large_dirt, beforeAfter) {
+    let data = [farm, date, observer, milker, clean, deep_present, small_dirt, large_dirt, beforeAfter];
+    let q = "INSERT INTO teat(farm, date, observer, milker, clean, deep_present, small_dirt, large_dirt, beforeAfter) VALUES(?,?,?,?,?,?,?,?,?)";
     return new Promise((resolve, reject) => {
       this.sqlite.create({
         name: 'milkdata.db',
         location: 'default'
-      }).then((db: SQLiteObject) => { 
+      }).then((db: SQLiteObject) => {
         this.database = db;
         db.executeSql(q, data).then((res) => {
           resolve(data);
@@ -69,7 +69,8 @@ export class DatabaseProvider {
             clean: data.rows.item(i).clean,
             deep_present: data.rows.item(i).deep_present,
             small_dirt: data.rows.item(i).small_dirt,
-            large_dirt: data.rows.item(i).large_dirt})
+            large_dirt: data.rows.item(i).large_dirt,
+            beforeAfter: data.rows.item(i).beforeAfter})
         }
       }
       return items;
