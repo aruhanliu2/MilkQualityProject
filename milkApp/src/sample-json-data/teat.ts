@@ -5,7 +5,7 @@ export default [
         observer: 'Paul',
         milker: 'Paul',
         clean: 45,
-        deep_present: 36,
+        dip_present: 36,
         small_dirt: 4,
         large_dirt: 3,
         beforeAfter: "beforeAfter1"

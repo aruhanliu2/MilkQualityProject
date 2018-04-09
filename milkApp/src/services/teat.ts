@@ -16,11 +16,11 @@ export class TeatService {
         observer: string,
         milker: string,
         clean: number,
-        deep_present: number,
+        dip_present: number,
         small_dirt: number,
         large_dirt: number,
         beforeAfter: string) {
-            this.items.push(new Item(farm, date, observer, milker, clean, deep_present, small_dirt, large_dirt, beforeAfter));
+            this.items.push(new Item(farm, date, observer, milker, clean, dip_present, small_dirt, large_dirt, beforeAfter));
             console.log(this.items);
        }
 
@@ -34,11 +34,11 @@ export class TeatService {
         observer: string,
         milker: string,
         clean: number,
-        deep_present: number,
+        dip_present: number,
         small_dirt: number,
         large_dirt: number,
         beforeAfter: string) {
-            this.items[index] = new Item(farm, date, observer, milker, clean, deep_present, small_dirt, large_dirt, beforeAfter);
+            this.items[index] = new Item(farm, date, observer, milker, clean, dip_present, small_dirt, large_dirt, beforeAfter);
        }
 
        removeItem(index: number) {

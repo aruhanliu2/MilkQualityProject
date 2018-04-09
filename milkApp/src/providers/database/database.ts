@@ -27,7 +27,7 @@ export class DatabaseProvider {
             observer TEXT,\
             milker TEXT,\
             clean INTEGER,\
-            deep_present INTEGER,\
+            dip_present INTEGER,\
             small_dirt INTEGER,\
             large_dirt INTEGER,\
             beforeAfter TEXT))', {});
@@ -39,9 +39,9 @@ export class DatabaseProvider {
     });
   }
 
-  addTeatData(farm, date, observer, milker, clean, deep_present, small_dirt, large_dirt, beforeAfter) {
-    let data = [farm, date, observer, milker, clean, deep_present, small_dirt, large_dirt, beforeAfter];
-    let q = "INSERT INTO teat(farm, date, observer, milker, clean, deep_present, small_dirt, large_dirt, beforeAfter) VALUES(?,?,?,?,?,?,?,?,?)";
+  addTeatData(farm, date, observer, milker, clean, dip_present, small_dirt, large_dirt, beforeAfter) {
+    let data = [farm, date, observer, milker, clean, dip_present, small_dirt, large_dirt, beforeAfter];
+    let q = "INSERT INTO teat(farm, date, observer, milker, clean, dip_present, small_dirt, large_dirt, beforeAfter) VALUES(?,?,?,?,?,?,?,?,?)";
     return new Promise((resolve, reject) => {
       this.sqlite.create({
         name: 'milkdata.db',
@@ -67,7 +67,7 @@ export class DatabaseProvider {
             time: data.rows.item(i).time,
             observer: data.rows.item(i).observer,
             clean: data.rows.item(i).clean,
-            deep_present: data.rows.item(i).deep_present,
+            dip_present: data.rows.item(i).dip_present,
             small_dirt: data.rows.item(i).small_dirt,
             large_dirt: data.rows.item(i).large_dirt,
             beforeAfter: data.rows.item(i).beforeAfter})

@@ -20,7 +20,7 @@ export class TeatPage {
   public observer: string = ""
   public milker: string = ""
   public clean: number = 0
-  public deepPresent: number = 0
+  public dipPresent: number = 0
   public smallDirt: number = 0
   public largeDirt: number = 0
   public beforeAfter: string = "beforeAfter1"
@@ -36,7 +36,7 @@ export class TeatPage {
     if(param==1){
       this.clean = Math.max(this.clean-1,0)
     } else if(param==2){
-      this.deepPresent = Math.max(this.deepPresent-1,0)
+      this.dipPresent = Math.max(this.dipPresent-1,0)
     } else if(param==3){
       this.smallDirt = Math.max(this.smallDirt-1,0)
     } else if(param==4){
@@ -48,7 +48,7 @@ export class TeatPage {
     if(param==1){
       this.clean++
     } else if(param==2){
-      this.deepPresent++
+      this.dipPresent++
     } else if(param==3){
       this.smallDirt++
     } else if(param==4){
@@ -68,7 +68,7 @@ export class TeatPage {
       this.observer,
       this.milker,
       this.clean,
-      this.deepPresent,
+      this.dipPresent,
       this.smallDirt,
       this.largeDirt,
       this.beforeAfter
@@ -91,7 +91,7 @@ export class TeatPage {
       this.observer,
       this.milker,
       this.clean,
-      this.deepPresent,
+      this.dipPresent,
       this.smallDirt,
       this.largeDirt,
       this.beforeAfter).then((data) => {
@@ -120,7 +120,7 @@ export class TeatPage {
     this.observer = ""
     this.milker = ""
     this.clean = 0
-    this.deepPresent = 0
+    this.dipPresent = 0
     this.smallDirt = 0
     this.largeDirt = 0
     this.beforeAfter = "beforeAfter1"
