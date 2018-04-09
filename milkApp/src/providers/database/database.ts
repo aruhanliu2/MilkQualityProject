@@ -64,8 +64,8 @@ export class DatabaseProvider {
         for (var i = 0; i < data.rows.length; i++) {
          items.push({farm: data.rows.item(i).farm,
             date: data.rows.item(i).date,
-            time: data.rows.item(i).time,
             observer: data.rows.item(i).observer,
+            milker: data.rows.item(i).milker,
             clean: data.rows.item(i).clean,
             dip_present: data.rows.item(i).dip_present,
             small_dirt: data.rows.item(i).small_dirt,

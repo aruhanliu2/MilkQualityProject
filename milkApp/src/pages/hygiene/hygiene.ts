@@ -61,7 +61,6 @@ export class HygienePage {
     this.hygieneService.updateItems(0,
       this.farm,
       this.myDate,
-      this.myDate,
       this.observer,
       this.group,
       this.clean,

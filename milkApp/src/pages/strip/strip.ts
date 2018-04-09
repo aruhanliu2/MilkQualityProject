@@ -33,7 +33,6 @@ export class StripPage {
     //add Item
     this.stripService.addItem(this.farm,
       this.myDate,
-      this.myDate,
       this.observer,
       this.stall,
       this.ml,

@@ -2,7 +2,6 @@ export class Item {
     constructor(
         public farm: string,
         public date: string,
-        public time: string,
         public observer: string,
         public group: string,
         public clean: number,
