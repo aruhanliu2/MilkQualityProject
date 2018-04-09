@@ -2,7 +2,6 @@ export default [
     {
         farm: 'cornell farm',
         date: '03-12-2018',
-        time: '12:59pm',
         parlor_type: 'none',
         pre_milking: 'none',
         herd_size: 4,

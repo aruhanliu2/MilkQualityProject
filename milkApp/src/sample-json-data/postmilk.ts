@@ -2,7 +2,6 @@ export default [
     {
         farm: 'cornell farm',
         date: '03-12-2018',
-        time: '12:59pm',
         observer: 'Paul',
         group: 3,
         teat_skin_condition: {
