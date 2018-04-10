@@ -20,7 +20,7 @@ export class PostmilkPage {
   public myDate: string = moment().format()
   public observer: string = ""
 
-  public group: number = ""
+  public group: number = 0
   public teatSkinLH: string = "teatSkinLH1"
   public teatSkinLF: string = "teatSkinLF1"
   public teatSkinRH: string = "teatSkinRH1"
@@ -51,7 +51,7 @@ export class PostmilkPage {
   }
 
   saveForm(){
-    this.group = ""
+    this.group = 0
     this.teatSkinLH = "teatSkinLH1"
     this.teatSkinLF = "teatSkinLF1"
     this.teatSkinRH = "teatSkinRH1"

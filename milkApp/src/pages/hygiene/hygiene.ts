@@ -82,7 +82,7 @@ export class HygienePage {
     this.farm = ""
     this.myDate = moment().format()
     this.observer = ""
-    this.group = ""
+    this.group = 0
     this.clean = 0
     this.slightlyDirt = 0
     this.moderatelyDirt = 0
