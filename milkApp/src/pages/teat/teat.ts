@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { Storage } from '@ionic/storage';
-import { SQLite, SQLiteObject } from '@ionic-native/sqlite';
 import { AlertController } from 'ionic-angular';
 import { TeatService } from '../../services/teat';
 import { AuthService } from "../../services/auth";
@@ -12,7 +10,7 @@ import * as moment from 'moment';
 @IonicPage()
 @Component({
   selector: 'page-teat',
-  templateUrl: 'teat.html',
+  templateUrl: 'teat.html'
 })
 export class TeatPage {
   public clean: number = 0;
@@ -24,12 +22,16 @@ export class TeatPage {
   public observer: string = "";
   public milker: string = "";
 
+  public items = {};
+  public item  = {};
+  
+
   constructor(public alerCtrl: AlertController,
     private teatService: TeatService,
     private http: Http,
     private authService: AuthService,
-    private sqlite: SQLite,
     private database: DatabaseProvider) {
+      //this.loadTeatData();
   }
   tapDecrease(e,param:number){
     if(param==1){
@@ -72,34 +74,13 @@ export class TeatPage {
       this.smallDirt,
       this.largeDirt
     );
+
+    console.log("浏览器存储:")
     console.log(this.teatService.getItems());
     alert.present()
-  }
-  submitData() {
-    let alert = this.alerCtrl.create({
-      title: 'Submitted!',
-      message: 'Data have been submitted!',
-      buttons: ['Ok']
-    });
-    alert.present()
-
-    //pushing data to sqlite databse
-    this.database.addTeatData(this.farm, 
-      this.myDate, 
-      this.myDate, 
-      this.observer, 
-      this.milker, 
-      this.clean, 
-      this.deepPresent, 
-      this.smallDirt, 
-      this.largeDirt).then((data) => {
-        console.log(data);
-      }, (error) => {
-        console.log(error);
-      });
 
     //pushing data to firebase database
-    this.authService.getActiveUser().getToken()
+    this.authService.getActiveUser().getIdToken()
       .then(
         (token: string) => {
           this.teatService.storeList(token)
@@ -112,6 +93,20 @@ export class TeatPage {
         }
       );
 
+    //local storage to sqlite
+    this.pushTeatData();
+  }
+
+  submitData() {
+    let alert = this.alerCtrl.create({
+      title: 'Submitted!',
+      message: 'Data have been submitted!',
+      buttons: ['Ok']
+    });
+    alert.present()
+
+    //push data to eventual database when there is network
+    
     //reset the data
     this.clean = 0
     this.deepPresent = 0
@@ -125,6 +120,26 @@ export class TeatPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad TeatPage');
+  }
+
+  loadTeatData() {
+    this.database.getTeatData().then((data) => {
+      console.log("数据库里的数据:")
+      console.log(data);
+    }, (error) => {
+      console.log(error);
+    })
+  }
+
+  pushTeatData() {
+    this.database.addTeatData(this.farm, this.myDate, this.myDate, this.observer, this.milker, this.clean, this.deepPresent, this.smallDirt, this.largeDirt)
+      .then((data) => {
+        this.loadTeatData();
+        console.log("当前传输的一条数据:")
+        console.log(data);
+      }, (error) => {
+        console.log(error);
+      });
   }
 
 }
