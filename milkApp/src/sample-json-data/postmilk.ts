@@ -33,7 +33,6 @@ export default [
             LF: 'Dry',
             RH: 'Normal',
             RF: 'Dry'
-        },
-        notes: "I'm a milker."
+        }
     }
 ];
