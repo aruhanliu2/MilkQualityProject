@@ -134,7 +134,7 @@ export class TeatPage {
   }
 
   pushTeatData() {
-    this.database.addTeatData(this.farm, this.myDate, this.myDate, this.observer, this.milker, this.clean, this.deepPresent, this.smallDirt, this.largeDirt)
+    this.database.addTeatData(this.farm, this.myDate, this.myDate, this.observer, this.milker, this.clean, this.dipPresent, this.smallDirt, this.largeDirt)
       .then((data) => {
         this.loadTeatData();
         console.log("当前传输的一条数据:")
