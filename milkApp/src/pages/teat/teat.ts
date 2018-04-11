@@ -78,7 +78,6 @@ export class TeatPage {
 
     console.log("浏览器存储:")
     console.log(this.teatService.getItems());
-    alert.present()
 
     //pushing data to firebase database
     this.authService.getActiveUser().getIdToken()
@@ -96,19 +95,7 @@ export class TeatPage {
 
     //local storage to sqlite
     this.pushTeatData();
-  }
 
-  submitData() {
-    let alert = this.alerCtrl.create({
-      title: 'Submitted!',
-      message: 'Data have been submitted!',
-      buttons: ['Ok']
-    });
-    alert.present()
-
-    //push data to eventual database when there is network
-
-    //reset the data
     this.farm = ""
     this.myDate = moment().format()
     this.observer = ""
@@ -118,6 +105,8 @@ export class TeatPage {
     this.smallDirt = 0
     this.largeDirt = 0
     this.beforeAfter = "beforeAfter1"
+
+    alert.present()
   }
 
   ionViewDidLoad() {

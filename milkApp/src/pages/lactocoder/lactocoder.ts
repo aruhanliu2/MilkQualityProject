@@ -104,7 +104,7 @@ export class LactocoderPage {
     }
   }
 
-  saveForm() {
+  saveData() {
     this.cowName1 = ""
     this.milk1 = ""
     this.remark1 = ""
@@ -123,26 +123,6 @@ export class LactocoderPage {
     this.remark3 = ""
     this.timer3 = "Dip"
     this.cowList3 = []
-  }
-  submitForm() {
-    let alert = this.alerCtrl.create({
-      title: 'Submitted!',
-      message: 'Data have been submitted!',
-      buttons: ['Ok']
-    });
-    alert.present()
-
-    this.farm = ""
-    this.myDate = moment().format()
-    this.parlor = ""
-    this.pre_milking = ""
-    this.herd_size = ""
-    this.size = ""
-    this.procedures = ""
-    this.frequency = "frequency2X"
-    this.operators = ""
-    this.prep = ""
-    this.routine = ""
   }
 
 }

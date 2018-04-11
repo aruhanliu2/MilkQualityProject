@@ -20,7 +20,7 @@ export class HygienePage {
   public farm: string = ""
   public myDate: string = moment().format()
   public observer: string = ""
-  public group: number = 0
+  public group: string = ""
   public clean: number = 0
   public slightlyDirt: number = 0
   public moderatelyDirt: number = 0
@@ -69,25 +69,18 @@ export class HygienePage {
       this.cakedOnDirt
     );
     console.log(this.hygieneService.getItems());
-    alert.present()
-  }
-  submitData() {
-    let alert = this.alerCtrl.create({
-      title: 'Submitted!',
-      message: 'Data have been submitted!',
-      buttons: ['Ok']
-    });
-    alert.present()
 
+    // empty the form
     this.farm = ""
     this.myDate = moment().format()
     this.observer = ""
-    this.group = 0
+    this.group = ""
     this.clean = 0
     this.slightlyDirt = 0
     this.moderatelyDirt = 0
     this.cakedOnDirt = 0
 
+    alert.present()
   }
 
   ionViewDidLoad() {

@@ -49,21 +49,14 @@ export class AlignmentPage {
       this.bad);
 
     console.log(this.alignmentService.getItems());
-    alert.present()
-  }
-  submitData() {
-    let alert = this.alerCtrl.create({
-      title: 'Submitted!',
-      message: 'Data have been submitted!',
-      buttons: ['Ok']
-    });
-    alert.present()
 
-    this.good = 0
-    this.bad = 0
-    this.observer = ""
     this.farm = ""
     this.myDate = moment().format()
+    this.observer = ""
+    this.good = 0
+    this.bad = 0
+
+    alert.present()
   }
 
   ionViewDidLoad() {

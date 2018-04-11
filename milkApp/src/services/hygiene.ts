@@ -7,7 +7,7 @@ export class HygieneService {
        addItem(farm: string,
         date: string,
         observer: string,
-        group: number,
+        group: string,
         clean: number,
         slightly_present: number,
         moderately_dirt: number,

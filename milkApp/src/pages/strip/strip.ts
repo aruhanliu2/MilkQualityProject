@@ -28,8 +28,6 @@ export class StripPage {
       buttons: ['Ok']
     });
 
-    alert.present()
-
     //add Item
     this.stripService.addItem(this.farm,
       this.myDate,
@@ -43,19 +41,6 @@ export class StripPage {
     this.stall = "";
     this.ml = "";
     this.balance = "balanced";
-  }
-
-  submitData() {
-    let alert = this.alerCtrl.create({
-      title: 'Submitted!',
-      message: 'Data have been submitted!',
-      buttons: ['Ok']
-    });
-    alert.present()
-    this.saveData()
-    this.farm = ""
-    this.myDate = moment().format()
-    this.observer = ""
   }
 
 }

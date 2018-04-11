@@ -20,7 +20,7 @@ export class PostmilkPage {
   public myDate: string = moment().format()
   public observer: string = ""
 
-  public group: number = 0
+  public group: string = ""
   public teatSkinLH: string = "teatSkinLH1"
   public teatSkinLF: string = "teatSkinLF1"
   public teatSkinRH: string = "teatSkinRH1"
@@ -50,8 +50,8 @@ export class PostmilkPage {
   constructor(public alerCtrl: AlertController ) {
   }
 
-  saveForm(){
-    this.group = 0
+  saveData(){
+    this.group = ""
     this.teatSkinLH = "teatSkinLH1"
     this.teatSkinLF = "teatSkinLF1"
     this.teatSkinRH = "teatSkinRH1"
@@ -76,18 +76,6 @@ export class PostmilkPage {
     this.scoreLF = "scoreLF1"
     this.scoreRH = "scoreRH1"
     this.scoreRF = "scoreRF1"
-  }
-  submitForm(){
-    let alert = this.alerCtrl.create({
-      title: 'Submitted!',
-      message: 'Data have been submitted!',
-      buttons: ['Ok']
-    });
-    alert.present()
-    this.saveForm()
-    this.farm = ""
-    this.myDate = moment().format()
-    this.observer = ""
   }
 
 }

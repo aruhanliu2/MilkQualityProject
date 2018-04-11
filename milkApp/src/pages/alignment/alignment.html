@@ -14,27 +14,26 @@
 
 
 <ion-content padding>
-<ion-list>
+  <ion-list>
 
-  <ion-item>
-    <ion-label fixed>Farm</ion-label>
-    <ion-input text-right type="text" [(ngModel)]="farm"></ion-input>
-  </ion-item>
+    <ion-item>
+      <ion-label fixed>Farm</ion-label>
+      <ion-input text-right type="text" [(ngModel)]="farm"></ion-input>
+    </ion-item>
 
-  <ion-item>
-    <ion-label>Date</ion-label>
-    <ion-datetime displayFormat="YYYY MMM DD" [(ngModel)]="myDate"></ion-datetime>
-  </ion-item>
+    <ion-item>
+      <ion-label>Date</ion-label>
+      <ion-datetime displayFormat="YYYY MMM DD" [(ngModel)]="myDate"></ion-datetime>
+    </ion-item>
 
-  <ion-item>
-    <ion-label fixed>Observer</ion-label>
-    <ion-input text-right type="text" [(ngModel)]="observer"></ion-input>
-  </ion-item>
+    <ion-item>
+      <ion-label fixed>Observer</ion-label>
+      <ion-input text-right type="text" [(ngModel)]="observer"></ion-input>
+    </ion-item>
 
 
-</ion-list>
+  </ion-list>
 
-<ion-content padding>
   <Button ion-button (tap)="tapDecrease($event,1)"> - </Button>
   <Button>Good: {{good}}</Button>
   <Button ion-button (tap)="tapIncrease($event,1)"> + </Button>
@@ -48,12 +47,7 @@
 
   <hr>
 
-  <Button ion-button (click)="saveData()"> Save </Button>
-  <Button ion-button (click)="submitData()"> Submit </Button>
-  <Button ion-button navPop> Back </Button>
-
-</ion-content>
-
-
+  <Button class="btn" ion-button (click)="saveData()"> Save </Button>
+  <Button class="btn" ion-button navPop> Back </Button>
 
 </ion-content>
