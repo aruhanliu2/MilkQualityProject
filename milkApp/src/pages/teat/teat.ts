@@ -13,14 +13,15 @@ import * as moment from 'moment';
   templateUrl: 'teat.html'
 })
 export class TeatPage {
-  public clean: number = 0;
-  public deepPresent: number = 0;
-  public smallDirt: number = 0;
-  public largeDirt: number = 0;
-  public farm: string = "";
-  public myDate: string = moment().format();
-  public observer: string = "";
-  public milker: string = "";
+  public farm: string = ""
+  public myDate: string = moment().format()
+  public observer: string = ""
+  public milker: string = ""
+  public clean: number = 0
+  public dipPresent: number = 0
+  public smallDirt: number = 0
+  public largeDirt: number = 0
+  public beforeAfter: string = "beforeAfter1"
 
   public items = {};
   public item  = {};
@@ -37,7 +38,7 @@ export class TeatPage {
     if(param==1){
       this.clean = Math.max(this.clean-1,0)
     } else if(param==2){
-      this.deepPresent = Math.max(this.deepPresent-1,0)
+      this.dipPresent = Math.max(this.dipPresent-1,0)
     } else if(param==3){
       this.smallDirt = Math.max(this.smallDirt-1,0)
     } else if(param==4){
@@ -49,7 +50,7 @@ export class TeatPage {
     if(param==1){
       this.clean++
     } else if(param==2){
-      this.deepPresent++
+      this.dipPresent++
     } else if(param==3){
       this.smallDirt++
     } else if(param==4){
@@ -64,15 +65,15 @@ export class TeatPage {
     });
     //add new item
     this.teatService.updateItems(0,
-      this.farm, 
-      this.myDate, 
+      this.farm,
       this.myDate,
-      this.observer, 
-      this.milker, 
-      this.clean, 
-      this.deepPresent,
+      this.observer,
+      this.milker,
+      this.clean,
+      this.dipPresent,
       this.smallDirt,
-      this.largeDirt
+      this.largeDirt,
+      this.beforeAfter
     );
 
     console.log("浏览器存储:")
@@ -108,18 +109,19 @@ export class TeatPage {
     //push data to eventual database when there is network
     
     //reset the data
-    this.clean = 0
-    this.deepPresent = 0
-    this.smallDirt = 0
-    this.largeDirt = 0
     this.farm = ""
     this.myDate = moment().format()
     this.observer = ""
     this.milker = ""
+    this.clean = 0
+    this.dipPresent = 0
+    this.smallDirt = 0
+    this.largeDirt = 0
+    this.beforeAfter = "beforeAfter1"
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad TeatPage');
+    console.log('ionViewDidLoad TeatPage')
   }
 
   loadTeatData() {
@@ -132,7 +134,7 @@ export class TeatPage {
   }
 
   pushTeatData() {
-    this.database.addTeatData(this.farm, this.myDate, this.myDate, this.observer, this.milker, this.clean, this.deepPresent, this.smallDirt, this.largeDirt)
+    this.database.addTeatData(this.farm, this.myDate, this.myDate, this.observer, this.milker, this.clean, this.dipPresent, this.smallDirt, this.largeDirt)
       .then((data) => {
         this.loadTeatData();
         console.log("当前传输的一条数据:")
