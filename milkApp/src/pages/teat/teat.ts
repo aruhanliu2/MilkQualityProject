@@ -110,6 +110,11 @@ export class TeatPage {
 
   submitData() {
     this.database.cleanTeatData();
+    this.database.getTeatData().then((data: any) => {
+      this.ListUser = data;
+    }, (error) => {
+      console.log(error);
+    })
   }
 
   ionViewDidLoad() {
