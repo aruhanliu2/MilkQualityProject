@@ -71,12 +71,12 @@ export class TeatPage {
       this.clean,
       this.dipPresent,
       this.smallDirt,
-      this.largeDirt,
-      this.beforeAfter
+      this.largeDirt
     );
 
     console.log("浏览器存储:")
-    console.log(this.teatService.getItems());
+    //console.log(Object.entries(this.teatService.getItems()));
+    console.log(this.teatService.getItems()[0].farm)
 
     //pushing data to firebase database
     this.authService.getActiveUser().getIdToken()
@@ -132,6 +132,9 @@ export class TeatPage {
         this.loadTeatData();
         console.log("当前传输的一条数据:")
         console.log(data);
+        //console.log(data.rows.item)
+        //console.log(Object.entries(data))
+        //console.log(Object.entries(data.rows))
       }, (error) => {
         console.log(error);
       });

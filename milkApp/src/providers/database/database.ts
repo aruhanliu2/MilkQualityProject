@@ -10,7 +10,7 @@ export class DatabaseProvider {
   private isOpen: boolean;
 
   constructor(public http: Http,
-    private storage: SQLite){
+    public storage: SQLite){
       if (!this.isOpen) {
         this.storage = new SQLite();
         this.storage.create({
@@ -32,9 +32,9 @@ export class DatabaseProvider {
 
   addTeatData(farm: string, myDate: string, myTime: string, observer: string, milker: string, clean: number, deepPresent: number, smallDirt: number, largeDirt: number) {
     return new Promise ((resolve, reject) => {
-      let data = [farm, myDate, myTime, observer, milker, clean, deepPresent, smallDirt, largeDirt];
-      let sql = "INSERT INTO teat (farm, date, time, observer, milker, clean, deep_present, small_dirt, large_dirt) VALUES (?,?,?,?,?,?,?,?,?)";
-      return this.db.executeSql(sql, data).then((data) => {
+      let input = [farm, myDate, observer, milker, clean, deepPresent, smallDirt, largeDirt];
+      let sql = "INSERT INTO teat (farm, date, observer, milker, clean, deep_present, small_dirt, large_dirt) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+      this.db.executeSql(sql, input).then((data) => {
         resolve(data);
       }, (error) => {
         reject(error);
@@ -50,7 +50,6 @@ export class DatabaseProvider {
           for (var i = 0; i < data.rows.length; i++) {
             results.push({farm: data.rows.item(i).farm,
               date: data.rows.item(i).date,
-              time: data.rows.item(i).time,
               observer: data.rows.item(i).observer,
               milker: data.rows.item(i).milker,
               clean: data.rows.item(i).clean,

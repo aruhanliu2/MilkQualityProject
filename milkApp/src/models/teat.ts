@@ -7,7 +7,6 @@ export class Item {
         public clean: number,
         public deep_present: number,
         public small_dirt: number,
-        public large_dirt: number,
-        public beforeAfter: string
+        public large_dirt: number
     ){}
 }
