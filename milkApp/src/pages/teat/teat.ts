@@ -108,6 +108,7 @@ export class TeatPage {
     alert.present()
   }
 
+  submitData() {
     this.database.cleanTeatData();
   }
 
