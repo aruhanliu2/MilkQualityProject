@@ -10,7 +10,7 @@ export class DatabaseProvider {
   private isOpen: boolean;
 
   constructor(public http: Http,
-    private storage: SQLite){
+    public storage: SQLite){
       if (!this.isOpen) {
         this.storage = new SQLite();
         this.storage.create({
@@ -19,7 +19,7 @@ export class DatabaseProvider {
         })
         .then((db: SQLiteObject) => {
           this.db = db;
-          let sql = "CREATE TABLE IF NOT EXISTS teat (id INTEGER PRIMARY KEY AUTOINCREMENT, farm TEXT, date TEXT, time TEXT, observer TEXT, milker TEXT, clean INTEGER, deep_present INTEGER, small_dirt INTEGER, large_dirt INTEGER)"
+          let sql = "CREATE TABLE IF NOT EXISTS teat (id INTEGER PRIMARY KEY AUTOINCREMENT, farm TEXT, date TEXT, observer TEXT, milker TEXT, clean INTEGER, deep_present INTEGER, small_dirt INTEGER, large_dirt INTEGER)";
           db.executeSql(sql, []);
           this.isOpen = true;
         }).catch((error) => {
@@ -28,11 +28,11 @@ export class DatabaseProvider {
       }
   }
 
-  addTeatData(farm, myDate, myTime, observer, milker, clean, deepPresent, smallDirt, largeDirt) {
+  addTeatData(farm: string, myDate: string, observer: string, milker: string, clean: number, deepPresent: number, smallDirt: number, largeDirt: number) {
     return new Promise ((resolve, reject) => {
-      let data = [farm, myDate, myTime, observer, milker, clean, deepPresent, smallDirt, largeDirt];
-      let sql = "INSERT INTO teat (farm, date, time, observer, milker, clean, deep_present, small_dirt, large_dirt) VALUES (?,?,?,?,?,?,?,?,?)";
-      return this.db.executeSql(sql, data).then((data) => {
+      let input = [farm, myDate, observer, milker, clean, deepPresent, smallDirt, largeDirt];
+      let sql = "INSERT INTO teat (farm, date, observer, milker, clean, deep_present, small_dirt, large_dirt) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+      this.db.executeSql(sql, input).then((data) => {
         resolve(data);
       }, (error) => {
         reject(error);
@@ -46,9 +46,8 @@ export class DatabaseProvider {
         let results = [];
         if (data.rows.length > 0) {
           for (var i = 0; i < data.rows.length; i++) {
-            results.push({farm: data.farm,
+            results.push({farm: data.rows.item(i).farm,
               date: data.rows.item(i).date,
-              time: data.rows.item(i).time,
               observer: data.rows.item(i).observer,
               milker: data.rows.item(i).milker,
               clean: data.rows.item(i).clean,
