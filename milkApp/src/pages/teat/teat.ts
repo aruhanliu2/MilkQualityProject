@@ -23,8 +23,7 @@ export class TeatPage {
   public largeDirt: number = 0
   public beforeAfter: string = "beforeAfter1"
 
-  public items = {};
-  public item  = {};
+  private ListUser : any;
 
 
   constructor(public alerCtrl: AlertController,
@@ -109,14 +108,18 @@ export class TeatPage {
     alert.present()
   }
 
+    this.database.cleanTeatData();
+  }
+
   ionViewDidLoad() {
     console.log('ionViewDidLoad TeatPage')
   }
 
   loadTeatData() {
-    this.database.getTeatData().then((data) => {
+    this.database.getTeatData().then((data: any) => {
       console.log("数据库里的数据:")
       console.log(data);
+      this.ListUser = data;
     }, (error) => {
       console.log(error);
     })

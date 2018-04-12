@@ -19,8 +19,10 @@ export class DatabaseProvider {
         })
         .then((db: SQLiteObject) => {
           this.db = db;
-          let sql = "CREATE TABLE IF NOT EXISTS teat (id INTEGER PRIMARY KEY AUTOINCREMENT, farm TEXT, date TEXT, time TEXT, observer TEXT, milker TEXT, clean INTEGER, deep_present INTEGER, small_dirt INTEGER, large_dirt INTEGER)"
-          db.executeSql(sql, []);
+          let sql = "CREATE TABLE IF NOT EXISTS teat (id INTEGER PRIMARY KEY AUTOINCREMENT, farm TEXT, date TEXT, time TEXT, observer TEXT, milker TEXT, clean INTEGER, deep_present INTEGER, small_dirt INTEGER, large_dirt INTEGER)";
+          db.executeSql(sql, {})
+          .then(() => console.log("executed sql"))
+          .catch(e => console.log(e));
           this.isOpen = true;
         }).catch((error) => {
           console.log(error);
@@ -28,7 +30,7 @@ export class DatabaseProvider {
       }
   }
 
-  addTeatData(farm, myDate, myTime, observer, milker, clean, deepPresent, smallDirt, largeDirt) {
+  addTeatData(farm: string, myDate: string, myTime: string, observer: string, milker: string, clean: number, deepPresent: number, smallDirt: number, largeDirt: number) {
     return new Promise ((resolve, reject) => {
       let data = [farm, myDate, myTime, observer, milker, clean, deepPresent, smallDirt, largeDirt];
       let sql = "INSERT INTO teat (farm, date, time, observer, milker, clean, deep_present, small_dirt, large_dirt) VALUES (?,?,?,?,?,?,?,?,?)";
@@ -46,7 +48,7 @@ export class DatabaseProvider {
         let results = [];
         if (data.rows.length > 0) {
           for (var i = 0; i < data.rows.length; i++) {
-            results.push({farm: data.farm,
+            results.push({farm: data.rows.item(i).farm,
               date: data.rows.item(i).date,
               time: data.rows.item(i).time,
               observer: data.rows.item(i).observer,
@@ -61,6 +63,12 @@ export class DatabaseProvider {
       }, (error) => {
         reject(error);
       })
+    })
+  }
+
+  cleanTeatData() {
+    return new Promise((resolve, reject) => {
+      return this.db.executeSql("DELETE FROM teat",{});
     })
   }
 }
