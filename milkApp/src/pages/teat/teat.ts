@@ -109,12 +109,27 @@ export class TeatPage {
   }
 
   submitData() {
-    this.database.cleanTeatData();
     this.database.getTeatData().then((data: any) => {
       this.ListUser = data;
+      /*
+      var headers = new Headers();
+
+      headers.append('Content-Type', 'application/json');
+      this.http.post('http://localhost:8080/mobile/teat', JSON.stringify(data), {headers:headers})
+      .map((response:Response) => {
+         console.log(response);
+         // response.json();
+      }).subscribe();*/
+
+
+
+
+
     }, (error) => {
       console.log(error);
     })
+
+    this.database.cleanTeatData();
   }
 
   ionViewDidLoad() {
@@ -124,7 +139,7 @@ export class TeatPage {
   loadTeatData() {
     this.database.getTeatData().then((data: any) => {
       console.log("数据库里的数据:")
-      console.log(data);
+      console.log(data)
       this.ListUser = data;
     }, (error) => {
       console.log(error);
@@ -137,9 +152,6 @@ export class TeatPage {
         this.loadTeatData();
         console.log("当前传输的一条数据:")
         console.log(data);
-        //console.log(data.rows.item)
-        //console.log(Object.entries(data))
-        //console.log(Object.entries(data.rows))
       }, (error) => {
         console.log(error);
       });
