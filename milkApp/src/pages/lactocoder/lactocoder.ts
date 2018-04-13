@@ -9,6 +9,16 @@ import * as moment from 'moment';
   templateUrl: 'lactocoder.html',
 })
 export class LactocoderPage {
+  a3: string = "true"
+  a4: string = "true"
+  a5: string = "true"
+  b3: string = "true"
+  b4: string = "true"
+  b5: string = "true"
+  c3: string = "true"
+  c4: string = "true"
+  c5: string = "true"
+
   farm: string = ""
   myDate: string = moment().format()
   parlor: string = ""
