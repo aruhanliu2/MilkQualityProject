@@ -19,7 +19,7 @@ export class DatabaseProvider {
         })
         .then((db: SQLiteObject) => {
           this.db = db;
-          let sql = "CREATE TABLE IF NOT EXISTS teat (id INTEGER PRIMARY KEY AUTOINCREMENT, farm TEXT, date TEXT, time TEXT, observer TEXT, milker TEXT, clean INTEGER, deep_present INTEGER, small_dirt INTEGER, large_dirt INTEGER)";
+          let sql = "CREATE TABLE IF NOT EXISTS teat (id INTEGER PRIMARY KEY AUTOINCREMENT, farm TEXT, date TEXT, time TEXT, observer TEXT, milker TEXT, clean INTEGER, dip_present INTEGER, small_dirt INTEGER, large_dirt INTEGER)";
           db.executeSql(sql, {})
           .then(() => console.log("executed sql"))
           .catch(e => console.log(e));
@@ -30,10 +30,10 @@ export class DatabaseProvider {
       }
   }
 
-  addTeatData(farm: string, myDate: string, myTime: string, observer: string, milker: string, clean: number, deepPresent: number, smallDirt: number, largeDirt: number) {
+  addTeatData(farm: string, myDate: string, myTime: string, observer: string, milker: string, clean: number, dipPresent: number, smallDirt: number, largeDirt: number) {
     return new Promise ((resolve, reject) => {
-      let input = [farm, myDate, observer, milker, clean, deepPresent, smallDirt, largeDirt];
-      let sql = "INSERT INTO teat (farm, date, observer, milker, clean, deep_present, small_dirt, large_dirt) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+      let input = [farm, myDate, observer, milker, clean, dipPresent, smallDirt, largeDirt];
+      let sql = "INSERT INTO teat (farm, date, observer, milker, clean, dip_present, small_dirt, large_dirt) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
       this.db.executeSql(sql, input).then((data) => {
         resolve(data);
       }, (error) => {
@@ -53,7 +53,7 @@ export class DatabaseProvider {
               observer: data.rows.item(i).observer,
               milker: data.rows.item(i).milker,
               clean: data.rows.item(i).clean,
-              deep_present: data.rows.item(i).deep_present,
+              dip_present: data.rows.item(i).dip_present,
               small_dirt: data.rows.item(i).small_dirt,
               large_dirt: data.rows.item(i).large_dirt});
           }
