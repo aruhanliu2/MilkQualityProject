@@ -62,7 +62,11 @@ export class LactocoderPage {
         if(map[timer]==2){
           this.DLU1[0] = (this.cowList1[2]-this.cowList1[0])
         } else if(map[timer]==3){
-          this.DLU1[1] = (+this.cowList1[3]-this.cowList1[1])
+          if(this.cowList1[1]==0){
+            this.DLU1[1] = (+this.cowList1[3]-this.cowList1[2])
+          } else{
+            this.DLU1[1] = (+this.cowList1[3]-this.cowList1[1])
+          }
         } else if(map[timer]==4){
           this.DLU1[2] = (+this.cowList1[4]-this.cowList1[3])
         }
@@ -73,7 +77,11 @@ export class LactocoderPage {
         if(map[timer]==2){
           this.DLU2[0] = (this.cowList2[2]-this.cowList2[0])
         } else if(map[timer]==3){
-          this.DLU2[1] = (+this.cowList2[3]-this.cowList2[1])
+          if(this.cowList2[1]==0){
+            this.DLU2[1] = (+this.cowList2[3]-this.cowList2[2])
+          } else{
+            this.DLU2[1] = (+this.cowList2[3]-this.cowList2[1])
+          }
         } else if(map[timer]==4){
           this.DLU2[2] = (+this.cowList2[4]-this.cowList2[3])
         }
@@ -84,7 +92,11 @@ export class LactocoderPage {
         if(map[timer]==2){
           this.DLU3[0] = (this.cowList3[2]-this.cowList3[0])
         } else if(map[timer]==3){
-          this.DLU3[1] = (+this.cowList3[3]-this.cowList3[1])
+          if(this.cowList3[1]==0){
+            this.DLU3[1] = (+this.cowList3[3]-this.cowList3[2])
+          } else{
+            this.DLU3[1] = (+this.cowList3[3]-this.cowList3[1])
+          }
         } else if(map[timer]==4){
           this.DLU3[2] = (+this.cowList3[4]-this.cowList3[3])
         }
