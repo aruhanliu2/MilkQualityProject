@@ -23,7 +23,7 @@ export class MyApp {
   isAuthenticated = false;
 
   @ViewChild('nav') nav: NavController;
-  constructor(public platform: Platform, 
+  constructor(public platform: Platform,
     public statusBar: StatusBar,
     public splashScreen: SplashScreen,
     private menuCtrl: MenuController,
