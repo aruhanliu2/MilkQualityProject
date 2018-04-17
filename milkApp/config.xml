@@ -3,7 +3,7 @@
     <name>MyApp</name>
     <description>An awesome Ionic/Cordova app.</description>
     <author email="hi@ionicframework" href="http://ionicframework.com/">Ionic Framework Team</author>
-    <content original-src="index.html" src="http://10.132.3.172:8100" />
+    <content original-src="index.html" src="http://10.132.2.217:8100" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
@@ -89,13 +89,11 @@
     <plugin name="uk.co.workingedge.cordova.plugin.sqliteporter" spec="^1.0.2" />
     <allow-navigation href="http://192.168.0.100:8100" />
     <allow-navigation href="http://10.132.5.6:8100" />
-<<<<<<< HEAD
     <allow-navigation href="http://10.132.10.255:8100" />
     <allow-navigation href="http://10.33.130.49:8100" />
-=======
-    <allow-navigation href="http://10.132.3.172:8100" />
+    <allow-navigation href="http://10.132.2.239:8100" />
+    <allow-navigation href="http://10.132.2.217:8100" />
     <engine name="browser" spec="^4.1.0" />
     <engine name="ios" spec="4.5.4" />
     <engine name="android" spec="^7.0.0" />
->>>>>>> c7e01c26b1e107bea97fc389b66e4d2a34f860b9
 </widget>
