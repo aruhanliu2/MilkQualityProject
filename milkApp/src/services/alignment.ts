@@ -8,7 +8,8 @@ import { AuthService } from "../services/auth";
 export class AlignmentService {
     private items: Item[] = [];
 
-    constructor() {}
+    constructor(private http: Http,
+        private authService: AuthService) {}
        addItem(farm: string,
         date: string,
         observer: string,
@@ -33,5 +34,16 @@ export class AlignmentService {
 
        removeItem(index: number) {
            this.items.splice(index, 1);
+       }
+
+       storeList(token: string) {
+           //overwrite the existing item
+           //post: add your item to existing
+           const userId = this.authService.getActiveUser().uid;
+           return this.http
+                .post('https://cornell-mrmilk.firebaseio.com/' + userId + '/strip.json?auth=' + token, this.items)
+                .map((response: Response) => {
+                    return response.json();
+                });
        }
 }
