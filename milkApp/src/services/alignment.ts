@@ -41,7 +41,7 @@ export class AlignmentService {
            //post: add your item to existing
            const userId = this.authService.getActiveUser().uid;
            return this.http
-                .post('https://cornell-mrmilk.firebaseio.com/' + userId + '/strip.json?auth=' + token, this.items)
+                .post('https://cornell-mrmilk.firebaseio.com/' + userId + '/alignment.json?auth=' + token, this.items)
                 .map((response: Response) => {
                     return response.json();
                 });

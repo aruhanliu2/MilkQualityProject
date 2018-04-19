@@ -18,7 +18,7 @@ export class PostMilkService {
         teatSkinLH: string,
         teatSkinLF: string,
         teatSkinRH: string,
-        teatSkinRF: string,  
+        teatSkinRF: string,
         teatColorLH: string,
         teatColorLF: string,
         teatColorRH: string,
@@ -26,11 +26,11 @@ export class PostMilkService {
         swellingLH: string,
         swellingLF: string,
         swellingRH: string,
-        swellingRF: string, 
+        swellingRF: string,
         hardnessLH: string,
         hardnessLF: string,
         hardnessRH: string,
-        hardnessRF: string, 
+        hardnessRF: string,
         scoreLH: string,
         scoreLF: string,
         scoreRH: string,
@@ -44,7 +44,7 @@ export class PostMilkService {
        }
 
        updateItems(
-        index: number,   
+        index: number,
         farm: string,
         date: string,
         observer: string,
@@ -53,22 +53,22 @@ export class PostMilkService {
         teatSkinLF: string,
         teatSkinRH: string,
         teatSkinRF: string,
-        
+
         teatColorLH: string,
         teatColorLF: string,
         teatColorRH: string,
         teatColorRF: string,
-        
+
         swellingLH: string,
         swellingLF: string,
         swellingRH: string,
         swellingRF: string,
-        
+
         hardnessLH: string,
         hardnessLF: string,
         hardnessRH: string,
         hardnessRF: string,
-        
+
         scoreLH: string,
         scoreLF: string,
         scoreRH: string,
@@ -85,7 +85,7 @@ export class PostMilkService {
            //post: add your item to existing
            const userId = this.authService.getActiveUser().uid;
            return this.http
-                .post('https://cornell-mrmilk.firebaseio.com/' + userId + '/strip.json?auth=' + token, this.items)
+                .post('https://cornell-mrmilk.firebaseio.com/' + userId + '/postmilk.json?auth=' + token, this.items)
                 .map((response: Response) => {
                     return response.json();
                 });
