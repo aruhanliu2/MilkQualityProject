@@ -2,6 +2,11 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 import * as moment from 'moment';
+import { PostMilkService } from '../../services/postmilk';
+import { AuthService } from "../../services/auth";
+import { DatabaseProvider } from '../../providers/database/database';
+import { Http } from "@angular/http";
+
 
 /**
  * Generated class for the PostmilkPage page.
@@ -47,35 +52,91 @@ export class PostmilkPage {
   public scoreRF: string = "scoreRF1"
 
 
-  constructor(public alerCtrl: AlertController ) {
+  constructor(public alerCtrl: AlertController,
+    private postMilkService: PostMilkService,
+    private http: Http,
+    private authService: AuthService,
+    private database: DatabaseProvider ) {
   }
 
   saveData(){
-    this.group = ""
-    this.teatSkinLH = "teatSkinLH1"
-    this.teatSkinLF = "teatSkinLF1"
-    this.teatSkinRH = "teatSkinRH1"
-    this.teatSkinRF = "teatSkinRF1"
+    let alert = this.alerCtrl.create({
+      title: 'Saved!',
+      message: 'Data have been saved locally!',
+      buttons: ['Ok']
+    });
 
-    this.teatColorLH = "teatColorLH1"
-    this.teatColorLF = "teatColorLF1"
-    this.teatColorRH = "teatColorRH1"
-    this.teatColorRF = "teatColorRF1"
+    //add Item
+    this.postMilkService.updateItems(0,
+      this.farm,
+      this.myDate,
+      this.observer,
+      this.group,
+      this.teatSkinLH,
+      this.teatSkinLF,
+      this.teatSkinRH,
+      this.teatSkinRF,
+      this.teatColorLH,
+      this.teatColorLF,
+      this.teatColorRH,
+      this.teatColorRF,
+      this.swellingLH,
+      this.swellingLF,
+      this.swellingRH,
+      this.swellingRF,
+      this.hardnessLH,
+      this.hardnessLF,
+      this.hardnessRH,
+      this.hardnessRF,
+      this.scoreLH,
+      this.scoreLF,
+      this.scoreRH,
+      this.scoreRF,
 
-    this.swellingLH = "swellingLH1"
-    this.swellingLF = "swellingLF1"
-    this.swellingRH = "swellingRH1"
-    this.swellingRF = "swellingRF1"
+    );
 
-    this.hardnessLH = "hardnessLH1"
-    this.hardnessLF = "hardnessLF1"
-    this.hardnessRH = "hardnessRH1"
-    this.hardnessRF = "hardnessRF1"
+      console.log("浏览器存储:")
+      //console.log(Object.entries(this.teatService.getItems()));
+      console.log(this.postMilkService.getItems()[0].farm)
 
-    this.scoreLH = "scoreLH1"
-    this.scoreLF = "scoreLF1"
-    this.scoreRH = "scoreRH1"
-    this.scoreRF = "scoreRF1"
+      //pushing data to firebase database
+      this.authService.getActiveUser().getIdToken()
+        .then(
+          (token: string) => {
+            this.postMilkService.storeList(token)
+              .subscribe(
+                () => console.log('Success!'),
+                error => {
+                  console.log(error);
+                }
+              );
+          }
+        );
+    // this.group = ""
+    // this.teatSkinLH = "teatSkinLH1"
+    // this.teatSkinLF = "teatSkinLF1"
+    // this.teatSkinRH = "teatSkinRH1"
+    // this.teatSkinRF = "teatSkinRF1"
+
+    // this.teatColorLH = "teatColorLH1"
+    // this.teatColorLF = "teatColorLF1"
+    // this.teatColorRH = "teatColorRH1"
+    // this.teatColorRF = "teatColorRF1"
+
+    // this.swellingLH = "swellingLH1"
+    // this.swellingLF = "swellingLF1"
+    // this.swellingRH = "swellingRH1"
+    // this.swellingRF = "swellingRF1"
+
+    // this.hardnessLH = "hardnessLH1"
+    // this.hardnessLF = "hardnessLF1"
+    // this.hardnessRH = "hardnessRH1"
+    // this.hardnessRF = "hardnessRF1"
+
+    // this.scoreLH = "scoreLH1"
+    // this.scoreLF = "scoreLF1"
+    // this.scoreRH = "scoreRH1"
+    // this.scoreRF = "scoreRF1"
   }
 
 }
