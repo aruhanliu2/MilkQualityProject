@@ -1,5 +1,10 @@
 import { Item } from "../models/alignment";
+import { Injectable } from "@angular/core";
+import { Http, Response } from "@angular/http";
+import 'rxjs/Rx';
+import { AuthService } from "../services/auth";
 
+@Injectable()
 export class AlignmentService {
     private items: Item[] = [];
 
