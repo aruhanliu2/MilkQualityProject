@@ -27,7 +27,6 @@ export class HygienePage {
     private http: Http,
     private authService: AuthService,
     private database: DatabaseProvider) {
-
   }
 
 
