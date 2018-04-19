@@ -3,11 +3,7 @@
     <name>MyApp</name>
     <description>An awesome Ionic/Cordova app.</description>
     <author email="hi@ionicframework" href="http://ionicframework.com/">Ionic Framework Team</author>
-<<<<<<< HEAD
-    <content original-src="index.html" src="http://10.132.2.217:8100" />
-=======
     <content src="index.html" />
->>>>>>> 1b25aa12c799381da4f2037a12110e133022498b
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
@@ -92,20 +88,12 @@
     <plugin name="uk.co.workingedge.cordova.plugin.sqliteporter" spec="^1.0.2" />
     <allow-navigation href="http://192.168.0.100:8100" />
     <allow-navigation href="http://10.132.5.6:8100" />
-<<<<<<< HEAD
     <allow-navigation href="http://10.132.10.255:8100" />
     <allow-navigation href="http://10.33.130.49:8100" />
     <allow-navigation href="http://10.132.2.239:8100" />
     <allow-navigation href="http://10.132.2.217:8100" />
-=======
-    <allow-navigation href="http://10.132.3.172:8100" />
-    <allow-navigation href="http://10.132.8.214:8100" />
->>>>>>> 1b25aa12c799381da4f2037a12110e133022498b
     <engine name="browser" spec="^4.1.0" />
     <engine name="android" spec="^7.0.0" />
-<<<<<<< HEAD
-=======
     <engine name="ios" spec="4.5.4" />
     <plugin name="cordova-plugin-splashscreen" spec="^5.0.2" />
->>>>>>> 1b25aa12c799381da4f2037a12110e133022498b
 </widget>
