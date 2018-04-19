@@ -22,7 +22,6 @@ export class TeatPage {
   public smallDirt: number = 0
   public largeDirt: number = 0
   public beforeAfter: string = "beforeAfter1"
-
   private ListUser : any;
 
 

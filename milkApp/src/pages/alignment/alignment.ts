@@ -2,8 +2,12 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 import { AlignmentService } from '../../services/alignment';
+import { AuthService } from "../../services/auth";
+import { DatabaseProvider } from '../../providers/database/database';
+import { Http } from "@angular/http";
 import * as moment from 'moment';
 
+@IonicPage()
 @Component({
   selector: 'page-alignment',
   templateUrl: 'alignment.html',
@@ -16,8 +20,11 @@ export class AlignmentPage {
   public bad: number = 0;
 
   constructor(public alerCtrl: AlertController,
+    private http: Http,
     private navParams: NavParams,
-    private alignmentService: AlignmentService) {}
+    private alignmentService: AlignmentService,
+    private authService: AuthService,
+    private database: DatabaseProvider) {}
 
 
   tapDecrease(e,param:number){
@@ -48,7 +55,25 @@ export class AlignmentPage {
       this.good,
       this.bad);
 
-    console.log(this.alignmentService.getItems());
+      console.log("浏览器存储:")
+      //console.log(Object.entries(this.teatService.getItems()));
+      console.log(this.alignmentService.getItems());
+
+      //pushing data to firebase database
+      this.authService.getActiveUser().getIdToken()
+        .then(
+          (token: string) => {
+            this.alignmentService.storeList(token)
+              .subscribe(
+                () => console.log('Success!'),
+                error => {
+                  console.log(error);
+                }
+              );
+          }
+        );
+
+
 
     this.farm = ""
     this.myDate = moment().format()
