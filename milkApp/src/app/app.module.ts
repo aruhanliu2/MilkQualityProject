@@ -27,6 +27,8 @@ import { TeatService } from "../services/teat";
 import { HygieneService } from "../services/hygiene";
 import { AlignmentService } from "../services/alignment";
 import { StripService } from "../services/strip";
+import { PostmilkService } from '../services/postmilk';
+import { LactocoderService } from '../services/lactocoder';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -74,6 +76,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     HygieneService,
     AlignmentService,
     StripService,
+    PostmilkService,
+    LactocoderService,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     DatabaseProvider,
     SQLite,

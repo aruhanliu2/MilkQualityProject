@@ -13,36 +13,36 @@ import * as moment from 'moment';
   templateUrl: 'lactocoder.html',
 })
 export class LactocoderPage {
-  farm: string = ""
-  myDate: string = moment().format()
-  parlor: string = ""
-  pre_milking: string = ""
-  herd_size: string = ""
-  size: string = ""
-  procedures: string = ""
-  frequency: string = "frequency2X"
-  operators: string = ""
-  prep: string = ""
-  routine: string = ""
+  public farm: string = ""
+  public myDate: string = moment().format()
+  public parlor: string = ""
+  public pre_milking: string = ""
+  public herd_size: string = ""
+  public size: string = ""
+  public procedures: string = ""
+  public frequency: string = "frequency2X"
+  public operators: string = ""
+  public prep: string = ""
+  public routine: string = ""
 
-  cowName1: string = ""
-  milk1: string = ""
-  remark1: string = ""
+  public cowName1: string = ""
+  public milk1: string = ""
+  public remark1: string = ""
 
-  cowName2: string = ""
-  milk2: string = ""
-  remark2: string = ""
+  public cowName2: string = ""
+  public milk2: string = ""
+  public remark2: string = ""
 
-  cowName3: string = ""
-  milk3: string = ""
-  remark3: string = ""
+  public cowName3: string = ""
+  public milk3: string = ""
+  public remark3: string = ""
 
-  cowList: number[][] = [[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0]]
-  DLU: number[][] = [[0,0,0],[0,0,0],[0,0,0]]
-  buttons: boolean[][] = [[false,false,true,true,true],[false,false,true,true,true],[false,false,true,true,true]]
+  public cowList: number[][] = [[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0]]
+  public DLU: number[][] = [[0,0,0],[0,0,0],[0,0,0]]
+  public buttons: boolean[][] = [[false,false,true,true,true],[false,false,true,true,true],[false,false,true,true,true]]
 
   constructor(public alerCtrl: AlertController,
-    //private lactocoderService: LactocoderService,
+    private lactocoderService: LactocoderService,
     private http: Http,
     private authService: AuthService,
     private database: DatabaseProvider) {
@@ -84,8 +84,13 @@ export class LactocoderPage {
       message: 'Data have been saved locally!',
       buttons: ['Ok']
     });
-    /*
+
+    while(this.lactocoderService.getItems().length>0){
+        this.lactocoderService.removeItem(this.lactocoderService.getItems().length-1);
+    }
+
     if(!(this.cowName1==="")){
+      console.log("store1")
       this.lactocoderService.addItem(
         this.farm,
         this.myDate,
@@ -108,6 +113,7 @@ export class LactocoderPage {
     }
 
     if(!(this.cowName2==="")){
+      console.log("store2")
       this.lactocoderService.addItem(
         this.farm,
         this.myDate,
@@ -130,6 +136,7 @@ export class LactocoderPage {
     }
 
     if(!(this.cowName3==="")){
+      console.log("store3")
       this.lactocoderService.addItem(
         this.farm,
         this.myDate,
@@ -149,13 +156,10 @@ export class LactocoderPage {
         this.DLU[2][1],
         this.DLU[2][2]
       );
+
+
     }
 
-    console.log("浏览器存储:")
-    //console.log(Object.entries(this.teatService.getItems()));
-    console.log(this.lactocoderService.getItems()[0].farm);
-
-    //pushing data to firebase database
     this.authService.getActiveUser().getIdToken()
       .then(
         (token: string) => {
@@ -169,9 +173,14 @@ export class LactocoderPage {
         }
       );
 
-    while(this.lactocoderService.getItems().length>0){
-        this.lactocoderService.removeItem(this.lactocoderService.getItems().length-1);
-    }*/
+    console.log("浏览器存储:")
+    //console.log(Object.entries(this.teatService.getItems()));
+    console.log(this.lactocoderService.getItems()[0].farm);
+
+    //pushing data to firebase database
+
+
+
 
     this.cowList= [[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0]]
     this.DLU = [[0,0,0],[0,0,0],[0,0,0]]

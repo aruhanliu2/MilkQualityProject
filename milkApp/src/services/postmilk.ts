@@ -4,9 +4,8 @@ import { Http, Response } from "@angular/http";
 import 'rxjs/Rx';
 import { AuthService } from "../services/auth";
 
-
 @Injectable()
-export class PostMilkService {
+export class PostmilkService {
     private items: Item[] = [];
 
     constructor(private http: Http,

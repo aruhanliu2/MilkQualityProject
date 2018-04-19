@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 import * as moment from 'moment';
-import { PostMilkService } from '../../services/postmilk';
+import { PostmilkService } from '../../services/postmilk';
 import { AuthService } from "../../services/auth";
 import { DatabaseProvider } from '../../providers/database/database';
 import { Http } from "@angular/http";
@@ -53,7 +53,7 @@ export class PostmilkPage {
 
 
   constructor(public alerCtrl: AlertController,
-    private postMilkService: PostMilkService,
+    private postmilkService: PostmilkService,
     private http: Http,
     private authService: AuthService,
     private database: DatabaseProvider ) {
@@ -67,7 +67,7 @@ export class PostmilkPage {
     });
 
     //add Item
-    this.postMilkService.updateItems(0,
+    this.postmilkService.updateItems(0,
       this.farm,
       this.myDate,
       this.observer,
@@ -97,13 +97,13 @@ export class PostmilkPage {
 
       console.log("浏览器存储:")
       //console.log(Object.entries(this.teatService.getItems()));
-      console.log(this.postMilkService.getItems()[0].farm)
+      console.log(this.postmilkService.getItems()[0].farm)
 
       //pushing data to firebase database
       this.authService.getActiveUser().getIdToken()
         .then(
           (token: string) => {
-            this.postMilkService.storeList(token)
+            this.postmilkService.storeList(token)
               .subscribe(
                 () => console.log('Success!'),
                 error => {
@@ -112,31 +112,31 @@ export class PostmilkPage {
               );
           }
         );
-    // this.group = ""
-    // this.teatSkinLH = "teatSkinLH1"
-    // this.teatSkinLF = "teatSkinLF1"
-    // this.teatSkinRH = "teatSkinRH1"
-    // this.teatSkinRF = "teatSkinRF1"
+    this.group = ""
+    this.teatSkinLH = "teatSkinLH1"
+    this.teatSkinLF = "teatSkinLF1"
+    this.teatSkinRH = "teatSkinRH1"
+    this.teatSkinRF = "teatSkinRF1"
 
-    // this.teatColorLH = "teatColorLH1"
-    // this.teatColorLF = "teatColorLF1"
-    // this.teatColorRH = "teatColorRH1"
-    // this.teatColorRF = "teatColorRF1"
+    this.teatColorLH = "teatColorLH1"
+    this.teatColorLF = "teatColorLF1"
+    this.teatColorRH = "teatColorRH1"
+    this.teatColorRF = "teatColorRF1"
 
-    // this.swellingLH = "swellingLH1"
-    // this.swellingLF = "swellingLF1"
-    // this.swellingRH = "swellingRH1"
-    // this.swellingRF = "swellingRF1"
+    this.swellingLH = "swellingLH1"
+    this.swellingLF = "swellingLF1"
+    this.swellingRH = "swellingRH1"
+    this.swellingRF = "swellingRF1"
 
-    // this.hardnessLH = "hardnessLH1"
-    // this.hardnessLF = "hardnessLF1"
-    // this.hardnessRH = "hardnessRH1"
-    // this.hardnessRF = "hardnessRF1"
+    this.hardnessLH = "hardnessLH1"
+    this.hardnessLF = "hardnessLF1"
+    this.hardnessRH = "hardnessRH1"
+    this.hardnessRF = "hardnessRF1"
 
-    // this.scoreLH = "scoreLH1"
-    // this.scoreLF = "scoreLF1"
-    // this.scoreRH = "scoreRH1"
-    // this.scoreRF = "scoreRF1"
+    this.scoreLH = "scoreLH1"
+    this.scoreLF = "scoreLF1"
+    this.scoreRH = "scoreRH1"
+    this.scoreRF = "scoreRF1"
   }
 
 }
