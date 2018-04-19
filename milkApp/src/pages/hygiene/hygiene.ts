@@ -2,14 +2,10 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 import { HygieneService } from '../../services/hygiene';
+import { AuthService } from "../../services/auth";
+import { DatabaseProvider } from '../../providers/database/database';
+import { Http } from "@angular/http";
 import * as moment from 'moment';
-
-/**
- * Generated class for the HgyienePage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -25,10 +21,15 @@ export class HygienePage {
   public slightlyDirt: number = 0
   public moderatelyDirt: number = 0
   public cakedOnDirt: number = 0
-  constructor(public alerCtrl: AlertController,
-    private hygieneService: HygieneService) {
 
+  constructor(public alerCtrl: AlertController,
+    private hygieneService: HygieneService,
+    private http: Http,
+    private authService: AuthService,
+    private database: DatabaseProvider) {
   }
+
+
   tapDecrease(e,param:number){
     if(param==1){
       this.clean = Math.max(this.clean-1,0)
@@ -68,7 +69,24 @@ export class HygienePage {
       this.moderatelyDirt,
       this.cakedOnDirt
     );
-    console.log(this.hygieneService.getItems());
+
+    console.log("浏览器存储:")
+    //console.log(Object.entries(this.teatService.getItems()));
+    console.log(this.hygieneService.getItems()[0].farm);
+
+    //pushing data to firebase database
+    this.authService.getActiveUser().getIdToken()
+      .then(
+        (token: string) => {
+          this.hygieneService.storeList(token)
+            .subscribe(
+              () => console.log('Success!'),
+              error => {
+                console.log(error);
+              }
+            );
+        }
+      );
 
     // empty the form
     this.farm = ""

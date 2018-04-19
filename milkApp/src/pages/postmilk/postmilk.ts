@@ -2,6 +2,11 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 import * as moment from 'moment';
+import { PostmilkService } from '../../services/postmilk';
+import { AuthService } from "../../services/auth";
+import { DatabaseProvider } from '../../providers/database/database';
+import { Http } from "@angular/http";
+
 
 /**
  * Generated class for the PostmilkPage page.
@@ -47,10 +52,66 @@ export class PostmilkPage {
   public scoreRF: string = "scoreRF1"
 
 
-  constructor(public alerCtrl: AlertController ) {
+  constructor(public alerCtrl: AlertController,
+    private postmilkService: PostmilkService,
+    private http: Http,
+    private authService: AuthService,
+    private database: DatabaseProvider ) {
   }
 
   saveData(){
+    let alert = this.alerCtrl.create({
+      title: 'Saved!',
+      message: 'Data have been saved locally!',
+      buttons: ['Ok']
+    });
+
+    //add Item
+    this.postmilkService.updateItems(0,
+      this.farm,
+      this.myDate,
+      this.observer,
+      this.group,
+      this.teatSkinLH,
+      this.teatSkinLF,
+      this.teatSkinRH,
+      this.teatSkinRF,
+      this.teatColorLH,
+      this.teatColorLF,
+      this.teatColorRH,
+      this.teatColorRF,
+      this.swellingLH,
+      this.swellingLF,
+      this.swellingRH,
+      this.swellingRF,
+      this.hardnessLH,
+      this.hardnessLF,
+      this.hardnessRH,
+      this.hardnessRF,
+      this.scoreLH,
+      this.scoreLF,
+      this.scoreRH,
+      this.scoreRF,
+
+    );
+
+      console.log("浏览器存储:")
+      //console.log(Object.entries(this.teatService.getItems()));
+      console.log(this.postmilkService.getItems()[0].farm)
+
+      //pushing data to firebase database
+      this.authService.getActiveUser().getIdToken()
+        .then(
+          (token: string) => {
+            this.postmilkService.storeList(token)
+              .subscribe(
+                () => console.log('Success!'),
+                error => {
+                  console.log(error);
+                }
+              );
+          }
+        );
     this.group = ""
     this.teatSkinLH = "teatSkinLH1"
     this.teatSkinLF = "teatSkinLF1"

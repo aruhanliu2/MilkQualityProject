@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
-import { StripService } from "../../services/strip";
+import { StripService } from '../../services/strip';
+import { AuthService } from "../../services/auth";
+import { DatabaseProvider } from '../../providers/database/database';
+import { Http } from "@angular/http";
 import * as moment from 'moment';
 
 @IonicPage()
@@ -18,7 +21,10 @@ export class StripPage {
   public balance: string = "balanced"
 
   constructor(public alerCtrl: AlertController,
-    private stripService: StripService) {
+    private stripService: StripService,
+    private http: Http,
+    private authService: AuthService,
+    private database: DatabaseProvider) {
   }
 
   saveData() {
@@ -29,14 +35,31 @@ export class StripPage {
     });
 
     //add Item
-    this.stripService.addItem(this.farm,
+    this.stripService.updateItems(0,
+      this.farm,
       this.myDate,
       this.observer,
       this.stall,
       this.ml,
       this.balance);
 
-    console.log(this.stripService.getItems());
+      console.log("浏览器存储:")
+      //console.log(Object.entries(this.teatService.getItems()));
+      console.log(this.stripService.getItems()[0].farm)
+
+      //pushing data to firebase database
+      this.authService.getActiveUser().getIdToken()
+        .then(
+          (token: string) => {
+            this.stripService.storeList(token)
+              .subscribe(
+                () => console.log('Success!'),
+                error => {
+                  console.log(error);
+                }
+              );
+          }
+        );
 
     this.stall = "";
     this.ml = "";
