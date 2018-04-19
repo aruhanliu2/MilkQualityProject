@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
-import { StripService } from "../../services/strip";
+import { StripService } from '../../services/strip';
+import { AuthService } from "../../services/auth";
+import { DatabaseProvider } from '../../providers/database/database';
+import { Http } from "@angular/http";
 import * as moment from 'moment';
 
 @IonicPage()
@@ -18,7 +21,10 @@ export class StripPage {
   public balance: string = "balanced"
 
   constructor(public alerCtrl: AlertController,
-    private stripService: StripService) {
+    private stripService: StripService,
+    private http: Http,
+    private authService: AuthService,
+    private database: DatabaseProvider) {
   }
 
   saveData() {
