@@ -1,4 +1,4 @@
-import { Item } from "../models/teat";
+import { Item } from "../models/postmilk";
 import { Injectable } from "@angular/core";
 import { Http, Response } from "@angular/http";
 import 'rxjs/Rx';
@@ -18,28 +18,24 @@ export class PostMilkService {
         teatSkinLH: string,
         teatSkinLF: string,
         teatSkinRH: string,
-        teatSkinRF: string,
-        
+        teatSkinRF: string,  
         teatColorLH: string,
         teatColorLF: string,
         teatColorRH: string,
         teatColorRF: string,
-        
         swellingLH: string,
         swellingLF: string,
         swellingRH: string,
-        swellingRF: string,
-        
+        swellingRF: string, 
         hardnessLH: string,
         hardnessLF: string,
         hardnessRH: string,
-        hardnessRF: string,
-        
+        hardnessRF: string, 
         scoreLH: string,
         scoreLF: string,
         scoreRH: string,
         scoreRF: string) {
-            this.items.push(new Item(farm, date, observer,group,teatSkinLH,teatSkinLF,teatSkinRH,teatSkinRF,swellingLH,swellingLF,swellingRH,swellingRF,hardnessLH,hardnessLF,hardnessRH,hardnessRF,scoreLH,scoreLF,scoreRH,scoreRF));
+            this.items.push(new Item(farm, date, observer,group,teatSkinLH,teatSkinLF,teatSkinRH,teatSkinRF,teatColorLH,teatColorLF,teatColorRH,teatColorRF,swellingLH,swellingLF,swellingRH,swellingRF,hardnessLH,hardnessLF,hardnessRH,hardnessRF,scoreLH,scoreLF,scoreRH,scoreRF));
             console.log(this.items);
        }
 
@@ -47,7 +43,9 @@ export class PostMilkService {
            return this.items.slice();
        }
 
-       updateItems(farm: string,
+       updateItems(
+        index: number,   
+        farm: string,
         date: string,
         observer: string,
         group: string,
@@ -75,7 +73,7 @@ export class PostMilkService {
         scoreLF: string,
         scoreRH: string,
         scoreRF: string) {
-            this.items[index] = new Item(farm, date, observer,group,teatSkinLH,teatSkinLF,teatSkinRH,teatSkinRF,swellingLH,swellingLF,swellingRH,swellingRF,hardnessLH,hardnessLF,hardnessRH,hardnessRF,scoreLH,scoreLF,scoreRH,scoreRF);
+            this.items[index] = new Item(farm, date, observer,group,teatSkinLH,teatSkinLF,teatSkinRH,teatSkinRF,teatColorLH,teatColorLF,teatColorRH,teatColorRF,swellingLH,swellingLF,swellingRH,swellingRF,hardnessLH,hardnessLF,hardnessRH,hardnessRF,scoreLH,scoreLF,scoreRH,scoreRF);
        }
 
        removeItem(index: number) {
