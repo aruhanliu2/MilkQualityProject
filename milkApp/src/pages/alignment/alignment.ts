@@ -57,7 +57,7 @@ export class AlignmentPage {
 
       console.log("浏览器存储:")
       //console.log(Object.entries(this.teatService.getItems()));
-      console.log(this.alignmentService.getItems());
+      console.log(this.alignmentService.getItems()[0].farm);
 
       //pushing data to firebase database
       this.authService.getActiveUser().getIdToken()

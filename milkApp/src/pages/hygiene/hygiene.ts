@@ -73,7 +73,7 @@ export class HygienePage {
 
     console.log("浏览器存储:")
     //console.log(Object.entries(this.teatService.getItems()));
-    console.log(this.hygieneService.getItems());
+    console.log(this.hygieneService.getItems()[0].farm);
 
     //pushing data to firebase database
     this.authService.getActiveUser().getIdToken()

@@ -35,14 +35,31 @@ export class StripPage {
     });
 
     //add Item
-    this.stripService.addItem(this.farm,
+    this.stripService.updateItems(0,
+      this.farm,
       this.myDate,
       this.observer,
       this.stall,
       this.ml,
       this.balance);
 
-    console.log(this.stripService.getItems());
+      console.log("浏览器存储:")
+      //console.log(Object.entries(this.teatService.getItems()));
+      console.log(this.stripService.getItems()[0].farm)
+
+      //pushing data to firebase database
+      this.authService.getActiveUser().getIdToken()
+        .then(
+          (token: string) => {
+            this.stripService.storeList(token)
+              .subscribe(
+                () => console.log('Success!'),
+                error => {
+                  console.log(error);
+                }
+              );
+          }
+        );
 
     this.stall = "";
     this.ml = "";
