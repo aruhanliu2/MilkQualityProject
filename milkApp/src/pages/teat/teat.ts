@@ -22,7 +22,7 @@ export class TeatPage {
   public smallDirt: number = 0
   public largeDirt: number = 0
   public beforeAfter: string = "beforeAfter1"
-  private ListUser : any;
+  // private ListUser : any;
 
 
   constructor(public alerCtrl: AlertController,
@@ -119,10 +119,6 @@ export class TeatPage {
          console.log(response);
          // response.json();
       }).subscribe();*/
-
-
-
-
 
     }, (error) => {
       console.log(error);

@@ -33,6 +33,7 @@ export class MyApp {
       apiKey: "AIzaSyBABKi1BFgwBDFfgW_U3jS57kfPdDLrowg",
       authDomain: "cornell-mrmilk.firebaseapp.com"
     });
+    
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
         this.isAuthenticated = true;
@@ -42,6 +43,7 @@ export class MyApp {
         this.rootPage = SigninPage;
       }
     });
+
     this.platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
