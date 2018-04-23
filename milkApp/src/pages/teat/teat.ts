@@ -4,7 +4,7 @@ import { AlertController } from 'ionic-angular';
 import { TeatService } from '../../services/teat';
 import { AuthService } from "../../services/auth";
 import { DatabaseProvider } from '../../providers/database/database';
-import { Http } from "@angular/http";
+import { Http, Response, Headers } from "@angular/http";
 import * as moment from 'moment';
 
 @IonicPage()
@@ -43,6 +43,8 @@ export class TeatPage {
       this.largeDirt = Math.max(this.largeDirt-1,0)
     }
 
+
+
   }
   tapIncrease(e,param:number) {
     if(param==1){
@@ -54,6 +56,7 @@ export class TeatPage {
     } else if(param==4){
       this.largeDirt++
     }
+
   }
   saveData() {
     let alert = this.alerCtrl.create({
@@ -119,12 +122,29 @@ export class TeatPage {
          console.log(response);
          // response.json();
       }).subscribe();*/
-
-
+      console.log("I'm here");
+      var headers = new Headers();
+    
+    headers.append('Content-Type', 'application/json');
+    this.http.post('http://localhost:3000/teat', JSON.stringify([{   "1" : "here",
+  "2" : "123",
+  "3" :"123",
+  "4": "2012-08-01",
+  "5" : "123",
+  "6" : true,
+  "7" :111,
+  "8": 321,
+  "9" : 12,
+  "10" : 56 }]), {headers:headers}).map((response:Response) => {
+                console.log("I'm here");
+                console.log(response);
+                // response.json();
+            }).subscribe();
 
 
 
     }, (error) => {
+      console.log("I'm here");
       console.log(error);
     })
 
