@@ -14,6 +14,40 @@
 
 
 <ion-content padding>
+  <ion-list>
+    <ion-item *ngFor="let item of ListUser">
+      <p>Farm: {{item.farm_id}}</p>
+      <p>Date: {{item.date}}</p>
+      <p>Observer: {{item.staff_id}}</p>
+      <p>Group: {{item.group_id}} </p>
+      <p>TSLH: {{item.LH_skin_condition}}</p>
+      <p>TSLF: {{item.LF_skin_condition}}</p>
+      <p>TSRH: {{item.RH_skin_condition}}</p>
+      <p>TSRF: {{item.RF_skin_condition}}</p>
+
+      <p>TCLH: {{item.LH_color}}</p>
+      <p>TCLF: {{item.LF_color}}</p>
+      <p>TCRH: {{item.RH_color}}</p>
+      <p>TCRF: {{item.RF_color}}</p>
+
+      <p>SWLH: {{item.LH_swelling}}</p>
+      <p>SWLF: {{item.LF_swelling}}</p>
+      <p>SWRH: {{item.RH_swelling}}</p>
+      <p>SWRF: {{item.RF_swelling}}</p>
+
+      <p>HDLH: {{item.LH_hardness}}</p>
+      <p>HDLF: {{item.LF_hardness}}</p>
+      <p>HDRH: {{item.RH_hardness}}</p>
+      <p>HDRF: {{item.RF_hardness}}</p>
+
+      <p>SCLH: {{item.LH_end_score}}</p>
+      <p>SCLF: {{item.LF_end_score}}</p>
+      <p>SCRH: {{item.RH_end_score}}</p>
+      <p>SCRF: {{item.RF_end_score}}</p>
+    </ion-item>
+  </ion-list>
+
+
   <h2>General Info:</h2>
   <ion-list>
     <ion-item>

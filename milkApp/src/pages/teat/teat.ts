@@ -22,7 +22,7 @@ export class TeatPage {
   public smallDirt: number = 0
   public largeDirt: number = 0
   public beforeAfter: string = "beforeAfter1"
-  private ListUser : any;
+  private ListUser : any
 
 
   constructor(public alerCtrl: AlertController,
@@ -124,7 +124,7 @@ export class TeatPage {
       }).subscribe();*/
       console.log("I'm here");
       var headers = new Headers();
-    
+
     headers.append('Content-Type', 'application/json');
     this.http.post('http://localhost:3000/teat', JSON.stringify([{   "1" : "here",
   "2" : "123",

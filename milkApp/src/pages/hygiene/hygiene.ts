@@ -21,6 +21,7 @@ export class HygienePage {
   public slightlyDirt: number = 0
   public moderatelyDirt: number = 0
   public cakedOnDirt: number = 0
+  private ListUser : any
 
   constructor(public alerCtrl: AlertController,
     private hygieneService: HygieneService,
@@ -88,6 +89,9 @@ export class HygienePage {
         }
       );
 
+    //local storage to sqlite
+    this.pushHygieneData();
+
     // empty the form
     this.farm = ""
     this.myDate = moment().format()
@@ -103,6 +107,27 @@ export class HygienePage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad HygienePage');
+  }
+
+  loadHygieneData() {
+    this.database.getHygieneData().then((data: any) => {
+      console.log("数据库里的数据:")
+      console.log(data)
+      this.ListUser = data;
+    }, (error) => {
+      console.log(error);
+    })
+  }
+
+  pushHygieneData() {
+    this.database.addHygieneData(this.farm, this.myDate, this.observer, this.group, this.clean, this.slightlyDirt, this.moderatelyDirt, this.cakedOnDirt)
+      .then((data) => {
+        this.loadHygieneData();
+        console.log("当前传输的一条数据:")
+        console.log(data);
+      }, (error) => {
+        console.log(error);
+      });
   }
 
 }

@@ -155,7 +155,7 @@ export class DatabaseProvider {
           for (var i = 0; i < data.rows.length; i++) {
             results.push({farm_id: data.rows.item(i).farm_id,
               date: data.rows.item(i).date,
-              staff_id: data.rows.item(i).group_id,
+              staff_id: data.rows.item(i).staff_id,
               group_id: data.rows.item(i).group_id,
               clean: data.rows.item(i).clean,
               slightly_dirt: data.rows.item(i).slightly_dirt,
