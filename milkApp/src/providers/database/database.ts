@@ -44,10 +44,17 @@ export class DatabaseProvider {
           .then(() => console.log("executed sql strip"))
           .catch(e => console.log(e));
 
+<<<<<<< HEAD
+          let sql6 = "CREATE TABLE IF NOT EXISTS lactocoder_fact (farm_id TEXT, date TEXT, staff_id TEXT, Stall_no TEXT, ML TEXT, isBalanced TEXT)";
+          db.executeSql(sql5, {})
+          .then(() => console.log("executed sql lactocoder"))
+          .catch(e => console.log(e));          
+=======
           let sql6 = "CREATE TABLE IF NOT EXISTS lactocoder_fact (id INTEGER PRIMARY KEY AUTOINCREMENT, farm_id TEXT, date TEXT, staff_id TEXT, Stall_no TEXT, ML TEXT, isBalanced TEXT)";
           db.executeSql(sql6, {})
           .then(() => console.log("executed sql lactocoder"))
           .catch(e => console.log(e));
+>>>>>>> c50e920fb09caeedf0a24c4f5b4df9415f469394
 
           this.isOpen = true;
         }).catch((error) => {
@@ -306,10 +313,43 @@ export class DatabaseProvider {
 
 
 
-  addLactocoderData(farm: string, myDate: string, myTime: string, observer: string, milker: string, clean: number, dipPresent: number, smallDirt: number, largeDirt: number) {
+  addLactocoderData(farm: string,
+    myDate: string,
+    parlor: string,
+    pre_milking: string,
+    herd_size: string,
+    size: string,
+    procedures: string,
+    frequency: string,
+    operators: string,
+    prep: string,
+    routine: string,
+    cowName: string,
+    milk: string,
+    remark: string,
+    dipContact: number,
+    lagTime: number,
+    unitOn: number) {
     return new Promise ((resolve, reject) => {
-      let input = [farm, myDate, observer, milker, clean, dipPresent, smallDirt, largeDirt];
-      let sql = "INSERT INTO lactocoder_fact (farm, date, observer, milker, clean, dip_present, small_dirt, large_dirt) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+      let input = [farm,
+        myDate,
+        parlor,
+        pre_milking,
+        herd_size,
+        size,
+        procedures,
+        frequency,
+        operators,
+        prep,
+        routine,
+        cowName,
+        milk,
+        remark,
+        dipContact,
+        lagTime,
+        unitOn];
+
+      let sql = "INSERT INTO lactocoder_fact (farm_id, date, parlor_type, pre_milking, herd_size, size, procedures, milking_frequency, no_operators, prep, milking_routine, cow_name, total_milk, remark, dip_contact_time, lag_contact_stimulate, unit_on_time) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
       this.db.executeSql(sql, input).then((data) => {
         resolve(data);
       }, (error) => {
@@ -324,17 +364,26 @@ export class DatabaseProvider {
         let results = [];
         if (data.rows.length > 0) {
           for (var i = 0; i < data.rows.length; i++) {
-            results.push({farm: data.rows.item(i).farm,
+            results.push({farm_id: data.rows.item(i).farm_id,
               date: data.rows.item(i).date,
-              observer: data.rows.item(i).observer,
-              milker: data.rows.item(i).milker,
-              clean: data.rows.item(i).clean,
-              dip_present: data.rows.item(i).dip_present,
-              small_dirt: data.rows.item(i).small_dirt,
-              large_dirt: data.rows.item(i).large_dirt});
+              parlor_type: data.rows.item(i).parlor_type,
+              pre_milking: data.rows.item(i).pre_milking,
+              herd_size: data.rows.item(i).herd_size,
+              size: data.rows.item(i).size,
+              procedures: data.rows.item(i).procedures,
+              milking_frequency: data.rows.item(i).milking_frequency,
+              no_operators: data.rows.item(i).no_operators,
+              prep: data.rows.item(i).prep,
+              milking_routine: data.rows.item(i).milking_routine,
+              cow_name: data.rows.item(i).cow_name,
+              total_milk: data.rows.item(i).total_milk,
+              remark: data.rows.item(i).remark,
+              dip_contact_time: data.rows.item(i).dip_contact_time,
+              lag_contact_stimulate: data.rows.item(i).lag_contact_stimulate,
+              unit_on_time: data.rows.item(i).unit_on_time});
           }
         }
-       resolve(results);
+        resolve(results);
       }, (error) => {
         reject(error);
       })

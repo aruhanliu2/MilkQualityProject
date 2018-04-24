@@ -77,6 +77,9 @@ export class AlignmentPage {
     //local storage to sqlite
     this.pushAlignmentData();
 
+      //local storage
+      this.pushAlignmentData();
+
 
 
     this.farm = ""
