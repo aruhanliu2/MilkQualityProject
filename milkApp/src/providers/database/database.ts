@@ -44,10 +44,17 @@ export class DatabaseProvider {
           .then(() => console.log("executed sql strip"))
           .catch(e => console.log(e));
 
+<<<<<<< HEAD
           let sql6 = "CREATE TABLE IF NOT EXISTS lactocoder_fact (id INTEGER PRIMARY KEY AUTOINCREMENT, farm_id TEXT, date TEXT, staff_id TEXT, Stall_no TEXT, ML TEXT, isBalanced TEXT)";
           db.executeSql(sql6, {})
           .then(() => console.log("executed sql lactocoder"))
           .catch(e => console.log(e));
+=======
+          let sql6 = "CREATE TABLE IF NOT EXISTS lactocoder_fact (farm_id TEXT, date TEXT, staff_id TEXT, Stall_no TEXT, ML TEXT, isBalanced TEXT)";
+          db.executeSql(sql5, {})
+          .then(() => console.log("executed sql lactocoder"))
+          .catch(e => console.log(e));          
+>>>>>>> parent of 60ae3c5... Merge branch 'master' of https://github.com/aruhanliu2/MilkQualityProject
 
           this.isOpen = true;
         }).catch((error) => {
@@ -160,7 +167,7 @@ export class DatabaseProvider {
           for (var i = 0; i < data.rows.length; i++) {
             results.push({farm_id: data.rows.item(i).farm_id,
               date: data.rows.item(i).date,
-              staff_id: data.rows.item(i).staff_id,
+              staff_id: data.rows.item(i).group_id,
               group_id: data.rows.item(i).group_id,
               clean: data.rows.item(i).clean,
               slightly_dirt: data.rows.item(i).slightly_dirt,

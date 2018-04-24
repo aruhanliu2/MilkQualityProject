@@ -15,16 +15,7 @@
 
 <ion-content padding>
   <ion-list>
-    <ion-item *ngFor="let item of ListUser">
-      <p>Farm: {{item.farm_id}}</p>
-      <p>Date: {{item.date}}</p>
-      <p>Observer: {{item.staff_id}}</p>
-      <p>Good: {{item.good}} </p>
-      <p>Bad: {{item.bad}}</p>
-    </ion-item>
-  </ion-list>
 
-  <ion-list>
     <ion-item>
       <ion-label fixed>Farm</ion-label>
       <ion-input text-right type="text" [(ngModel)]="farm"></ion-input>

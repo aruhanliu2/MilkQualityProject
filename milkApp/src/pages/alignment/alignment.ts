@@ -16,9 +16,8 @@ export class AlignmentPage {
   public farm: string = ""
   public myDate: string = moment().format()
   public observer: string = ""
-  public good: number = 0
-  public bad: number = 0
-  private ListUser : any
+  public good: number = 0;
+  public bad: number = 0;
 
   constructor(public alerCtrl: AlertController,
     private http: Http,
@@ -56,26 +55,23 @@ export class AlignmentPage {
       this.good,
       this.bad);
 
-    console.log("浏览器存储:")
-    //console.log(Object.entries(this.teatService.getItems()));
-    console.log(this.alignmentService.getItems()[0].farm);
+      console.log("浏览器存储:")
+      //console.log(Object.entries(this.teatService.getItems()));
+      console.log(this.alignmentService.getItems()[0].farm);
 
-    //pushing data to firebase database
-    this.authService.getActiveUser().getIdToken()
-      .then(
-        (token: string) => {
-          this.alignmentService.storeList(token)
-            .subscribe(
-              () => console.log('Success!'),
-              error => {
-                console.log(error);
-              }
-            );
-        }
-    );
-
-    //local storage to sqlite
-    this.pushAlignmentData();
+      //pushing data to firebase database
+      this.authService.getActiveUser().getIdToken()
+        .then(
+          (token: string) => {
+            this.alignmentService.storeList(token)
+              .subscribe(
+                () => console.log('Success!'),
+                error => {
+                  console.log(error);
+                }
+              );
+          }
+        );
 
 
 
@@ -96,14 +92,17 @@ export class AlignmentPage {
     this.database.getAlignmentData().then((data: any) => {
       console.log("数据库里的数据:")
       console.log(data)
-      this.ListUser = data;
     }, (error) => {
       console.log(error);
     })
   }
 
   pushAlignmentData() {
-    this.database.addAlignmentData(this.farm, this.myDate, this.observer, this.good, this.bad)
+    this.database.addAlignmentData(this.farm,
+      this.myDate,
+      this.observer,
+      this.good,
+      this.bad)
       .then((data) => {
         this.loadAlignmentData();
         console.log("当前传输的一条数据:")

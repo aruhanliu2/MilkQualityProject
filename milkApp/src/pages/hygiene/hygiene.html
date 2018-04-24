@@ -15,19 +15,6 @@
 
 <ion-content padding>
   <ion-list>
-    <ion-item *ngFor="let item of ListUser">
-      <p>Farm: {{item.farm_id}}</p>
-      <p>Date: {{item.date}}</p>
-      <p>Observer: {{item.staff_id}}</p>
-      <p>Group: {{item.group_id}} </p>
-      <p>Clean: {{item.clean}}</p>
-      <p>Slightly Dirt: {{item.slightly_dirt}}</p>
-      <p>Moderately Dirt: {{item.moderately_dirt}}</p>
-      <p>Caked on Dirt: {{item.caked_on_dirt}}</p>
-    </ion-item>
-  </ion-list>
-
-  <ion-list>
     <ion-item>
       <ion-label fixed>Farm</ion-label>
       <ion-input text-right type="text" [(ngModel)]="farm"></ion-input>
@@ -105,7 +92,7 @@
         <Button class="btn" ion-button navPop> Back </Button>
     </ion-row>
   </ion-grid>
-
+ 
 
 
 </ion-content>
