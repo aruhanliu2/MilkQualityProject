@@ -142,4 +142,50 @@ export class PostmilkPage {
     this.scoreRF = "scoreRF1"
   }
 
+<<<<<<< HEAD
+=======
+  loadPostmilkData() {
+    this.database.getPostmilkData().then((data: any) => {
+      console.log("数据库里的数据:")
+      console.log(data)
+    }, (error) => {
+      console.log(error);
+    })
+  }
+
+  pushPostmilkData() {
+    this.database.addPostmilkData(this.farm,
+      this.myDate,
+      this.observer,
+      this.group,
+      this.teatSkinLH,
+      this.teatSkinLF,
+      this.teatSkinRH,
+      this.teatSkinRF,
+      this.teatColorLH,
+      this.teatColorLF,
+      this.teatColorRH,
+      this.teatColorRF,
+      this.swellingLH,
+      this.swellingLF,
+      this.swellingRH,
+      this.swellingRF,
+      this.hardnessLH,
+      this.hardnessLF,
+      this.hardnessRH,
+      this.hardnessRF,
+      this.scoreLH,
+      this.scoreLF,
+      this.scoreRH,
+      this.scoreRF)
+      .then((data) => {
+        this.loadPostmilkData();
+        console.log("当前传输的一条数据:")
+        console.log(data);
+      }, (error) => {
+        console.log(error);
+      });
+  }
+
+>>>>>>> parent of 8536461... update listener
 }
