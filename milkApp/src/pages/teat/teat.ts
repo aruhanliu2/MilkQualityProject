@@ -44,6 +44,7 @@ export class TeatPage {
     }
 
 
+
   }
   tapIncrease(e,param:number) {
     if(param==1){
@@ -72,8 +73,7 @@ export class TeatPage {
       this.clean,
       this.dipPresent,
       this.smallDirt,
-      this.largeDirt,
-      this.beforeAfter
+      this.largeDirt
     );
 
     console.log("浏览器存储:")
