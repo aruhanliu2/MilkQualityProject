@@ -21,7 +21,7 @@ export class TeatPage {
   public dipPresent: number = 0
   public smallDirt: number = 0
   public largeDirt: number = 0
-  public beforeAfter: string = "beforeAfter1"
+  public beforeAfter: string = "b"
   private ListUser : any
 
 
@@ -105,7 +105,7 @@ export class TeatPage {
     this.dipPresent = 0
     this.smallDirt = 0
     this.largeDirt = 0
-    this.beforeAfter = "beforeAfter1"
+    this.beforeAfter = "b"
 
     alert.present()
   }
