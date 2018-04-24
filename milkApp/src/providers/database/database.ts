@@ -44,6 +44,11 @@ export class DatabaseProvider {
           .then(() => console.log("executed sql strip"))
           .catch(e => console.log(e));
 
+          let sql6 = "CREATE TABLE IF NOT EXISTS lactocoder_fact (id INTEGER PRIMARY KEY AUTOINCREMENT, farm_id TEXT, date TEXT, staff_id TEXT, Stall_no TEXT, ML TEXT, isBalanced TEXT)";
+          db.executeSql(sql6, {})
+          .then(() => console.log("executed sql lactocoder"))
+          .catch(e => console.log(e));
+
           this.isOpen = true;
         }).catch((error) => {
           console.log(error);
@@ -301,45 +306,45 @@ export class DatabaseProvider {
 
 
 
-  // addLactocoderData(farm: string, myDate: string, myTime: string, observer: string, milker: string, clean: number, dipPresent: number, smallDirt: number, largeDirt: number) {
-  //   return new Promise ((resolve, reject) => {
-  //     let input = [farm, myDate, observer, milker, clean, dipPresent, smallDirt, largeDirt];
-  //     let sql = "INSERT INTO lactocoder_fact (farm, date, observer, milker, clean, dip_present, small_dirt, large_dirt) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-  //     this.db.executeSql(sql, input).then((data) => {
-  //       resolve(data);
-  //     }, (error) => {
-  //       reject(error);
-  //     });
-  //   });
-  // }
+  addLactocoderData(farm: string, myDate: string, myTime: string, observer: string, milker: string, clean: number, dipPresent: number, smallDirt: number, largeDirt: number) {
+    return new Promise ((resolve, reject) => {
+      let input = [farm, myDate, observer, milker, clean, dipPresent, smallDirt, largeDirt];
+      let sql = "INSERT INTO lactocoder_fact (farm, date, observer, milker, clean, dip_present, small_dirt, large_dirt) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+      this.db.executeSql(sql, input).then((data) => {
+        resolve(data);
+      }, (error) => {
+        reject(error);
+      });
+    });
+  }
 
-  // getLactocoderData() {
-  //   return new Promise((resolve, reject) => {
-  //     this.db.executeSql("SELECT * FROM lactocoder_fact", []).then(data => {
-  //       let results = [];
-  //       if (data.rows.length > 0) {
-  //         for (var i = 0; i < data.rows.length; i++) {
-  //           results.push({farm: data.rows.item(i).farm,
-  //             date: data.rows.item(i).date,
-  //             observer: data.rows.item(i).observer,
-  //             milker: data.rows.item(i).milker,
-  //             clean: data.rows.item(i).clean,
-  //             dip_present: data.rows.item(i).dip_present,
-  //             small_dirt: data.rows.item(i).small_dirt,
-  //             large_dirt: data.rows.item(i).large_dirt});
-  //         }
-  //       }
-  //       resolve(results);
-  //     }, (error) => {
-  //       reject(error);
-  //     })
-  //   })
-  // }
+  getLactocoderData() {
+    return new Promise((resolve, reject) => {
+      this.db.executeSql("SELECT * FROM lactocoder_fact", []).then(data => {
+        let results = [];
+        if (data.rows.length > 0) {
+          for (var i = 0; i < data.rows.length; i++) {
+            results.push({farm: data.rows.item(i).farm,
+              date: data.rows.item(i).date,
+              observer: data.rows.item(i).observer,
+              milker: data.rows.item(i).milker,
+              clean: data.rows.item(i).clean,
+              dip_present: data.rows.item(i).dip_present,
+              small_dirt: data.rows.item(i).small_dirt,
+              large_dirt: data.rows.item(i).large_dirt});
+          }
+        }
+       resolve(results);
+      }, (error) => {
+        reject(error);
+      })
+    })
+  }
 
-  // cleanLactocoderData() {
-  //   return new Promise((resolve, reject) => {
-  //     return this.db.executeSql("DELETE FROM lactocoder_fact",{});
-  //   })
-  // }
+  cleanLactocoderData() {
+    return new Promise((resolve, reject) => {
+      return this.db.executeSql("DELETE FROM lactocoder_fact",{});
+    })
+  }
 
 }
