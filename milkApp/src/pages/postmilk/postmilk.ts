@@ -114,7 +114,7 @@ export class PostmilkPage {
       );
 
     //local storage to sqlite
-    this.pushPostmilkData();
+
 
     this.teatSkinLH = "teatSkinLH1"
     this.teatSkinLF = "teatSkinLF1"
