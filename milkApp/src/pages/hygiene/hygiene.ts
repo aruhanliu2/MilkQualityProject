@@ -87,6 +87,11 @@ export class HygienePage {
             );
         }
       );
+<<<<<<< HEAD
+=======
+    //local storage
+    this.pushHygieneData();
+>>>>>>> parent of 60ae3c5... Merge branch 'master' of https://github.com/aruhanliu2/MilkQualityProject
 
     // empty the form
     this.farm = ""
@@ -104,5 +109,34 @@ export class HygienePage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad HygienePage');
   }
+<<<<<<< HEAD
+=======
+  loadHygieneData() {
+    this.database.getHygieneData().then((data: any) => {
+      console.log("数据库里的数据:")
+      console.log(data)
+    }, (error) => {
+      console.log(error);
+    })
+  }
+
+  pushHygieneData() {
+    this.database.addHygieneData(this.farm,
+      this.myDate,
+      this.observer,
+      this.group,
+      this.clean,
+      this.slightlyDirt,
+      this.moderatelyDirt,
+      this.cakedOnDirt)
+      .then((data) => {
+        this.loadHygieneData();
+        console.log("当前传输的一条数据:")
+        console.log(data);
+      }, (error) => {
+        console.log(error);
+      });
+  }
+>>>>>>> parent of 60ae3c5... Merge branch 'master' of https://github.com/aruhanliu2/MilkQualityProject
 
 }

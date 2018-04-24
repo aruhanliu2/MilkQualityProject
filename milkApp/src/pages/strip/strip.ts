@@ -64,6 +64,34 @@ export class StripPage {
     this.stall = "";
     this.ml = "";
     this.balance = "balanced";
+<<<<<<< HEAD
+=======
+  }
+
+  loadStripData() {
+    this.database.getStripData().then((data: any) => {
+      console.log("数据库里的数据:")
+      console.log(data)
+    }, (error) => {
+      console.log(error);
+    })
+  }
+
+  pushStripData() {
+    this.database.addStripData(this.farm,
+      this.myDate,
+      this.observer,
+      this.stall,
+      this.ml,
+      this.balance)
+      .then((data) => {
+        this.loadStripData();
+        console.log("当前传输的一条数据:")
+        console.log(data);
+      }, (error) => {
+        console.log(error);
+      });
+>>>>>>> parent of 60ae3c5... Merge branch 'master' of https://github.com/aruhanliu2/MilkQualityProject
   }
 
 }

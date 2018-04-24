@@ -45,15 +45,21 @@ export class DatabaseProvider {
           .catch(e => console.log(e));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
           let sql6 = "CREATE TABLE IF NOT EXISTS lactocoder_fact (id INTEGER PRIMARY KEY AUTOINCREMENT, farm_id TEXT, date TEXT, staff_id TEXT, Stall_no TEXT, ML TEXT, isBalanced TEXT)";
           db.executeSql(sql6, {})
           .then(() => console.log("executed sql lactocoder"))
           .catch(e => console.log(e));
 =======
+=======
+>>>>>>> parent of 60ae3c5... Merge branch 'master' of https://github.com/aruhanliu2/MilkQualityProject
           let sql6 = "CREATE TABLE IF NOT EXISTS lactocoder_fact (farm_id TEXT, date TEXT, staff_id TEXT, Stall_no TEXT, ML TEXT, isBalanced TEXT)";
           db.executeSql(sql5, {})
           .then(() => console.log("executed sql lactocoder"))
           .catch(e => console.log(e));          
+<<<<<<< HEAD
+>>>>>>> parent of 60ae3c5... Merge branch 'master' of https://github.com/aruhanliu2/MilkQualityProject
+=======
 >>>>>>> parent of 60ae3c5... Merge branch 'master' of https://github.com/aruhanliu2/MilkQualityProject
 
           this.isOpen = true;

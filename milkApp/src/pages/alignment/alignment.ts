@@ -72,6 +72,12 @@ export class AlignmentPage {
               );
           }
         );
+<<<<<<< HEAD
+=======
+
+      //local storage
+      this.pushAlignmentData();
+>>>>>>> parent of 60ae3c5... Merge branch 'master' of https://github.com/aruhanliu2/MilkQualityProject
 
 
 

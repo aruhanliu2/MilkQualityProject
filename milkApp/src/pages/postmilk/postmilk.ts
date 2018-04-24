@@ -93,8 +93,11 @@ export class PostmilkPage {
       this.scoreRH,
       this.scoreRF,
 
+<<<<<<< HEAD
     );
 
+=======
+>>>>>>> parent of 60ae3c5... Merge branch 'master' of https://github.com/aruhanliu2/MilkQualityProject
       console.log("浏览器存储:")
       //console.log(Object.entries(this.teatService.getItems()));
       console.log(this.postmilkService.getItems()[0].farm)
