@@ -73,6 +73,9 @@ export class AlignmentPage {
           }
         );
 
+      //local storage
+      this.pushAlignmentData();
+
 
 
     this.farm = ""
@@ -86,6 +89,30 @@ export class AlignmentPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad AlignmentPage');
+  }
+
+  loadAlignmentData() {
+    this.database.getAlignmentData().then((data: any) => {
+      console.log("数据库里的数据:")
+      console.log(data)
+    }, (error) => {
+      console.log(error);
+    })
+  }
+
+  pushAlignmentData() {
+    this.database.addAlignmentData(this.farm,
+      this.myDate,
+      this.observer,
+      this.good,
+      this.bad)
+      .then((data) => {
+        this.loadAlignmentData();
+        console.log("当前传输的一条数据:")
+        console.log(data);
+      }, (error) => {
+        console.log(error);
+      });
   }
 
 }
