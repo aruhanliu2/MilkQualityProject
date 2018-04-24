@@ -51,6 +51,7 @@ export class PostmilkPage {
   public scoreRH: string = "scoreRH1"
   public scoreRF: string = "scoreRF1"
 
+  private ListUser : any
 
   constructor(public alerCtrl: AlertController,
     private postmilkService: PostmilkService,
@@ -145,6 +146,7 @@ export class PostmilkPage {
     this.database.getPostmilkData().then((data: any) => {
       console.log("数据库里的数据:")
       console.log(data)
+      this.ListUser = data;
     }, (error) => {
       console.log(error);
     })
