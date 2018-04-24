@@ -112,7 +112,7 @@ export class PostmilkPage {
               );
           }
         );
-    this.group = ""
+    // this.group = "" retain the group
     this.teatSkinLH = "teatSkinLH1"
     this.teatSkinLF = "teatSkinLF1"
     this.teatSkinRH = "teatSkinRH1"
