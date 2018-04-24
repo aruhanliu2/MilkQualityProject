@@ -19,7 +19,7 @@ export class StripPage {
   public stall: string = ""
   public ml: string = ""
   public balance: string = "balanced"
-  private ListUser : any;
+  private ListUser : any
 
   constructor(public alerCtrl: AlertController,
     private stripService: StripService,
@@ -44,24 +44,25 @@ export class StripPage {
       this.ml,
       this.balance);
 
-      console.log("浏览器存储:")
-      //console.log(Object.entries(this.teatService.getItems()));
-      console.log(this.stripService.getItems()[0].farm)
+    console.log("浏览器存储:")
+    //console.log(Object.entries(this.teatService.getItems()));
+    console.log(this.stripService.getItems()[0].farm)
 
-      //pushing data to firebase database
-      this.authService.getActiveUser().getIdToken()
-        .then(
-          (token: string) => {
-            this.stripService.storeList(token)
-              .subscribe(
-                () => console.log('Success!'),
-                error => {
-                  console.log(error);
-                }
-              );
-          }
-        );
-        this.pushStripData();
+    //pushing data to firebase database
+    this.authService.getActiveUser().getIdToken()
+      .then(
+        (token: string) => {
+          this.stripService.storeList(token)
+            .subscribe(
+              () => console.log('Success!'),
+              error => {
+                console.log(error);
+              }
+            );
+        }
+      );
+      
+    this.pushStripData();
 
     this.stall = "";
     this.ml = "";
