@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 import * as moment from 'moment';
-import { PostMilkService } from '../../services/postmilk';
+import { PostmilkService } from '../../services/postmilk';
 import { AuthService } from "../../services/auth";
 import { DatabaseProvider } from '../../providers/database/database';
 import { Http } from "@angular/http";
