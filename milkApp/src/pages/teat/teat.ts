@@ -21,8 +21,8 @@ export class TeatPage {
   public dipPresent: number = 0
   public smallDirt: number = 0
   public largeDirt: number = 0
-  public beforeAfter: string = "beforeAfter1"
-  private ListUser : any;
+  public beforeAfter: string = "b"
+  private ListUser : any
 
 
   constructor(public alerCtrl: AlertController,
@@ -105,7 +105,7 @@ export class TeatPage {
     this.dipPresent = 0
     this.smallDirt = 0
     this.largeDirt = 0
-    this.beforeAfter = "beforeAfter1"
+    this.beforeAfter = "b"
 
     alert.present()
   }
@@ -124,7 +124,7 @@ export class TeatPage {
       }).subscribe();*/
       console.log("I'm here");
       var headers = new Headers();
-    
+
     headers.append('Content-Type', 'application/json');
     this.http.post('http://localhost:3000/teat', JSON.stringify([{   "1" : "here",
   "2" : "123",

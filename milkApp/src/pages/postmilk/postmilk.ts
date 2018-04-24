@@ -94,27 +94,27 @@ export class PostmilkPage {
       this.scoreRF
     );
 
-      console.log("浏览器存储:")
-      //console.log(Object.entries(this.teatService.getItems()));
-      console.log(this.postmilkService.getItems()[0].farm)
+    console.log("浏览器存储:")
+    //console.log(Object.entries(this.teatService.getItems()));
+    console.log(this.postmilkService.getItems()[0].farm)
 
-      //pushing data to firebase database
-      this.authService.getActiveUser().getIdToken()
-        .then(
-          (token: string) => {
-            this.postmilkService.storeList(token)
-              .subscribe(
-                () => console.log('Success!'),
-                error => {
-                  console.log(error);
-                }
-              );
-          }
-        );
+    //pushing data to firebase database
+    this.authService.getActiveUser().getIdToken()
+      .then(
+        (token: string) => {
+          this.postmilkService.storeList(token)
+            .subscribe(
+              () => console.log('Success!'),
+              error => {
+                console.log(error);
+              }
+            );
+        }
+      );
 
-        //local storage
-        this.pushPostmilkData();
-    this.group = ""
+    //local storage to sqlite
+    this.pushPostmilkData();
+
     this.teatSkinLH = "teatSkinLH1"
     this.teatSkinLF = "teatSkinLF1"
     this.teatSkinRH = "teatSkinRH1"
