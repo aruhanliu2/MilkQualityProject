@@ -43,9 +43,6 @@ export class StripPage {
       this.stall,
       this.ml,
       this.balance);
-    
-    //local storage
-    this.pushStripData();
 
     console.log("浏览器存储:")
     //console.log(Object.entries(this.teatService.getItems()));
@@ -64,7 +61,7 @@ export class StripPage {
             );
         }
       );
-      
+
     this.pushStripData();
 
     this.stall = "";
@@ -94,30 +91,4 @@ export class StripPage {
         console.log(error);
       });
   }
-
-  loadStripData() {
-    this.database.getStripData().then((data: any) => {
-      console.log("数据库里的数据:")
-      console.log(data)
-    }, (error) => {
-      console.log(error);
-    })
-  }
-
-  pushStripData() {
-    this.database.addStripData(this.farm,
-      this.myDate,
-      this.observer,
-      this.stall,
-      this.ml,
-      this.balance)
-      .then((data) => {
-        this.loadStripData();
-        console.log("当前传输的一条数据:")
-        console.log(data);
-      }, (error) => {
-        console.log(error);
-      });
-  }
-
 }

@@ -44,17 +44,10 @@ export class DatabaseProvider {
           .then(() => console.log("executed sql strip"))
           .catch(e => console.log(e));
 
-<<<<<<< HEAD
-          let sql6 = "CREATE TABLE IF NOT EXISTS lactocoder_fact (farm_id TEXT, date TEXT, staff_id TEXT, Stall_no TEXT, ML TEXT, isBalanced TEXT)";
-          db.executeSql(sql5, {})
-          .then(() => console.log("executed sql lactocoder"))
-          .catch(e => console.log(e));          
-=======
-          let sql6 = "CREATE TABLE IF NOT EXISTS lactocoder_fact (id INTEGER PRIMARY KEY AUTOINCREMENT, farm_id TEXT, date TEXT, staff_id TEXT, Stall_no TEXT, ML TEXT, isBalanced TEXT)";
-          db.executeSql(sql6, {})
-          .then(() => console.log("executed sql lactocoder"))
-          .catch(e => console.log(e));
->>>>>>> c50e920fb09caeedf0a24c4f5b4df9415f469394
+          //let sql6 = "CREATE TABLE IF NOT EXISTS lactocoder_fact (farm_id TEXT, date TEXT, staff_id TEXT, Stall_no TEXT, ML TEXT, isBalanced TEXT)";
+          //db.executeSql(sql6, {})
+          //.then(() => console.log("executed sql lactocoder"))
+          //.catch(e => console.log(e));
 
           this.isOpen = true;
         }).catch((error) => {
@@ -109,6 +102,12 @@ export class DatabaseProvider {
 
   //alignment data
   addAlignmentData(farm: string, myDate: string, observer: string, good: number, bad: number) {
+    let sql1 = "CREATE TABLE IF NOT EXISTS cleanliness_fact (id INTEGER PRIMARY KEY AUTOINCREMENT, farm_id TEXT, date TEXT, staff_id TEXT, milker_id TEXT, clean INTEGER, dip_present INTEGER, small_dirt INTEGER, large_dirt INTEGER, before_after TEXT)";
+    this.db.executeSql(sql1, {})
+    .then(() => console.log("executed sql teat"))
+    .catch(e => console.log(e));
+
+
     return new Promise ((resolve, reject) => {
       let input = [farm, myDate, observer, good, bad];
       let sql = "INSERT INTO unit_fact (farm_id, date, staff_id, good, bad) VALUES (?, ?, ?, ?, ?)";
