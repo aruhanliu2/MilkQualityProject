@@ -114,8 +114,9 @@ export class PostmilkPage {
           }
         );
 
-        //local storage
-        this.pushPostmilkData();
+    //local storage
+    this.pushPostmilkData();
+
     this.group = ""
     this.teatSkinLH = "teatSkinLH1"
     this.teatSkinLF = "teatSkinLF1"
