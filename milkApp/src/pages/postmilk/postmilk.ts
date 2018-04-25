@@ -53,6 +53,7 @@ export class PostmilkPage {
 
   private ListUser : any
 
+
   constructor(public alerCtrl: AlertController,
     private postmilkService: PostmilkService,
     private http: Http,
@@ -92,30 +93,30 @@ export class PostmilkPage {
       this.scoreLH,
       this.scoreLF,
       this.scoreRH,
-      this.scoreRF
+      this.scoreRF,
     );
 
-    console.log("浏览器存储:")
-    //console.log(Object.entries(this.teatService.getItems()));
-    console.log(this.postmilkService.getItems()[0].farm)
+      console.log("浏览器存储:")
+      //console.log(Object.entries(this.teatService.getItems()));
+      console.log(this.postmilkService.getItems()[0].farm)
 
-    //pushing data to firebase database
-    this.authService.getActiveUser().getIdToken()
-      .then(
-        (token: string) => {
-          this.postmilkService.storeList(token)
-            .subscribe(
-              () => console.log('Success!'),
-              error => {
-                console.log(error);
-              }
-            );
-        }
-      );
+      //pushing data to firebase database
+      this.authService.getActiveUser().getIdToken()
+        .then(
+          (token: string) => {
+            this.postmilkService.storeList(token)
+              .subscribe(
+                () => console.log('Success!'),
+                error => {
+                  console.log(error);
+                }
+              );
+          }
+        );
 
-    //local storage to sqlite
-    this.pushPostmilkData();
-
+        //local storage
+        this.pushPostmilkData();
+    this.group = ""
     this.teatSkinLH = "teatSkinLH1"
     this.teatSkinLF = "teatSkinLF1"
     this.teatSkinRH = "teatSkinRH1"
@@ -146,7 +147,7 @@ export class PostmilkPage {
     this.database.getPostmilkData().then((data: any) => {
       console.log("数据库里的数据:")
       console.log(data)
-      this.ListUser = data;
+      this.ListUser = data
     }, (error) => {
       console.log(error);
     })
@@ -185,5 +186,4 @@ export class PostmilkPage {
         console.log(error);
       });
   }
-
 }

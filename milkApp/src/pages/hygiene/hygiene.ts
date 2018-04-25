@@ -112,14 +112,21 @@ export class HygienePage {
     this.database.getHygieneData().then((data: any) => {
       console.log("数据库里的数据:")
       console.log(data)
-      this.ListUser = data;
+      this.ListUser = data
     }, (error) => {
       console.log(error);
     })
   }
 
   pushHygieneData() {
-    this.database.addHygieneData(this.farm, this.myDate, this.observer, this.group, this.clean, this.slightlyDirt, this.moderatelyDirt, this.cakedOnDirt)
+    this.database.addHygieneData(this.farm,
+      this.myDate,
+      this.observer,
+      this.group,
+      this.clean,
+      this.slightlyDirt,
+      this.moderatelyDirt,
+      this.cakedOnDirt)
       .then((data) => {
         this.loadHygieneData();
         console.log("当前传输的一条数据:")

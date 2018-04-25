@@ -213,7 +213,7 @@ export class LactocoderPage {
     })
   }
 
-  pushLactocoderData() {
+  /*pushLactocoderData() {
     if(!(this.cowName1==="")) {
       this.database.addLactocoderData(this.farm,
         this.myDate,
@@ -294,6 +294,6 @@ export class LactocoderPage {
           console.log(error);
       });
     }
-  }
+  }*/
 
 }

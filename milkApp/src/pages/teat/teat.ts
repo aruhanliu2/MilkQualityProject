@@ -44,6 +44,7 @@ export class TeatPage {
     }
 
 
+
   }
   tapIncrease(e,param:number) {
     if(param==1){
@@ -105,7 +106,7 @@ export class TeatPage {
     this.dipPresent = 0
     this.smallDirt = 0
     this.largeDirt = 0
-    this.beforeAfter = "b"
+    this.beforeAfter = "beforeAfter1"
 
     alert.present()
   }
@@ -159,7 +160,7 @@ export class TeatPage {
     this.database.getTeatData().then((data: any) => {
       console.log("数据库里的数据:")
       console.log(data)
-      this.ListUser = data;
+      this.ListUser = data
     }, (error) => {
       console.log(error);
     })

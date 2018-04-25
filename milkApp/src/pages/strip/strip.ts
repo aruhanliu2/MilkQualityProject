@@ -44,9 +44,9 @@ export class StripPage {
       this.ml,
       this.balance);
 
-    console.log("浏览器存储:")
-    //console.log(Object.entries(this.teatService.getItems()));
-    console.log(this.stripService.getItems()[0].farm)
+      console.log("浏览器存储:")
+      //console.log(Object.entries(this.teatService.getItems()));
+      console.log(this.stripService.getItems()[0].farm)
 
     //pushing data to firebase database
     this.authService.getActiveUser().getIdToken()
@@ -67,22 +67,25 @@ export class StripPage {
     this.stall = "";
     this.ml = "";
     this.balance = "balanced";
-
-    alert.present()
   }
 
   loadStripData() {
     this.database.getStripData().then((data: any) => {
       console.log("数据库里的数据:")
       console.log(data)
-      this.ListUser = data;
+      this.ListUser = data
     }, (error) => {
       console.log(error);
     })
   }
 
   pushStripData() {
-    this.database.addStripData(this.farm, this.myDate, this.observer, this.stall, this.ml, this.balance)
+    this.database.addStripData(this.farm,
+      this.myDate,
+      this.observer,
+      this.stall,
+      this.ml,
+      this.balance)
       .then((data) => {
         this.loadStripData();
         console.log("当前传输的一条数据:")

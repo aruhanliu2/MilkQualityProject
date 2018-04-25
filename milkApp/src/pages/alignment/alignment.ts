@@ -56,26 +56,26 @@ export class AlignmentPage {
       this.good,
       this.bad);
 
-    console.log("浏览器存储:")
-    //console.log(Object.entries(this.teatService.getItems()));
-    console.log(this.alignmentService.getItems()[0].farm);
+      console.log("浏览器存储:")
+      //console.log(Object.entries(this.teatService.getItems()));
+      console.log(this.alignmentService.getItems()[0].farm);
 
-    //pushing data to firebase database
-    this.authService.getActiveUser().getIdToken()
-      .then(
-        (token: string) => {
-          this.alignmentService.storeList(token)
-            .subscribe(
-              () => console.log('Success!'),
-              error => {
-                console.log(error);
-              }
-            );
-        }
-    );
+      //pushing data to firebase database
+      this.authService.getActiveUser().getIdToken()
+        .then(
+          (token: string) => {
+            this.alignmentService.storeList(token)
+              .subscribe(
+                () => console.log('Success!'),
+                error => {
+                  console.log(error);
+                }
+              );
+          }
+        );
 
-    //local storage to sqlite
-    this.pushAlignmentData();
+      //local storage
+      this.pushAlignmentData();
 
     this.farm = ""
     this.myDate = moment().format()
@@ -94,14 +94,18 @@ export class AlignmentPage {
     this.database.getAlignmentData().then((data: any) => {
       console.log("数据库里的数据:")
       console.log(data)
-      this.ListUser = data;
+      this.ListUser = data
     }, (error) => {
       console.log(error);
     })
   }
 
   pushAlignmentData() {
-    this.database.addAlignmentData(this.farm, this.myDate, this.observer, this.good, this.bad)
+    this.database.addAlignmentData(this.farm,
+      this.myDate,
+      this.observer,
+      this.good,
+      this.bad)
       .then((data) => {
         this.loadAlignmentData();
         console.log("当前传输的一条数据:")
