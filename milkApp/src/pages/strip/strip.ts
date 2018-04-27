@@ -14,7 +14,7 @@ import * as moment from 'moment';
 })
 export class StripPage {
   public farm: string = ""
-  public myDate: string = moment().format()
+  public myDate: string = moment().format('DD-MM-YYYY')
   public observer: string = ""
   public stall: string = ""
   public ml: string = ""

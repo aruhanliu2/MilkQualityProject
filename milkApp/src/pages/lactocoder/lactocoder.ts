@@ -14,7 +14,7 @@ import * as moment from 'moment';
 })
 export class LactocoderPage {
   public farm: string = ""
-  public myDate: string = moment().format()
+  public myDate: string = moment().format('DD-MM-YYYY')
   public parlor: string = ""
   public pre_milking: string = ""
   public herd_size: string = ""

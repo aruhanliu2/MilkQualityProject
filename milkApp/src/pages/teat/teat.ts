@@ -14,7 +14,7 @@ import * as moment from 'moment';
 })
 export class TeatPage {
   public farm: string = ""
-  public myDate: string = moment().format()
+  public myDate: string = moment().format('DD-MM-YYYY')
   public observer: string = ""
   public milker: string = ""
   public clean: number = 0

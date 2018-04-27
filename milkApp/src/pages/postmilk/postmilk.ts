@@ -22,7 +22,7 @@ import { Http } from "@angular/http";
 })
 export class PostmilkPage {
   public farm: string = ""
-  public myDate: string = moment().format()
+  public myDate: string = moment().format('DD-MM-YYYY')
   public observer: string = ""
 
   public group: string = ""

@@ -14,7 +14,7 @@ import * as moment from 'moment';
 })
 export class HygienePage {
   public farm: string = ""
-  public myDate: string = moment().format()
+  public myDate: string = moment().format('DD-MM-YYYY')
   public observer: string = ""
   public group: string = ""
   public clean: number = 0
