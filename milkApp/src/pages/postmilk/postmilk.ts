@@ -117,7 +117,7 @@ export class PostmilkPage {
     //local storage
     this.pushPostmilkData();
 
-    this.group = ""
+    //this.group = ""
     this.teatSkinLH = "N"
     this.teatSkinLF = "N"
     this.teatSkinRH = "N"
