@@ -18,30 +18,30 @@ export class PostmilkPage {
   public observer: string = ""
 
   public group: string = ""
-  public teatSkinLH: string = "teatSkinLH1"
-  public teatSkinLF: string = "teatSkinLF1"
-  public teatSkinRH: string = "teatSkinRH1"
-  public teatSkinRF: string = "teatSkinRF1"
+  public teatSkinLH: string = "N"
+  public teatSkinLF: string = "N"
+  public teatSkinRH: string = "N"
+  public teatSkinRF: string = "N"
 
-  public teatColorLH: string = "teatColorLH1"
-  public teatColorLF: string = "teatColorLF1"
-  public teatColorRH: string = "teatColorRH1"
-  public teatColorRF: string = "teatColorRF1"
+  public teatColorLH: string = "N"
+  public teatColorLF: string = "N"
+  public teatColorRH: string = "N"
+  public teatColorRF: string = "N"
 
-  public swellingLH: string = "swellingLH1"
-  public swellingLF: string = "swellingLF1"
-  public swellingRH: string = "swellingRH1"
-  public swellingRF: string = "swellingRF1"
+  public swellingLH: string = "N"
+  public swellingLF: string = "N"
+  public swellingRH: string = "N"
+  public swellingRF: string = "N"
 
-  public hardnessLH: string = "hardnessLH1"
-  public hardnessLF: string = "hardnessLF1"
-  public hardnessRH: string = "hardnessRH1"
-  public hardnessRF: string = "hardnessRF1"
+  public hardnessLH: string = "N"
+  public hardnessLF: string = "N"
+  public hardnessRH: string = "N"
+  public hardnessRF: string = "N"
 
-  public scoreLH: string = "scoreLH1"
-  public scoreLF: string = "scoreLF1"
-  public scoreRH: string = "scoreRH1"
-  public scoreRF: string = "scoreRF1"
+  public scoreLH: string = "N"
+  public scoreLF: string = "N"
+  public scoreRH: string = "N"
+  public scoreRF: string = "N"
 
   private ListUser : any
 
@@ -108,31 +108,31 @@ export class PostmilkPage {
     //local storage
     this.pushPostmilkData();
 
-    this.group = ""
-    this.teatSkinLH = "teatSkinLH1"
-    this.teatSkinLF = "teatSkinLF1"
-    this.teatSkinRH = "teatSkinRH1"
-    this.teatSkinRF = "teatSkinRF1"
+    //this.group = ""
+    this.teatSkinLH = "N"
+    this.teatSkinLF = "N"
+    this.teatSkinRH = "N"
+    this.teatSkinRF = "N"
 
-    this.teatColorLH = "teatColorLH1"
-    this.teatColorLF = "teatColorLF1"
-    this.teatColorRH = "teatColorRH1"
-    this.teatColorRF = "teatColorRF1"
+    this.teatColorLH = "N"
+    this.teatColorLF = "N"
+    this.teatColorRH = "N"
+    this.teatColorRF = "N"
 
-    this.swellingLH = "swellingLH1"
-    this.swellingLF = "swellingLF1"
-    this.swellingRH = "swellingRH1"
-    this.swellingRF = "swellingRF1"
+    this.swellingLH = "N"
+    this.swellingLF = "N"
+    this.swellingRH = "N"
+    this.swellingRF = "N"
 
-    this.hardnessLH = "hardnessLH1"
-    this.hardnessLF = "hardnessLF1"
-    this.hardnessRH = "hardnessRH1"
-    this.hardnessRF = "hardnessRF1"
+    this.hardnessLH = "N"
+    this.hardnessLF = "N"
+    this.hardnessRH = "N"
+    this.hardnessRF = "N"
 
-    this.scoreLH = "scoreLH1"
-    this.scoreLF = "scoreLF1"
-    this.scoreRH = "scoreRH1"
-    this.scoreRF = "scoreRF1"
+    this.scoreLH = "N"
+    this.scoreLF = "N"
+    this.scoreRH = "N"
+    this.scoreRF = "N"
   }
 
   loadPostmilkData() {
