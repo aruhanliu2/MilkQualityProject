@@ -19,32 +19,32 @@ export class DatabaseProvider {
         })
         .then((db: SQLiteObject) => {
           this.db = db;
-          let sql1 = "CREATE TABLE IF NOT EXISTS cleanliness_fact (id INTEGER PRIMARY KEY AUTOINCREMENT, farm_id TEXT, date TEXT, staff_id TEXT, milker_id TEXT, clean INTEGER, dip_present INTEGER, small_dirt INTEGER, large_dirt INTEGER, before_after TEXT)";
+          let sql1 = "CREATE TABLE IF NOT EXISTS cleanliness_fact (farm_id TEXT, date TEXT, staff_id TEXT, milker_id TEXT, clean, dip_present, small_dirt, large_dirt, before_after TEXT)";
           db.executeSql(sql1, {})
           .then(() => console.log("executed sql teat"))
           .catch(e => console.log(e));
 
-          let sql2 = "CREATE TABLE IF NOT EXISTS unit_fact (id INTEGER PRIMARY KEY AUTOINCREMENT, farm_id TEXT, date TEXT, staff_id TEXT, good INTEGER, bad INTEGER)";
+          let sql2 = "CREATE TABLE IF NOT EXISTS unit_fact (farm_id TEXT, date TEXT, staff_id TEXT, good, bad)";
           db.executeSql(sql2, {})
           .then(() => console.log("executed sql alignment"))
           .catch(e => console.log(e));
 
-          let sql3 = "CREATE TABLE IF NOT EXISTS udder_hygiene_fact (id INTEGER PRIMARY KEY AUTOINCREMENT, farm_id TEXT, date TEXT, staff_id TEXT, group_id TEXT, clean INTEGER, slightly_dirt INTEGER, moderately_dirt INTEGER, caked_on_dirt INTEGER)"
+          let sql3 = "CREATE TABLE IF NOT EXISTS udder_hygiene_fact (farm_id TEXT, date TEXT, staff_id TEXT, group_id TEXT, clean, slightly_dirt, moderately_dirt, caked_on_dirt)"
           db.executeSql(sql3, {})
           .then(() => console.log("executed sql hygiene"))
           .catch(e => console.log(e));
 
-          let sql4 = "CREATE TABLE IF NOT EXISTS postmilking_fact (id INTEGER PRIMARY KEY AUTOINCREMENT, farm_id TEXT, date TEXT, staff_id TEXT, group_id TEXT, LH_skin_condition TEXT, LF_skin_condition TEXT, RH_skin_condition TEXT, RF_skin_condition TEXT, LH_color TEXT, LF_color TEXT, RH_color TEXT, RF_color TEXT, LH_swelling TEXT, LF_swelling TEXT, RH_swelling TEXT, RF_swelling TEXT, LH_hardness TEXT, LF_hardness TEXT, RH_hardness TEXT, RF_hardness TEXT, LH_end_score TEXT, LF_end_score TEXT, RH_end_score TEXT, RF_end_score TEXT)";
+          let sql4 = "CREATE TABLE IF NOT EXISTS postmilking_fact (farm_id TEXT, date TEXT, staff_id TEXT, group_id TEXT, LH_skin_condition TEXT, LF_skin_condition TEXT, RH_skin_condition TEXT, RF_skin_condition TEXT, LH_color TEXT, LF_color TEXT, RH_color TEXT, RF_color TEXT, LH_swelling TEXT, LF_swelling TEXT, RH_swelling TEXT, RF_swelling TEXT, LH_hardness TEXT, LF_hardness TEXT, RH_hardness TEXT, RF_hardness TEXT, LH_end_score TEXT, LF_end_score TEXT, RH_end_score TEXT, RF_end_score TEXT)";
           db.executeSql(sql4, {})
           .then(() => console.log("executed sql postmilk"))
           .catch(e => console.log(e));
 
-          let sql5 = "CREATE TABLE IF NOT EXISTS strip_fact (id INTEGER PRIMARY KEY AUTOINCREMENT, farm_id TEXT, date TEXT, staff_id TEXT, Stall_no TEXT, ML TEXT, isBalanced TEXT)";
+          let sql5 = "CREATE TABLE IF NOT EXISTS strip_fact (farm_id TEXT, date TEXT, staff_id TEXT, Stall_no TEXT, ML TEXT, isBalanced TEXT)";
           db.executeSql(sql5, {})
           .then(() => console.log("executed sql strip"))
           .catch(e => console.log(e));
 
-          //let sql6 = "CREATE TABLE IF NOT EXISTS lactocoder_fact (id INTEGER PRIMARY KEY AUTOINCREMENT, farm_id TEXT, date TEXT, staff_id TEXT, Stall_no TEXT, ML TEXT, isBalanced TEXT)";
+          //let sql6 = "CREATE TABLE IF NOT EXISTS lactocoder_fact (farm_id TEXT, date TEXT, staff_id TEXT, Stall_no TEXT, ML TEXT, isBalanced TEXT)";
           //db.executeSql(sql6, {})
           //.then(() => console.log("executed sql lactocoder"))
           //.catch(e => console.log(e));
@@ -101,7 +101,7 @@ export class DatabaseProvider {
 
   //alignment data
   addAlignmentData(farm: string, myDate: string, observer: string, good: number, bad: number) {
-    let sql1 = "CREATE TABLE IF NOT EXISTS cleanliness_fact (id INTEGER PRIMARY KEY AUTOINCREMENT, farm_id TEXT, date TEXT, staff_id TEXT, milker_id TEXT, clean INTEGER, dip_present INTEGER, small_dirt INTEGER, large_dirt INTEGER, before_after TEXT)";
+    let sql1 = "CREATE TABLE IF NOT EXISTS cleanliness_fact (farm_id TEXT, date TEXT, staff_id TEXT, milker_id TEXT, clean, dip_present, small_dirt, large_dirt, before_after TEXT)";
     this.db.executeSql(sql1, {})
     .then(() => console.log("executed sql teat"))
     .catch(e => console.log(e));
