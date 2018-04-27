@@ -7,14 +7,6 @@ import { AuthService } from "../../services/auth";
 import { DatabaseProvider } from '../../providers/database/database';
 import { Http } from "@angular/http";
 
-
-/**
- * Generated class for the PostmilkPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
 @IonicPage()
 @Component({
   selector: 'page-postmilk',
@@ -52,7 +44,6 @@ export class PostmilkPage {
   public scoreRF: string = "scoreRF1"
 
   private ListUser : any
-
 
   constructor(public alerCtrl: AlertController,
     private postmilkService: PostmilkService,

@@ -56,8 +56,8 @@ export class TeatPage {
     } else if(param==4){
       this.largeDirt++
     }
-
   }
+  
   saveData() {
     let alert = this.alerCtrl.create({
       title: 'Saved!',

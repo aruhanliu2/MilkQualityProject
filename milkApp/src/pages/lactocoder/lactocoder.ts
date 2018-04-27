@@ -41,6 +41,8 @@ export class LactocoderPage {
   public DLU: number[][] = [[0,0,0],[0,0,0],[0,0,0]]
   public buttons: boolean[][] = [[false,false,true,true,true],[false,false,true,true,true],[false,false,true,true,true]]
 
+  public ListUser : any;
+
   constructor(public alerCtrl: AlertController,
     private lactocoderService: LactocoderService,
     private http: Http,
@@ -77,6 +79,15 @@ export class LactocoderPage {
     console.log(this.DLU[cow])
   }
 
+  saveData2() {
+    console.log("WTF")
+    let alert = this.alerCtrl.create({
+      title: 'Saved!',
+      message: 'Data have been saved locally!',
+      buttons: ['Ok']
+    });    
+  }
+  
   saveData() {
 
     let alert = this.alerCtrl.create({
@@ -84,98 +95,97 @@ export class LactocoderPage {
       message: 'Data have been saved locally!',
       buttons: ['Ok']
     });
+    this.pushLactocoderData();
 
-    while(this.lactocoderService.getItems().length>0){
-        this.lactocoderService.removeItem(this.lactocoderService.getItems().length-1);
-    }
+    // while(this.lactocoderService.getItems().length>0){
+    //     this.lactocoderService.removeItem(this.lactocoderService.getItems().length-1);
+    // }
 
-    if(!(this.cowName1==="")){
-      console.log("store1")
-      this.lactocoderService.addItem(
-        this.farm,
-        this.myDate,
-        this.parlor,
-        this.pre_milking,
-        this.herd_size,
-        this.size,
-        this.procedures,
-        this.frequency,
-        this.operators,
-        this.prep,
-        this.routine,
-        this.cowName1,
-        this.milk1,
-        this.remark1,
-        this.DLU[0][0],
-        this.DLU[0][1],
-        this.DLU[0][2]
-      );
-    }
+    // if(!(this.cowName1==="")){
+    //   console.log("store1")
+    //   this.lactocoderService.addItem(
+    //     this.farm,
+    //     this.myDate,
+    //     this.parlor,
+    //     this.pre_milking,
+    //     this.herd_size,
+    //     this.size,
+    //     this.procedures,
+    //     this.frequency,
+    //     this.operators,
+    //     this.prep,
+    //     this.routine,
+    //     this.cowName1,
+    //     this.milk1,
+    //     this.remark1,
+    //     this.DLU[0][0],
+    //     this.DLU[0][1],
+    //     this.DLU[0][2]
+    //   );
+    // }
 
-    if(!(this.cowName2==="")){
-      console.log("store2")
-      this.lactocoderService.addItem(
-        this.farm,
-        this.myDate,
-        this.parlor,
-        this.pre_milking,
-        this.herd_size,
-        this.size,
-        this.procedures,
-        this.frequency,
-        this.operators,
-        this.prep,
-        this.routine,
-        this.cowName2,
-        this.milk2,
-        this.remark2,
-        this.DLU[1][0],
-        this.DLU[1][1],
-        this.DLU[1][2]
-      );
-    }
+    // if(!(this.cowName2==="")){
+    //   console.log("store2")
+    //   this.lactocoderService.addItem(
+    //     this.farm,
+    //     this.myDate,
+    //     this.parlor,
+    //     this.pre_milking,
+    //     this.herd_size,
+    //     this.size,
+    //     this.procedures,
+    //     this.frequency,
+    //     this.operators,
+    //     this.prep,
+    //     this.routine,
+    //     this.cowName2,
+    //     this.milk2,
+    //     this.remark2,
+    //     this.DLU[1][0],
+    //     this.DLU[1][1],
+    //     this.DLU[1][2]
+    //   );
+    // }
 
-    if(!(this.cowName3==="")){
-      console.log("store3")
-      this.lactocoderService.addItem(
-        this.farm,
-        this.myDate,
-        this.parlor,
-        this.pre_milking,
-        this.herd_size,
-        this.size,
-        this.procedures,
-        this.frequency,
-        this.operators,
-        this.prep,
-        this.routine,
-        this.cowName3,
-        this.milk3,
-        this.remark3,
-        this.DLU[2][0],
-        this.DLU[2][1],
-        this.DLU[2][2]
-      );
+    // if(!(this.cowName3==="")){
+    //   console.log("store3")
+    //   this.lactocoderService.addItem(
+    //     this.farm,
+    //     this.myDate,
+    //     this.parlor,
+    //     this.pre_milking,
+    //     this.herd_size,
+    //     this.size,
+    //     this.procedures,
+    //     this.frequency,
+    //     this.operators,
+    //     this.prep,
+    //     this.routine,
+    //     this.cowName3,
+    //     this.milk3,
+    //     this.remark3,
+    //     this.DLU[2][0],
+    //     this.DLU[2][1],
+    //     this.DLU[2][2]
+    //   );
+    // }
 
-
-    }
-
-    this.authService.getActiveUser().getIdToken()
-      .then(
-        (token: string) => {
-          this.lactocoderService.storeList(token)
-            .subscribe(
-              () => console.log('Success!'),
-              error => {
-                console.log(error);
-              }
-            );
-        }
-      );
+    // this.authService.getActiveUser().getIdToken()
+    //   .then(
+    //     (token: string) => {
+    //       this.lactocoderService.storeList(token)
+    //         .subscribe(
+    //           () => console.log('Success!'),
+    //           error => {
+    //             console.log(error);
+    //           }
+    //         );
+    //     }
+    //   );
 
     console.log("浏览器存储:")
     //console.log(Object.entries(this.teatService.getItems()));
-    console.log(this.lactocoderService.getItems()[0].farm);
+    // console.log(this.lactocoderService.getItems()[0].farm);
 
     //pushing data to firebase database
 
@@ -202,18 +212,20 @@ export class LactocoderPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad HygienePage');
+    console.log('ionViewDidLoad LactocoderPage');
   }
+
   loadLactocoderData() {
     this.database.getLactocoderData().then((data: any) => {
       console.log("数据库里的数据:")
-      console.log(data)
+      this.ListUser = data
     }, (error) => {
       console.log(error);
     })
   }
 
-  /*pushLactocoderData() {
+  pushLactocoderData() {
+    console.log("go into this page")
     if(!(this.cowName1==="")) {
       this.database.addLactocoderData(this.farm,
         this.myDate,
@@ -294,6 +306,6 @@ export class LactocoderPage {
           console.log(error);
       });
     }
-  }*/
+  }
 
 }
