@@ -67,6 +67,8 @@ export class StripPage {
     this.stall = "";
     this.ml = "";
     this.balance = "balanced";
+
+    alert.present()
   }
 
   loadStripData() {

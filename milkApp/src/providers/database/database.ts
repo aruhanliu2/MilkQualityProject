@@ -44,10 +44,15 @@ export class DatabaseProvider {
           .then(() => console.log("executed sql strip"))
           .catch(e => console.log(e));
 
-          let sql6 = "CREATE TABLE IF NOT EXISTS lactocoder_fact (farm_id, date, parlor_type, pre_milking, herd_size, size, procedures, milking_frequency, no_operators, prep, milking_routine, cow_name, total_milk, remark, dip_contact_time, lag_contact_stimulate, unit_on_time)";
-          db.executeSql(sql5, {})
+          let drop = "DROP TABLE IF EXISTS lactocoder_fact";
+          db.executeSql(drop, {})
+          .then(() => console.log("executed sql drop"))
+          .catch(e => console.log(e));
+
+          let sql6 = "CREATE TABLE IF NOT EXISTS lactocoder_fact (farm_id TEXT, date TEXT, parlor_type TEXT, pre_milking TEXT, herd_size TEXT, size TEXT, procedures TEXT, milking_frequency TEXT, no_operators TEXT, prep TEXT, milking_routine TEXT, cow_name TEXT, total_milk TEXT, remark TEXT, dip_contact_time, lag_contact_stimulate, unit_on_time)";
+          db.executeSql(sql6, {})
           .then(() => console.log("executed sql lactocoder"))
-          .catch(e => console.log(e));   
+          .catch(e => console.log(e));
 
           this.isOpen = true;
         }).catch((error) => {
@@ -275,6 +280,8 @@ export class DatabaseProvider {
     return new Promise ((resolve, reject) => {
       let input = [farm, myDate, observer, stall, ml, balance];
       let sql = "INSERT INTO strip_fact (farm_id, date, staff_id, Stall_no, ML, isBalanced) VALUES (?, ?, ?, ?, ?, ?)";
+      console.log(sql)
+      console.log(input)
       this.db.executeSql(sql, input).then((data) => {
         resolve(data);
       }, (error) => {
@@ -310,51 +317,52 @@ export class DatabaseProvider {
     })
   }
 
-    addLactocoderData(farm: string,
-        myDate: string,
-        parlor: string,
-        pre_milking: string,
-        herd_size: string,
-        size: string,
-        procedures: string,
-        frequency: string,
-        operators: string,
-        prep: string,
-        routine: string,
-        cowName: string,
-        milk: string,
-        remark: string,
-        dipContact: number,
-        lagTime: number,
-        unitOn: number) {
-      return new Promise ((resolve, reject) => {
-            let input = [farm,
-            myDate,
-            parlor,
-            pre_milking,
-            herd_size,
-            size,
-            procedures,
-            frequency,
-            operators,
-            prep,
-            routine,
-            cowName,
-            milk,
-            remark,
-            dipContact,
-            lagTime,
-            unitOn];
-    
-          let sql = "INSERT INTO lactocoder_fact (farm_id, date, parlor_type, pre_milking, herd_size, size, procedures, milking_frequency, no_operators, prep, milking_routine, cow_name, total_milk, remark, dip_contact_time, lag_contact_stimulate, unit_on_time) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-          this.db.executeSql(sql, input).then((data) => {
-            resolve(data);
-          }, (error) => {
-          reject(error);
-          });
+  addLactocoderData(farm: string,
+      myDate: string,
+      parlor: string,
+      pre_milking: string,
+      herd_size: string,
+      size: string,
+      procedures: string,
+      frequency: string,
+      operators: string,
+      prep: string,
+      routine: string,
+      cowName: string,
+      milk: string,
+      remark: string,
+      dipContact: number,
+      lagTime: number,
+      unitOn: number) {
+    return new Promise ((resolve, reject) => {
+          let input = [farm,
+          myDate,
+          parlor,
+          pre_milking,
+          herd_size,
+          size,
+          procedures,
+          frequency,
+          operators,
+          prep,
+          routine,
+          cowName,
+          milk,
+          remark,
+          dipContact,
+          lagTime,
+          unitOn];
+        let sql = "INSERT INTO lactocoder_fact (farm_id, date, parlor_type, pre_milking, herd_size, size, procedures, milking_frequency, no_operators, prep, milking_routine, cow_name, total_milk, remark, dip_contact_time, lag_contact_stimulate, unit_on_time) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        console.log(sql)
+        console.log(input)
+        this.db.executeSql(sql, input).then((data) => {
+          resolve(data);
+        }, (error) => {
+        reject(error);
         });
-      }
-    
+      });
+    }
+
     getLactocoderData() {
         return new Promise((resolve, reject) => {
           this.db.executeSql("SELECT * FROM lactocoder_fact", []).then(data => {
@@ -386,11 +394,11 @@ export class DatabaseProvider {
           })
         })
       }
-    
+
       cleanLactocoderData() {
         return new Promise((resolve, reject) => {
           return this.db.executeSql("DELETE FROM lactocoder_fact",{});
         })
       }
-     
+
   }

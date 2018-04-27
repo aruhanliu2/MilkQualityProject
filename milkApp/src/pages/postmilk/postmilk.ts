@@ -133,6 +133,8 @@ export class PostmilkPage {
     this.scoreLF = "N"
     this.scoreRH = "N"
     this.scoreRF = "N"
+
+    alert.present()
   }
 
   loadPostmilkData() {

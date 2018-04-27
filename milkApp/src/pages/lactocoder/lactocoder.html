@@ -8,18 +8,27 @@
 </ion-header>
 
 <ion-content padding>
-    <ion-list>
-        <!-- <ion-item *ngFor="let item of ListUser">
-          <p>Farm: {{item.farm_id}}</p>
-          <p>Date: {{item.date}}</p>
-          <p>Observer: {{item.staff_id}}</p>
-          <p>Group: {{item.group_id}} </p>
-          <p>TSLH: {{item.LH_skin_condition}}</p>
-          <p>TSLF: {{item.LF_skin_condition}}</p>
-          <p>TSRH: {{item.RH_skin_condition}}</p>
-          <p>TSRF: {{item.RF_skin_condition}}</p>
-        </ion-item> -->
-      </ion-list>
+  <ion-list>
+    <ion-item *ngFor="let item of ListUser">
+      <p>Farm: {{item.farm_id}}</p>
+      <p>Date: {{item.date}}</p>
+      <p>Parlor: {{item.parlor_type}}</p>
+      <p>Pre Milking: {{item.pre_milking}} </p>
+      <p>Herd Size: {{item.herd_size}}</p>
+      <p>Size: {{item.size}}</p>
+      <p>Procedures: {{item.procedures}}</p>
+      <p>Frequency: {{item.milking_frequency}}</p>
+      <p>Operator: {{item.no_operators}}</p>
+      <p>Prep: {{item.prep}}</p>
+      <p>Routine: {{item.milking_routine}}</p>
+      <p>Cow Name: {{item.cow_name}}</p>
+      <p>Total Milk: {{item.total_milk}}</p>
+      <p>Remark: {{item.remark}}</p>
+      <p>D: {{item.dip_contact_time}}</p>
+      <p>L: {{item.lag_contact_stimulate}}</p>
+      <p>U: {{item.unit_on_time}}</p>
+    </ion-item>
+  </ion-list>
   <h2>General Info:</h2>
   <ion-list>
     <ion-item>
@@ -127,6 +136,6 @@
     <Button class="sbtn" ion-button [disabled]="buttons[2][4]" (click)="buttonControl(2,4)"> Remove </Button>
     <hr>
 
-    <button class="btn" ion-button (click)="saveData2()">Save</button>
+    <button class="btn" ion-button (click)="saveData()">Save</button>
     <Button class="btn" ion-button navPop> Back </Button>
 </ion-content>
