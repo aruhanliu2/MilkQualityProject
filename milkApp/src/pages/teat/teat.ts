@@ -14,7 +14,7 @@ import * as moment from 'moment';
 })
 export class TeatPage {
   public farm: string = ""
-  public myDate: string = moment().format('DD-MM-YYYY')
+  public myDate: string = moment().format('YYYY-MM-DD')
   public observer: string = ""
   public milker: string = ""
   public clean: number = 0
@@ -99,14 +99,15 @@ export class TeatPage {
     this.pushTeatData();
 
     this.farm = ""
-    this.myDate = moment().format()
+    this.myDate = moment().format('YYYY-MM-DD')
     this.observer = ""
     this.milker = ""
     this.clean = 0
     this.dipPresent = 0
     this.smallDirt = 0
     this.largeDirt = 0
-    this.beforeAfter = "beforeAfter1"
+    // this.beforeAfter = "beforeAfter1"
+    this.beforeAfter = "b"
 
     alert.present()
   }
@@ -123,20 +124,12 @@ export class TeatPage {
          console.log(response);
          // response.json();
       }).subscribe();*/
+      // console.log(data);
       console.log("I'm here");
       var headers = new Headers();
 
     headers.append('Content-Type', 'application/json');
-    this.http.post('http://localhost:3000/teat', JSON.stringify([{   "1" : "here",
-  "2" : "123",
-  "3" :"123",
-  "4": "2012-08-01",
-  "5" : "123",
-  "6" : true,
-  "7" :111,
-  "8": 321,
-  "9" : 12,
-  "10" : 56 }]), {headers:headers}).map((response:Response) => {
+    this.http.post('http://localhost:3000/teat', JSON.stringify(data), {headers:headers}).map((response:Response) => {
                 console.log("I'm here");
                 console.log(response);
                 // response.json();

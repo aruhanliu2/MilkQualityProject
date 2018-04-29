@@ -184,7 +184,7 @@ export class LactocoderPage {
 
     console.log("浏览器存储:")
     //console.log(Object.entries(this.teatService.getItems()));
-    console.log(this.lactocoderService.getItems()[0].farm);
+    console.log(this.lactocoderService.getItems()[0]);
 
     //pushing data to firebase database
     this.pushLactocoderData();

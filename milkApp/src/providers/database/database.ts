@@ -92,6 +92,7 @@ export class DatabaseProvider {
               before_after: data.rows.item(i).before_after});
           }
         }
+        console.log(results);
         resolve(results);
       }, (error) => {
         reject(error);
