@@ -20,40 +20,33 @@ export class ListPage {
   postmilkPage = PostmilkPage;
   lactocoderPage = LactocoderPage;
 
-  // teat
-  public farm: string
-  public myDate: string
-  public observer: string
-  public milker: string
-  public clean: number
-  public dipPresent: number
-  public smallDirt: number
-  public largeDirt: number
-  public beforeAfter: string
+  public listMap: any
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-    this.farm = (navParams.get('teatFarm') != undefined)?navParams.get('teatFarm'):""
-    this.myDate = (navParams.get('teatDate') != undefined)?navParams.get('teatDate'):moment().format('YYYY-MM-DD')
-    this.observer = (navParams.get('teatObserver') != undefined)?navParams.get('teatObserver'):""
-    this.milker = (navParams.get('teatMilker') != undefined)?navParams.get('teatMilker'):""
-    this.clean = (navParams.get('teatClean') != undefined)?navParams.get('teatClean'):0
-    this.dipPresent = (navParams.get('teatDip') != undefined)?navParams.get('teatDip'):0
-    this.smallDirt = (navParams.get('teatSmall') != undefined)?navParams.get('teatSmall'):0
-    this.largeDirt = (navParams.get('teatLarge') != undefined)?navParams.get('teatLarge'):0
-    this.beforeAfter = (navParams.get('teatBA') != undefined)?navParams.get('teatBA'):"b"
+    this.listMap = (navParams != undefined)?navParams:{}
   }
 
   goTeat() {
-    this.navCtrl.push(TeatPage, {
-      teatFarm: this.farm,
-      teatDate: this.myDate,
-      teatObserver: this.observer,
-      teatMilker: this.milker,
-      teatClean: this.clean,
-      teatDip: this.dipPresent,
-      teatSmall: this.smallDirt,
-      teatLarge: this.largeDirt,
-      teatBA: this.beforeAfter
-    });
+    this.navCtrl.push(TeatPage, this.listMap);
+  }
+
+  goHygiene() {
+    this.navCtrl.push(HygienePage, this.listMap);
+  }
+
+  goAlignment(){
+    this.navCtrl.push(AlignmentPage, this.listMap);
+  }
+
+  goStrip(){
+    this.navCtrl.push(StripPage, this.listMap);
+  }
+
+  goPostmilk(){
+    this.navCtrl.push(PostmilkPage, this.listMap);
+  }
+
+  goLactocoder(){
+    this.navCtrl.push(LactocoderPage, this.listMap);
   }
 }

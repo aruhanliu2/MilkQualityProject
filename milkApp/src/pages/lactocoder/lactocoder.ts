@@ -6,6 +6,7 @@ import { AuthService } from "../../services/auth";
 import { DatabaseProvider } from '../../providers/database/database';
 import { Http } from "@angular/http";
 import * as moment from 'moment';
+import { ListPage } from '../../pages/list/list';
 
 @IonicPage()
 @Component({
@@ -13,41 +14,53 @@ import * as moment from 'moment';
   templateUrl: 'lactocoder.html',
 })
 export class LactocoderPage {
-  public farm: string = ""
-  public myDate: string = moment().format('DD-MM-YYYY')
-  public parlor: string = ""
-  public pre_milking: string = ""
-  public herd_size: string = ""
-  public size: string = ""
-  public procedures: string = ""
-  public frequency: string = "frequency2X"
-  public operators: string = ""
-  public prep: string = ""
-  public routine: string = ""
+  public farm: string
+  public myDate: string
+  public parlor: string
+  public pre_milking: string
+  public herd_size: string
+  public size: string
+  public procedures: string
+  public frequency: string
+  public operators: string
+  public prep: string
+  public routine: string
 
-  public cowName1: string = ""
-  public milk1: string = ""
-  public remark1: string = ""
-
-  public cowName2: string = ""
-  public milk2: string = ""
-  public remark2: string = ""
-
-  public cowName3: string = ""
-  public milk3: string = ""
-  public remark3: string = ""
-
-  public cowList: number[][] = [[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0]]
-  public DLU: number[][] = [[0,0,0],[0,0,0],[0,0,0]]
-  public buttons: boolean[][] = [[false,false,true,true,true],[false,false,true,true,true],[false,false,true,true,true]]
+  public cowName: string[]
+  public milk: string[]
+  public remark: string[]
+  public cowList: number[][]
+  public DLU: number[][]
+  public buttons: boolean[][]
 
   public ListUser : any
+  public listMap: any
 
   constructor(public alerCtrl: AlertController,
     private lactocoderService: LactocoderService,
     private http: Http,
     private authService: AuthService,
-    private database: DatabaseProvider) {
+    private database: DatabaseProvider,
+    public navCtrl: NavController,
+    public navParams: NavParams) {
+      this.farm = (navParams.get('lactoFarm') != undefined)?navParams.get('lactoFarm'):""
+      this.myDate = (navParams.get('lactoDate') != undefined)?navParams.get('lactoDate'):moment().format('YYYY-MM-DD')
+      this.parlor = (navParams.get('lactoParlor') != undefined)?navParams.get('lactoParlor'):""
+      this.pre_milking = (navParams.get('lactoPre_Milking') != undefined)?navParams.get('lactoPre_Milking'):""
+      this.herd_size = (navParams.get('lactoHerd') != undefined)?navParams.get('lactoHerd'):""
+      this.size = (navParams.get('lactoSize') != undefined)?navParams.get('lactoSize'):""
+      this.procedures = (navParams.get('lactoProcedures') != undefined)?navParams.get('lactoProcedures'):""
+      this.frequency = (navParams.get('lactoFreq') != undefined)?navParams.get('lactoFreq'):"frequency2X"
+      this.operators = (navParams.get('lactoOp') != undefined)?navParams.get('lactoOp'):""
+      this.prep = (navParams.get('lactoPrep') != undefined)?navParams.get('lactoPrep'):""
+      this.routine = (navParams.get('lactoRoutine') != undefined)?navParams.get('lactoRoutine'):""
+
+      this.cowName = (navParams.get('cowName') != undefined)?navParams.get('cowName'):["","",""]
+      this.milk = (navParams.get('milk') != undefined)?navParams.get('milk'):["","",""]
+      this.remark = (navParams.get('remark') != undefined)?navParams.get('remark'):["","",""]
+      this.cowList = (navParams.get('cowList') != undefined)?navParams.get('cowList'):[[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0]]
+      this.DLU = (navParams.get('DLU') != undefined)?navParams.get('DLU'):[[0,0,0],[0,0,0],[0,0,0]]
+      this.buttons = (navParams.get('buttons') != undefined)?navParams.get('buttons'):[[false,false,true,true,true],[false,false,true,true,true],[false,false,true,true,true]]
   }
 
   buttonControl(cow: number, step: number){
@@ -79,15 +92,6 @@ export class LactocoderPage {
     console.log(this.DLU[cow])
   }
 
-  saveData2() {
-    console.log("WTF")
-    let alert = this.alerCtrl.create({
-      title: 'Saved!',
-      message: 'Data have been saved locally!',
-      buttons: ['Ok']
-    });
-  }
-
   saveData() {
 
     let alert = this.alerCtrl.create({
@@ -100,7 +104,7 @@ export class LactocoderPage {
         this.lactocoderService.removeItem(this.lactocoderService.getItems().length-1);
     }
 
-    if(!(this.cowName1==="")){
+    if(!(this.cowName[0]==="")){
       console.log("store1")
       this.lactocoderService.addItem(
         this.farm,
@@ -114,16 +118,16 @@ export class LactocoderPage {
         this.operators,
         this.prep,
         this.routine,
-        this.cowName1,
-        this.milk1,
-        this.remark1,
+        this.cowName[0],
+        this.milk[0],
+        this.remark[0],
         this.DLU[0][0],
         this.DLU[0][1],
         this.DLU[0][2]
       );
     }
 
-    if(!(this.cowName2==="")){
+    if(!(this.cowName[1]==="")){
       console.log("store2")
       this.lactocoderService.addItem(
         this.farm,
@@ -137,16 +141,16 @@ export class LactocoderPage {
         this.operators,
         this.prep,
         this.routine,
-        this.cowName2,
-        this.milk2,
-        this.remark2,
+        this.cowName[1],
+        this.milk[1],
+        this.remark[1],
         this.DLU[1][0],
         this.DLU[1][1],
         this.DLU[1][2]
       );
     }
 
-    if(!(this.cowName3==="")){
+    if(!(this.cowName[2]==="")){
       console.log("store3")
       this.lactocoderService.addItem(
         this.farm,
@@ -160,9 +164,9 @@ export class LactocoderPage {
         this.operators,
         this.prep,
         this.routine,
-        this.cowName3,
-        this.milk3,
-        this.remark3,
+        this.cowName[2],
+        this.milk[2],
+        this.remark[2],
         this.DLU[2][0],
         this.DLU[2][1],
         this.DLU[2][2]
@@ -195,19 +199,9 @@ export class LactocoderPage {
     this.DLU = [[0,0,0],[0,0,0],[0,0,0]]
     this.buttons= [[false,false,true,true,true],[false,false,true,true,true],[false,false,true,true,true]]
 
-    this.cowName1 = ""
-    this.milk1 = ""
-    this.remark1 = ""
-
-
-
-    this.cowName2 = ""
-    this.milk2 = ""
-    this.remark2 = ""
-
-    this.cowName3 = ""
-    this.milk3 = ""
-    this.remark3 = ""
+    this.cowName = ["","",""]
+    this.milk = ["","",""]
+    this.remark = ["","",""]
 
     alert.present()
   }
@@ -226,8 +220,8 @@ export class LactocoderPage {
   }
 
   pushLactocoderData() {
-    console.log("go into this page")
-    if(!(this.cowName1==="")) {
+    if(!(this.cowName[0]==="")) {
+      console.log("push1")
       this.database.addLactocoderData(this.farm,
         this.myDate,
         this.parlor,
@@ -239,9 +233,9 @@ export class LactocoderPage {
         this.operators,
         this.prep,
         this.routine,
-        this.cowName1,
-        this.milk1,
-        this.remark1,
+        this.cowName[0],
+        this.milk[0],
+        this.remark[0],
         this.DLU[0][0],
         this.DLU[0][1],
         this.DLU[0][2])
@@ -254,7 +248,8 @@ export class LactocoderPage {
         });
     }
 
-    if(!(this.cowName2==="")) {
+    if(!(this.cowName[1]==="")) {
+      console.log("push2")
       this.database.addLactocoderData(this.farm,
         this.myDate,
         this.parlor,
@@ -266,9 +261,9 @@ export class LactocoderPage {
         this.operators,
         this.prep,
         this.routine,
-        this.cowName2,
-        this.milk2,
-        this.remark2,
+        this.cowName[1],
+        this.milk[1],
+        this.remark[1],
         this.DLU[1][0],
         this.DLU[1][1],
         this.DLU[1][2])
@@ -281,7 +276,8 @@ export class LactocoderPage {
       });
     }
 
-    if(!(this.cowName3==="")) {
+    if(!(this.cowName[2]==="")) {
+      console.log("push3")
       this.database.addLactocoderData(this.farm,
         this.myDate,
         this.parlor,
@@ -293,9 +289,9 @@ export class LactocoderPage {
         this.operators,
         this.prep,
         this.routine,
-        this.cowName3,
-        this.milk3,
-        this.remark3,
+        this.cowName[2],
+        this.milk[2],
+        this.remark[2],
         this.DLU[2][0],
         this.DLU[2][1],
         this.DLU[2][2])
@@ -307,6 +303,37 @@ export class LactocoderPage {
           console.log(error);
       });
     }
+  }
+
+  back() {
+    this.listMap = NavParams
+    this.listMap['lactoFarm'] = this.farm
+    this.listMap['lactoDate'] = this.myDate
+    this.listMap['lactoParlor'] = this.parlor
+    this.listMap['lactoPre_Milking'] = this.pre_milking
+    this.listMap['lactoHerd'] = this.herd_size
+    this.listMap['lactoSize'] = this.size
+    this.listMap['lactoProcedures'] = this.procedures
+    this.listMap['lactoFreq'] = this.frequency
+    this.listMap['lactoOp'] = this.operators
+    this.listMap['lactoPrep'] = this.prep
+    this.listMap['lactoRoutine'] = this.routine
+
+    console.log(this.cowName)
+    console.log(this.milk)
+    console.log(this.remark)
+    console.log(this.cowList)
+    console.log(this.DLU)
+    console.log(this.buttons)
+
+    this.listMap['cowName'] = this.cowName
+    this.listMap['milk'] = this.milk
+    this.listMap['remark'] = this.remark
+    this.listMap['cowList'] = this.cowList
+    this.listMap['DLU'] = this.DLU
+    this.listMap['buttons'] = this.buttons
+
+    this.navCtrl.push(ListPage, this.listMap);
   }
 
 }

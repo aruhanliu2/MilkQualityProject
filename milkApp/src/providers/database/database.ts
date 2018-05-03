@@ -44,11 +44,6 @@ export class DatabaseProvider {
           .then(() => console.log("executed sql strip"))
           .catch(e => console.log(e));
 
-          let drop = "DROP TABLE IF EXISTS lactocoder_fact";
-          db.executeSql(drop, {})
-          .then(() => console.log("executed sql drop"))
-          .catch(e => console.log(e));
-
           let sql6 = "CREATE TABLE IF NOT EXISTS lactocoder_fact (farm_id TEXT, date TEXT, parlor_type TEXT, pre_milking TEXT, herd_size TEXT, size TEXT, procedures TEXT, milking_frequency TEXT, no_operators TEXT, prep TEXT, milking_routine TEXT, cow_name TEXT, total_milk TEXT, remark TEXT, dip_contact_time, lag_contact_stimulate, unit_on_time)";
           db.executeSql(sql6, {})
           .then(() => console.log("executed sql lactocoder"))

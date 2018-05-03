@@ -24,6 +24,7 @@ export class TeatPage {
   public largeDirt: number
   public beforeAfter: string
   private ListUser : any
+  public listMap: any
 
 
   constructor(public alerCtrl: AlertController,
@@ -33,7 +34,6 @@ export class TeatPage {
     private database: DatabaseProvider,
     public navCtrl: NavController,
     public navParams: NavParams) {
-      //this.loadTeatData();
       this.farm = (navParams.get('teatFarm') != undefined)?navParams.get('teatFarm'):""
       this.myDate = (navParams.get('teatDate') != undefined)?navParams.get('teatDate'):moment().format('YYYY-MM-DD')
       this.observer = (navParams.get('teatObserver') != undefined)?navParams.get('teatObserver'):""
@@ -178,17 +178,17 @@ export class TeatPage {
   }
 
   back() {
-    this.navCtrl.push(ListPage, {
-      teatFarm: this.farm,
-      teatDate: this.myDate,
-      teatObserver: this.observer,
-      teatMilker: this.milker,
-      teatClean: this.clean,
-      teatDip: this.dipPresent,
-      teatSmall: this.smallDirt,
-      teatLarge: this.largeDirt,
-      teatBA: this.beforeAfter
-    });
+    this.listMap = NavParams
+    this.listMap['teatFarm'] = this.farm
+    this.listMap['teatDate'] = this.myDate
+    this.listMap['teatObserver'] = this.observer
+    this.listMap['teatMilker'] = this.milker
+    this.listMap['teatClean'] = this.clean
+    this.listMap['teatDip'] = this.dipPresent
+    this.listMap['teatSmall'] = this.smallDirt
+    this.listMap['teatLarge'] = this.largeDirt
+    this.listMap['teatBA'] = this.beforeAfter
+    this.navCtrl.push(ListPage, this.listMap);
   }
 
 }

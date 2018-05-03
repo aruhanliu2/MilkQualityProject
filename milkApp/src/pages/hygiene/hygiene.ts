@@ -6,6 +6,7 @@ import { AuthService } from "../../services/auth";
 import { DatabaseProvider } from '../../providers/database/database';
 import { Http } from "@angular/http";
 import * as moment from 'moment';
+import { ListPage } from '../../pages/list/list';
 
 @IonicPage()
 @Component({
@@ -13,21 +14,32 @@ import * as moment from 'moment';
   templateUrl: 'hygiene.html',
 })
 export class HygienePage {
-  public farm: string = ""
-  public myDate: string = moment().format('DD-MM-YYYY')
-  public observer: string = ""
-  public group: string = ""
-  public clean: number = 0
-  public slightlyDirt: number = 0
-  public moderatelyDirt: number = 0
-  public cakedOnDirt: number = 0
+  public farm: string
+  public myDate: string
+  public observer: string
+  public group: string
+  public clean: number
+  public slightlyDirt: number
+  public moderatelyDirt: number
+  public cakedOnDirt: number
   private ListUser : any
+  public listMap: any
 
   constructor(public alerCtrl: AlertController,
     private hygieneService: HygieneService,
     private http: Http,
     private authService: AuthService,
-    private database: DatabaseProvider) {
+    private database: DatabaseProvider,
+    public navCtrl: NavController,
+    public navParams: NavParams) {
+      this.farm = (navParams.get('hygieneFarm') != undefined)?navParams.get('hygieneFarm'):""
+      this.myDate = (navParams.get('hygieneDate') != undefined)?navParams.get('hygieneDate'):moment().format('YYYY-MM-DD')
+      this.observer = (navParams.get('hygieneObserver') != undefined)?navParams.get('hygieneObserver'):""
+      this.group = (navParams.get('hygieneGroup') != undefined)?navParams.get('hygieneGroup'):""
+      this.clean = (navParams.get('hygieneClean') != undefined)?navParams.get('hygieneClean'):0
+      this.slightlyDirt = (navParams.get('hygieneSlightly') != undefined)?navParams.get('hygieneSlightly'):0
+      this.moderatelyDirt = (navParams.get('hygieneModerately') != undefined)?navParams.get('hygieneModerately'):0
+      this.cakedOnDirt = (navParams.get('hygieneCakedOn') != undefined)?navParams.get('hygieneCakedOn'):0
   }
 
 
@@ -93,10 +105,6 @@ export class HygienePage {
     this.pushHygieneData();
 
     // empty the form
-    this.farm = ""
-    this.myDate = moment().format()
-    this.observer = ""
-    this.group = ""
     this.clean = 0
     this.slightlyDirt = 0
     this.moderatelyDirt = 0
@@ -134,6 +142,18 @@ export class HygienePage {
       }, (error) => {
         console.log(error);
       });
+  }
+
+  back() {this.listMap = NavParams
+    this.listMap['hygieneFarm'] = this.farm
+    this.listMap['hygieneDate'] = this.myDate
+    this.listMap['hygieneObserver'] = this.observer
+    this.listMap['hygieneGroup'] = this.group
+    this.listMap['teatClean'] = this.clean
+    this.listMap['teatSlightly'] = this.slightlyDirt
+    this.listMap['hygieneModerately'] = this.moderatelyDirt
+    this.listMap['hygieneCakedOn'] = this.cakedOnDirt
+    this.navCtrl.push(ListPage, this.listMap);
   }
 
 }
