@@ -6,6 +6,7 @@ import { AuthService } from "../../services/auth";
 import { DatabaseProvider } from '../../providers/database/database';
 import { Http, Response, Headers } from "@angular/http";
 import * as moment from 'moment';
+import { ListPage } from '../../pages/list/list';
 
 @IonicPage()
 @Component({
@@ -13,15 +14,15 @@ import * as moment from 'moment';
   templateUrl: 'teat.html'
 })
 export class TeatPage {
-  public farm: string = ""
-  public myDate: string = moment().format('YYYY-MM-DD')
-  public observer: string = ""
-  public milker: string = ""
-  public clean: number = 0
-  public dipPresent: number = 0
-  public smallDirt: number = 0
-  public largeDirt: number = 0
-  public beforeAfter: string = "b"
+  public farm: string
+  public myDate: string
+  public observer: string
+  public milker: string
+  public clean: number
+  public dipPresent: number
+  public smallDirt: number
+  public largeDirt: number
+  public beforeAfter: string
   private ListUser : any
 
 
@@ -29,8 +30,19 @@ export class TeatPage {
     private teatService: TeatService,
     private http: Http,
     private authService: AuthService,
-    private database: DatabaseProvider) {
+    private database: DatabaseProvider,
+    public navCtrl: NavController,
+    public navParams: NavParams) {
       //this.loadTeatData();
+      this.farm = (navParams.get('teatFarm') != undefined)?navParams.get('teatFarm'):""
+      this.myDate = (navParams.get('teatDate') != undefined)?navParams.get('teatDate'):moment().format('YYYY-MM-DD')
+      this.observer = (navParams.get('teatObserver') != undefined)?navParams.get('teatObserver'):""
+      this.milker = (navParams.get('teatMilker') != undefined)?navParams.get('teatMilker'):""
+      this.clean = (navParams.get('teatClean') != undefined)?navParams.get('teatClean'):0
+      this.dipPresent = (navParams.get('teatDip') != undefined)?navParams.get('teatDip'):0
+      this.smallDirt = (navParams.get('teatSmall') != undefined)?navParams.get('teatSmall'):0
+      this.largeDirt = (navParams.get('teatLarge') != undefined)?navParams.get('teatLarge'):0
+      this.beforeAfter = (navParams.get('teatBA') != undefined)?navParams.get('teatBA'):"b"
   }
   tapDecrease(e,param:number){
     if(param==1){
@@ -57,7 +69,7 @@ export class TeatPage {
       this.largeDirt++
     }
   }
-  
+
   saveData() {
     let alert = this.alerCtrl.create({
       title: 'Saved!',
@@ -98,15 +110,10 @@ export class TeatPage {
     //local storage to sqlite
     this.pushTeatData();
 
-    this.farm = ""
-    this.myDate = moment().format('YYYY-MM-DD')
-    this.observer = ""
-    this.milker = ""
     this.clean = 0
     this.dipPresent = 0
     this.smallDirt = 0
     this.largeDirt = 0
-    // this.beforeAfter = "beforeAfter1"
     this.beforeAfter = "b"
 
     alert.present()
@@ -168,6 +175,20 @@ export class TeatPage {
       }, (error) => {
         console.log(error);
       });
+  }
+
+  back() {
+    this.navCtrl.push(ListPage, {
+      teatFarm: this.farm,
+      teatDate: this.myDate,
+      teatObserver: this.observer,
+      teatMilker: this.milker,
+      teatClean: this.clean,
+      teatDip: this.dipPresent,
+      teatSmall: this.smallDirt,
+      teatLarge: this.largeDirt,
+      teatBA: this.beforeAfter
+    });
   }
 
 }

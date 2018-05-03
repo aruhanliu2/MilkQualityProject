@@ -17,9 +17,9 @@ import { SignupPage } from '../pages/signup/signup';
 })
 export class MyApp {
   rootPage: any
-  signinPage : any
-  signupPage : any
-  listPage : any
+  signinPage = SigninPage
+  signupPage = SignupPage
+  listPage = ListPage
   isAuthenticated = false
 
   @ViewChild('nav') nav: NavController;
@@ -33,6 +33,16 @@ export class MyApp {
         authDomain: "cornell-mrmilk.firebaseapp.com"
       });
 
+
+
+    this.platform.ready().then(() => {
+      // Okay, so the platform is ready and our plugins are available.
+      // Here you can do any higher level native things you might need.
+      this.rootPage = HomePage;
+
+      this.statusBar.styleDefault();
+      this.splashScreen.hide();
+
       firebase.auth().onAuthStateChanged(user => {
         if (user) {
           this.isAuthenticated = true;
@@ -42,18 +52,9 @@ export class MyApp {
           this.rootPage = SigninPage;
         }
       });
-
-    this.platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
-      this.rootPage = HomePage;
-      this.signinPage = SigninPage;
-      this.signupPage = SignupPage;
-      this.listPage = ListPage;
-
-      this.statusBar.styleDefault();
-      this.splashScreen.hide();
     });
+
+
   }
 
   onLoad(page: any) {
