@@ -24,6 +24,8 @@ export class ListPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.listMap = (navParams != undefined)?navParams:{}
+    console.log("!!!")
+    console.log(this.listMap.get('cowName'))
   }
 
   goTeat() {

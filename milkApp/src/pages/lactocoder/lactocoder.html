@@ -83,15 +83,15 @@
   <h2>Cows Info:</h2>
     <ion-item>
       <ion-label fixed>Cow1</ion-label>
-      <ion-input text-right type="text" [(ngModel)]="cowName1"></ion-input>
+      <ion-input text-right type="text" [(ngModel)]="cowName[0]"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label fixed>Total Milk</ion-label>
-      <ion-input text-right type="text" [(ngModel)]="milk1"></ion-input>
+      <ion-input text-right type="text" [(ngModel)]="milk[0]"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label fixed>Remark</ion-label>
-      <ion-input text-right type="text" [(ngModel)]="remark1"></ion-input>
+      <ion-input text-right type="text" [(ngModel)]="remark[0]"></ion-input>
     </ion-item>
     <Button class="sbtn" ion-button [disabled]="buttons[0][0]" (click)="buttonControl(0,0)"> Dip </Button>
     <Button class="sbtn" ion-button [disabled]="buttons[0][1]" (click)="buttonControl(0,1)"> Strip </Button>
@@ -101,15 +101,15 @@
     <hr>
     <ion-item>
       <ion-label fixed>Cow2</ion-label>
-      <ion-input text-right type="text" [(ngModel)]="cowName2"></ion-input>
+      <ion-input text-right type="text" [(ngModel)]="cowName[1]"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label fixed>Total Milk</ion-label>
-      <ion-input text-right type="text" [(ngModel)]="milk2"></ion-input>
+      <ion-input text-right type="text" [(ngModel)]="milk[1]"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label fixed>Remark</ion-label>
-      <ion-input text-right type="text" [(ngModel)]="remark2"></ion-input>
+      <ion-input text-right type="text" [(ngModel)]="remark[1]"></ion-input>
     </ion-item>
     <Button class="sbtn" ion-button [disabled]="buttons[1][0]" (click)="buttonControl(1,0)"> Dip </Button>
     <Button class="sbtn" ion-button [disabled]="buttons[1][1]" (click)="buttonControl(1,1)"> Strip </Button>
@@ -119,15 +119,15 @@
     <hr>
     <ion-item>
       <ion-label fixed>Cow3</ion-label>
-      <ion-input text-right type="text" [(ngModel)]="cowName3"></ion-input>
+      <ion-input text-right type="text" [(ngModel)]="cowName[2]"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label fixed>Total Milk</ion-label>
-      <ion-input text-right type="text" [(ngModel)]="milk3"></ion-input>
+      <ion-input text-right type="text" [(ngModel)]="milk[2]"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label fixed>Remark</ion-label>
-      <ion-input text-right type="text" [(ngModel)]="remark3"></ion-input>
+      <ion-input text-right type="text" [(ngModel)]="remark[2]"></ion-input>
     </ion-item>
     <Button class="sbtn" ion-button [disabled]="buttons[2][0]" (click)="buttonControl(2,0)"> Dip </Button>
     <Button class="sbtn" ion-button [disabled]="buttons[2][1]" (click)="buttonControl(2,1)"> Strip </Button>
