@@ -12,4 +12,11 @@
 <ion-content padding>
   <h3>Welcome to our App!</h3>
   <button ion-button (click)="submitData()">Submit all the data</button>
+  <button ion-button (click)="getInfo()">Get Info</button>
+  <ion-list>
+    <ion-item *ngFor="let item of ListUser">
+      <p>Email: {{item.email}}</p>
+      <p>Password: {{item.password}}</p>
+    </ion-item>
+  </ion-list>
 </ion-content>

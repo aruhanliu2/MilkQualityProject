@@ -10,7 +10,8 @@ import { LoadingController, AlertController } from "ionic-angular";
 export class SigninPage {
     constructor(private authService: AuthService,
       private loadingCtrl: LoadingController,
-      private alertCtrl: AlertController) {}
+      private alertCtrl: AlertController) {
+      }
     onSignin(form: NgForm) {
       const loading = this.loadingCtrl.create({
         content: 'Signing you in...'
@@ -31,5 +32,4 @@ export class SigninPage {
 	  		alert.present();
 	  	});
     }
-
 }

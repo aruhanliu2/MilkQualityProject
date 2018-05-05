@@ -54,6 +54,11 @@ export class DatabaseProvider {
           .then(() => console.log("executed sql lactocoder"))
           .catch(e => console.log(e));
 
+          let sql7 = "CREATE TABLE IF NOT EXISTS user_fact (email TEXT, password TEXT)";
+          db.executeSql(sql7, {})
+          .then(() => console.log("executed sql user_fact"))
+          .catch(e => console.log(e));
+
           this.isOpen = true;
         }).catch((error) => {
           console.log(error);
@@ -399,6 +404,46 @@ export class DatabaseProvider {
       cleanLactocoderData() {
         return new Promise((resolve, reject) => {
           return this.db.executeSql("DELETE FROM lactocoder_fact",{});
+        })
+      }
+
+      addUserInfo(email: string, password: string) {
+          return new Promise ((resolve, reject) => {
+          let input = [email, password];
+          this.cleanUserInfo();
+          let sql = "INSERT INTO user_fact (email, password) VALUES (?, ?)";
+          console.log(sql)
+          console.log("addUserInfo: " + input)
+          this.db.executeSql(sql, input).then((data) => {
+            resolve(data);
+          }, (error) => {
+          reject(error);
+          });
+        });
+      }
+
+      getUserInfo() {
+        console.log("enter getUserInfo")
+        return new Promise((resolve, reject) => {
+          this.db.executeSql("SELECT * FROM user_fact", []).then(data => {
+            let results = [];
+            if (data.rows.length > 0) {
+              for (var i = 0; i < data.rows.length; i++) {
+                  results.push({email: data.rows.item(i).email,
+                  password: data.rows.item(i).password})
+              }
+            }
+            resolve(results);
+          }, (error) => {
+            reject(error);
+          })
+        })
+      }
+
+      cleanUserInfo() {
+        console.log("clean")
+        return new Promise((resolve, reject) => {
+          return this.db.executeSql("DELETE FROM user_fact",{});
         })
       }
 

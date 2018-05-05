@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 import { TeatService } from '../../services/teat';
 import { HygieneService } from '../../services/hygiene';
 import { AlignmentService } from '../../services/alignment';
@@ -8,12 +8,15 @@ import { StripService } from '../../services/strip';
 import { LactocoderService } from '../../services/lactocoder';
 import { DatabaseProvider } from '../../providers/database/database';
 import { Http, Response, Headers } from "@angular/http";
+import { AuthService } from "../../services/auth";
 
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
+
 export class HomePage {
+  public ListUser: any;
   public success:String = "false";
   constructor(public navCtrl: NavController,
     private database: DatabaseProvider,
@@ -23,11 +26,23 @@ export class HomePage {
     private postmilkService: TeatService,
     private http: Http,
     private stripService: TeatService,
-    private lactocoderService: TeatService) {
-
+    private lactocoderService: TeatService,
+    private authService: AuthService) {
   }
   
   public items = this.teatService.getItems();
+  public email: string;
+  public password: string;
+  
+  getInfo() {
+      this.email = this.authService.email;
+      this.password = this.authService.password;
+      this.loadUserData();
+      if (this.email != null && this.password != null) {
+       this.pushUserData();
+      }
+      console.log("用户数据: " + this.ListUser)
+  }
 
   submitData() {
     //push teat
@@ -99,26 +114,25 @@ export class HomePage {
     }
   }
 
-  // loadTeatData() {
-  //   this.database.getTeatData().then((data: any) => {
-  //     console.log("数据库里的数据:")
-  //     console.log(data)
-  //   }, (error) => {
-  //     console.log(error);
-  //   })
-  // }
+  loadUserData() {
+    console.log("enter")
+    this.database.getUserInfo().then((data: any) => {
+      console.log("数据库里的数据:")
+      console.log(data)
+      this.ListUser = data
+    }, (error) => {
+      console.log(error);
+    })
+  }
 
-  // pushTeatData() {
-  //   this.database.addTeatData(this.items[0].farm, this.items[0].date, this.items[0].observer, this.items[0].milker, this.items[0].clean, this.items[0].dip_present, this.items[0].small_dirt, this.items[0].large_dirt, this.items[0].before_after)
-  //     .then((data) => {
-  //       this.loadTeatData();
-  //       console.log("当前传输的一条数据:")
-  //       console.log(data);
-  //     }, (error) => {
-  //       console.log(error);
-  //     });
-  // }
-
-
-
+  pushUserData() {
+      this.database.addUserInfo(this.email, this.password)
+          .then((data) => {
+          this.loadUserData();
+          console.log("当前传输的一条数据:")
+          console.log(data);
+          }, (error) => {
+          console.log(error);
+      });
+  }
 }

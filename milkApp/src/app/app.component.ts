@@ -6,7 +6,6 @@ import { AuthService } from "../services/auth";
 import { SQLite, SQLiteObject } from '@ionic-native/sqlite';
 
 import * as firebase from 'firebase'
-
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 import { SigninPage } from '../pages/signin/signin';
@@ -28,6 +27,7 @@ export class MyApp {
     public splashScreen: SplashScreen,
     private menuCtrl: MenuController,
     private authService: AuthService) {
+
       firebase.initializeApp({
         apiKey: "AIzaSyBABKi1BFgwBDFfgW_U3jS57kfPdDLrowg",
         authDomain: "cornell-mrmilk.firebaseapp.com"
