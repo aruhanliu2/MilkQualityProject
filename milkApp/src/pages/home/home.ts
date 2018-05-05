@@ -37,11 +37,12 @@ export class HomePage {
   getInfo() {
       this.email = this.authService.email;
       this.password = this.authService.password;
-      this.loadUserData();
       if (this.email != null && this.password != null) {
        this.pushUserData();
       }
-      console.log("用户数据: " + this.ListUser)
+      this.loadUserData();
+      this.loadUserData();
+      return this.ListUser;
   }
 
   submitData() {
@@ -115,24 +116,22 @@ export class HomePage {
   }
 
   loadUserData() {
-    console.log("enter")
     this.database.getUserInfo().then((data: any) => {
       console.log("数据库里的数据:")
-      console.log(data)
+      console.log(JSON.stringify(data))
       this.ListUser = data
     }, (error) => {
-      console.log(error);
+      console.log(JSON.stringify(error));
     })
   }
 
   pushUserData() {
       this.database.addUserInfo(this.email, this.password)
           .then((data) => {
-          this.loadUserData();
           console.log("当前传输的一条数据:")
-          console.log(data);
+          console.log(JSON.stringify(data));
           }, (error) => {
-          console.log(error);
+          console.log(JSON.stringify(error));
       });
   }
 }

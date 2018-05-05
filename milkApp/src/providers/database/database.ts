@@ -418,7 +418,6 @@ export class DatabaseProvider {
       }
 
       getUserInfo() {
-        console.log("enter getUserInfo")
         return new Promise((resolve, reject) => {
           this.db.executeSql("SELECT * FROM user_fact", []).then(data => {
             let results = [];
