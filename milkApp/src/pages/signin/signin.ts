@@ -12,6 +12,7 @@ export class SigninPage {
       private loadingCtrl: LoadingController,
       private alertCtrl: AlertController) {}
     onSignin(form: NgForm) {
+      alert("Welcome " + form.value.email + " , happy milking!");
       const loading = this.loadingCtrl.create({
         content: 'Signing you in...'
       });
