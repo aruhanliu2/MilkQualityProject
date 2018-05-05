@@ -6,6 +6,7 @@ import { AuthService } from "../../services/auth";
 import { DatabaseProvider } from '../../providers/database/database';
 import { Http } from "@angular/http";
 import * as moment from 'moment';
+import { ListPage } from '../../pages/list/list';
 
 @IonicPage()
 @Component({
@@ -13,19 +14,28 @@ import * as moment from 'moment';
   templateUrl: 'strip.html',
 })
 export class StripPage {
-  public farm: string = ""
-  public myDate: string = moment().format('DD-MM-YYYY')
-  public observer: string = ""
-  public stall: string = ""
-  public ml: string = ""
-  public balance: string = "balanced"
+  public farm: string
+  public myDate: string
+  public observer: string
+  public stall: string
+  public ml: string
+  public balance: string
   private ListUser : any
+  public listMap: any
 
   constructor(public alerCtrl: AlertController,
     private stripService: StripService,
     private http: Http,
     private authService: AuthService,
-    private database: DatabaseProvider) {
+    private database: DatabaseProvider,
+    public navCtrl: NavController,
+    public navParams: NavParams) {
+      this.farm = (navParams.get('stripFarm') != undefined)?navParams.get('stripFarm'):""
+      this.myDate = (navParams.get('stripDate') != undefined)?navParams.get('stripDate'):moment().format('YYYY-MM-DD')
+      this.observer = (navParams.get('stripObserver') != undefined)?navParams.get('stripObserver'):""
+      this.stall = (navParams.get('stripStall') != undefined)?navParams.get('stripStall'):""
+      this.ml = (navParams.get('stripML') != undefined)?navParams.get('stripML'):""
+      this.balance = (navParams.get('stripBalance') != undefined)?navParams.get('stripBalance'):"balanced"
   }
 
   saveData() {
@@ -95,5 +105,16 @@ export class StripPage {
       }, (error) => {
         console.log(error);
       });
+  }
+
+  back() {
+    this.listMap = NavParams
+    this.listMap['stripFarm'] = this.farm
+    this.listMap['stripDate'] = this.myDate
+    this.listMap['stripObserver'] = this.observer
+    this.listMap['stripStall'] = this.stall
+    this.listMap['stripML'] = this.ml
+    this.listMap['stripBalance'] = this.balance
+    this.navCtrl.push(ListPage, this.listMap);
   }
 }

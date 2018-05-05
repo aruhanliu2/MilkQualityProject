@@ -6,6 +6,7 @@ import { AlignmentPage } from '../alignment/alignment';
 import { StripPage } from '../strip/strip';
 import { PostmilkPage } from '../postmilk/postmilk';
 import { LactocoderPage } from '../lactocoder/lactocoder';
+import * as moment from 'moment';
 
 @Component({
   selector: 'page-list',
@@ -18,6 +19,36 @@ export class ListPage {
   stripPage = StripPage;
   postmilkPage = PostmilkPage;
   lactocoderPage = LactocoderPage;
+
+  public listMap: any
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    this.listMap = (navParams != undefined)?navParams:{}
+    console.log("!!!")
+    console.log(this.listMap.get('cowName'))
+  }
+
+  goTeat() {
+    this.navCtrl.push(TeatPage, this.listMap);
+  }
+
+  goHygiene() {
+    this.navCtrl.push(HygienePage, this.listMap);
+  }
+
+  goAlignment(){
+    this.navCtrl.push(AlignmentPage, this.listMap);
+  }
+
+  goStrip(){
+    this.navCtrl.push(StripPage, this.listMap);
+  }
+
+  goPostmilk(){
+    this.navCtrl.push(PostmilkPage, this.listMap);
+  }
+
+  goLactocoder(){
+    this.navCtrl.push(LactocoderPage, this.listMap);
   }
 }

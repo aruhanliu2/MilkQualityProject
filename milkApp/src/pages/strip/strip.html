@@ -53,24 +53,14 @@
       <ion-input text-right type="text" [(ngModel)]="ml"></ion-input>
     </ion-item>
     <ion-item>
-    <ion-label>If Balanced</ion-label>
-    <ion-select [(ngModel)]="balance" interface="popover">
-      <ion-option value="balanced">Balanced</ion-option>
-      <ion-option value="unbalanced">Unbalanced</ion-option>
-    </ion-select>
-  </ion-item>
-
-<!--
-    <ion-item>
-      <ion-label>Balanced</ion-label>
-      <ion-checkbox [(ngModel)]="balanced" ></ion-checkbox>
+      <ion-label>If Balanced</ion-label>
+      <ion-select [(ngModel)]="balance" interface="popover">
+        <ion-option value="balanced">Balanced</ion-option>
+        <ion-option value="unbalanced">Unbalanced</ion-option>
+      </ion-select>
     </ion-item>
-    <ion-item>
-      <ion-label>Not Balanced</ion-label>
-      <ion-checkbox [(ngModel)]="unbalanced" ></ion-checkbox>
-    </ion-item>
--->
   </ion-list>
+
   <Button class="btn" ion-button (click)="saveData()"> Save </Button>
-  <Button class="btn" ion-button navPop> Back </Button>
+  <Button class="btn" ion-button (click)="back()"> Back </Button>
 </ion-content>
