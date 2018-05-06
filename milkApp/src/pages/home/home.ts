@@ -34,18 +34,25 @@ export class HomePage {
   public email: string;
   public password: string;
   
-  getInfo() {
+  // getInfo() {
+  //     this.email = this.authService.email;
+  //     this.password = this.authService.password;
+  //     if (this.email != null && this.password != null) {
+  //      this.pushUserData();
+  //     }
+  //     this.loadUserData();
+  //     this.loadUserData();
+  //     return this.ListUser;
+  // }
+
+  submitData() {
+    //get user info 
       this.email = this.authService.email;
       this.password = this.authService.password;
       if (this.email != null && this.password != null) {
        this.pushUserData();
       }
       this.loadUserData();
-      this.loadUserData();
-      return this.ListUser;
-  }
-
-  submitData() {
     //push teat
     this.database.getTeatData().then((data: any) => {
     var headers = new Headers();
