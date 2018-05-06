@@ -50,6 +50,9 @@ export class HomePage {
     this.database.getTeatData().then((data: any) => {
     var headers = new Headers();
     headers.append('Content-Type', 'application/json');
+    headers.append('username', this.email);
+    headers.append('password', this.password);
+    
     this.http.post('http://localhost:3000/teat', JSON.stringify(data), {headers:headers}).subscribe(response => this.success = response.text());
     }, (error) => {
       console.log(error);
@@ -61,6 +64,8 @@ export class HomePage {
     this.database.getAlignmentData().then((data: any) => {
     var headers = new Headers();
     headers.append('Content-Type', 'application/json');
+    headers.append('username', this.email);
+    headers.append('password', this.password);
     this.http.post('http://localhost:3000/unit', JSON.stringify(data), {headers:headers}).subscribe(response => this.success = response.text());
     }, (error) => {
       console.log(error);
@@ -72,6 +77,8 @@ export class HomePage {
     this.database.getHygieneData().then((data: any) => {
     var headers = new Headers();
     headers.append('Content-Type', 'application/json');
+    headers.append('username', this.email);
+    headers.append('password', this.password);
     this.http.post('http://localhost:3000/udder', JSON.stringify(data), {headers:headers}).subscribe(response => this.success = response.text());
     }, (error) => {
       console.log(error);
@@ -83,6 +90,8 @@ export class HomePage {
     this.database.getStripData().then((data: any) => {
     var headers = new Headers();
     headers.append('Content-Type', 'application/json');
+    headers.append('username', this.email);
+    headers.append('password', this.password);
     this.http.post('http://localhost:3000/strip', JSON.stringify(data), {headers:headers}).subscribe(response => this.success = response.text());
     }, (error) => {
       console.log(error);
@@ -94,6 +103,8 @@ export class HomePage {
     this.database.getPostmilkData().then((data: any) => {
     var headers = new Headers();
     headers.append('Content-Type', 'application/json');
+    headers.append('username', this.email);
+    headers.append('password', this.password);
     this.http.post('http://localhost:3000/post', JSON.stringify(data), {headers:headers}).subscribe(response => this.success = response.text());
     }, (error) => {
       console.log(error);
@@ -105,6 +116,8 @@ export class HomePage {
     this.database.getLactocoderData().then((data: any) => {
     var headers = new Headers();
     headers.append('Content-Type', 'application/json');
+    headers.append('username', this.email);
+    headers.append('password', this.password);
     this.http.post('http://localhost:3000/latco', JSON.stringify(data), {headers:headers}).subscribe(response => this.success = response.text());
     }, (error) => {
       console.log(error);
