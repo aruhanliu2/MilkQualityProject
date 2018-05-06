@@ -115,6 +115,7 @@ export class StripPage {
     this.listMap['stripStall'] = this.stall
     this.listMap['stripML'] = this.ml
     this.listMap['stripBalance'] = this.balance
-    this.navCtrl.push(ListPage, this.listMap);
+    this.navCtrl.pop();
+    //this.navCtrl.push(ListPage, this.listMap);
   }
 }

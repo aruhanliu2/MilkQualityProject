@@ -247,6 +247,7 @@ export class PostmilkPage {
     this.listMap['scoreRH'] = this.scoreRH
     this.listMap['scoreRF'] = this.scoreRF
 
-    this.navCtrl.push(ListPage, this.listMap);
+    this.navCtrl.pop();
+    //this.navCtrl.push(ListPage, this.listMap);
   }
 }

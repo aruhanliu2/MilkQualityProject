@@ -153,7 +153,9 @@ export class HygienePage {
     this.listMap['teatSlightly'] = this.slightlyDirt
     this.listMap['hygieneModerately'] = this.moderatelyDirt
     this.listMap['hygieneCakedOn'] = this.cakedOnDirt
-    this.navCtrl.push(ListPage, this.listMap);
+
+    this.navCtrl.pop();
+    //this.navCtrl.push(ListPage, this.listMap);
   }
 
 }

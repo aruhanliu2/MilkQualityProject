@@ -333,7 +333,8 @@ export class LactocoderPage {
     this.listMap['DLU'] = this.DLU
     this.listMap['buttons'] = this.buttons
 
-    this.navCtrl.push(ListPage, this.listMap);
+    this.navCtrl.pop();
+    //this.navCtrl.push(ListPage, this.listMap);
   }
 
 }

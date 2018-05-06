@@ -128,7 +128,9 @@ export class AlignmentPage {
     this.listMap['alignmentObserver'] = this.observer
     this.listMap['alignmentGood'] = this.good
     this.listMap['alignmentBad'] = this.bad
-    this.navCtrl.push(ListPage, this.listMap);
+
+    this.navCtrl.pop();
+    //this.navCtrl.push(ListPage, this.listMap);
   }
 
 }

@@ -188,7 +188,8 @@ export class TeatPage {
     this.listMap['teatSmall'] = this.smallDirt
     this.listMap['teatLarge'] = this.largeDirt
     this.listMap['teatBA'] = this.beforeAfter
-    this.navCtrl.push(ListPage, this.listMap);
+    this.navCtrl.pop();
+    //this.navCtrl.push(ListPage, this.listMap);
   }
 
 }
