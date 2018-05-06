@@ -63,8 +63,9 @@ export class HomePage {
     headers.append('username', this.ListUser[0].email);
     headers.append('password', this.ListUser[0].password);
     
-    this.http.post('http://localhost:3000/teat', JSON.stringify(data), {headers:headers}).subscribe(response =>{ if (response.text() == "true"){
-        this.success[0] = "true";
+    this.http.post('http://localhost:3000/teat', JSON.stringify(data), {headers:headers}).subscribe(response =>{ 
+      this.success[0] = response.text();
+      if (response.text() == "true"){
         this.database.cleanTeatData();
     }});
 
@@ -79,10 +80,12 @@ export class HomePage {
     this.database.getAlignmentData().then((data: any) => {
     var headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    headers.append('username', this.email);
-    headers.append('password', this.password);
-    this.http.post('http://localhost:3000/unit', JSON.stringify(data), {headers:headers}).subscribe(response => {if (response.text() == "true"){
-      this.success[1] = "true";
+    headers.append('username', this.ListUser[0].email);
+    headers.append('password', this.ListUser[0].password);
+    this.http.post('http://localhost:3000/unit', JSON.stringify(data), {headers:headers}).subscribe(response => {
+      this.success[1] = response.text();
+      if (response.text() == "true"){
+      
          this.database.cleanAlignmentData();
     }
     });
@@ -96,8 +99,10 @@ export class HomePage {
     headers.append('Content-Type', 'application/json');
     headers.append('username', this.ListUser[0].email);
     headers.append('password', this.ListUser[0].password);
-    this.http.post('http://localhost:3000/udder', JSON.stringify(data), {headers:headers}).subscribe(response => {if (response.text() == "true"){
-      this.success[2] = "true";
+    this.http.post('http://localhost:3000/udder', JSON.stringify(data), {headers:headers}).subscribe(response => {
+      this.success[2] = response.text();
+      if (response.text() == "true"){
+      
       this.database.cleanHygieneData();}
     });
     }, (error) => {
@@ -110,8 +115,10 @@ export class HomePage {
     headers.append('Content-Type', 'application/json');
     headers.append('username', this.ListUser[0].email);
     headers.append('password', this.ListUser[0].password);
-    this.http.post('http://localhost:3000/strip', JSON.stringify(data), {headers:headers}).subscribe(response => {if (response.text() == "true"){
-      this.success[3] = "true";
+    this.http.post('http://localhost:3000/strip', JSON.stringify(data), {headers:headers}).subscribe(response => {
+      this.success[3] = response.text();
+      if (response.text() == "true"){
+      
       this.database.cleanStripData();}
     });
     }, (error) => {
@@ -124,8 +131,10 @@ export class HomePage {
     headers.append('Content-Type', 'application/json');
     headers.append('username', this.ListUser[0].email);
     headers.append('password', this.ListUser[0].password);
-    this.http.post('http://localhost:3000/post', JSON.stringify(data), {headers:headers}).subscribe(response => {if (response.text() == "true"){
-      this.success[4] = "true";
+    this.http.post('http://localhost:3000/post', JSON.stringify(data), {headers:headers}).subscribe(response => {
+      this.success[4] = response.text();
+      if (response.text() == "true"){
+      
       this.database.cleanPostmilkData();}
     });
     }, (error) => {
@@ -138,8 +147,10 @@ export class HomePage {
     headers.append('Content-Type', 'application/json');
     headers.append('username', this.ListUser[0].email);
     headers.append('password', this.ListUser[0].password);
-    this.http.post('http://localhost:3000/latco', JSON.stringify(data), {headers:headers}).subscribe(response => {if (response.text() == "true"){
-      this.success[5] = "true";
+    this.http.post('http://localhost:3000/latco', JSON.stringify(data), {headers:headers}).subscribe(response => {
+      this.success[5] = response.text();
+      if (response.text() == "true"){
+      
       this.database.cleanLactocoderData();}
     });
     }, (error) => {
@@ -159,11 +170,12 @@ export class HomePage {
 
     let alertError = this.alerCtrl.create({
       title: 'Error!',
-      message: 'Please check your network and try again.',
+      message: 'Please try again.',
       buttons: ['Ok']
     });
     for (var i = 0; i < success.length; i++) {
       if (success[i] == "false") {
+        console.log(i);
         alertError.present();
         return;
       }
