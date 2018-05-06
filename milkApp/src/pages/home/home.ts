@@ -9,6 +9,8 @@ import { LactocoderService } from '../../services/lactocoder';
 import { DatabaseProvider } from '../../providers/database/database';
 import { Http, Response, Headers } from "@angular/http";
 import { AuthService } from "../../services/auth";
+import { AlertController } from 'ionic-angular';
+
 
 @Component({
   selector: 'page-home',
@@ -17,7 +19,8 @@ import { AuthService } from "../../services/auth";
 
 export class HomePage {
   public ListUser: any;
-  // public success:String = "false";
+  public success = ["false","false","false","false","false","false"];
+  
   constructor(public navCtrl: NavController,
     private database: DatabaseProvider,
     private teatService: TeatService,
@@ -27,12 +30,14 @@ export class HomePage {
     private http: Http,
     private stripService: TeatService,
     private lactocoderService: TeatService,
-    private authService: AuthService) {
+    private authService: AuthService,
+    private alerCtrl: AlertController,) {
   }
   
   public items = this.teatService.getItems();
   public email: string;
   public password: string;
+
   
   // getInfo() {
   //     // this.email = this.authService.email;
@@ -59,6 +64,7 @@ export class HomePage {
     headers.append('password', this.ListUser[0].password);
     
     this.http.post('http://localhost:3000/teat', JSON.stringify(data), {headers:headers}).subscribe(response =>{ if (response.text() == "true"){
+        this.success[0] = "true";
         this.database.cleanTeatData();
     }});
 
@@ -76,6 +82,7 @@ export class HomePage {
     headers.append('username', this.email);
     headers.append('password', this.password);
     this.http.post('http://localhost:3000/unit', JSON.stringify(data), {headers:headers}).subscribe(response => {if (response.text() == "true"){
+      this.success[1] = "true";
          this.database.cleanAlignmentData();
     }
     });
@@ -90,6 +97,7 @@ export class HomePage {
     headers.append('username', this.ListUser[0].email);
     headers.append('password', this.ListUser[0].password);
     this.http.post('http://localhost:3000/udder', JSON.stringify(data), {headers:headers}).subscribe(response => {if (response.text() == "true"){
+      this.success[2] = "true";
       this.database.cleanHygieneData();}
     });
     }, (error) => {
@@ -103,6 +111,7 @@ export class HomePage {
     headers.append('username', this.ListUser[0].email);
     headers.append('password', this.ListUser[0].password);
     this.http.post('http://localhost:3000/strip', JSON.stringify(data), {headers:headers}).subscribe(response => {if (response.text() == "true"){
+      this.success[3] = "true";
       this.database.cleanStripData();}
     });
     }, (error) => {
@@ -116,6 +125,7 @@ export class HomePage {
     headers.append('username', this.ListUser[0].email);
     headers.append('password', this.ListUser[0].password);
     this.http.post('http://localhost:3000/post', JSON.stringify(data), {headers:headers}).subscribe(response => {if (response.text() == "true"){
+      this.success[4] = "true";
       this.database.cleanPostmilkData();}
     });
     }, (error) => {
@@ -129,12 +139,36 @@ export class HomePage {
     headers.append('username', this.ListUser[0].email);
     headers.append('password', this.ListUser[0].password);
     this.http.post('http://localhost:3000/latco', JSON.stringify(data), {headers:headers}).subscribe(response => {if (response.text() == "true"){
+      this.success[5] = "true";
       this.database.cleanLactocoderData();}
     });
     }, (error) => {
       console.log(error);
     })
+
+    this.setAlert(this.success);
     
+  }
+
+  setAlert(success: any) {
+    let alertSuccess = this.alerCtrl.create({
+      title: 'Submitted!',
+      message: 'Data have been submitted successfully!',
+      buttons: ['Ok']
+    });
+
+    let alertError = this.alerCtrl.create({
+      title: 'Error!',
+      message: 'Please check your network and try again.',
+      buttons: ['Ok']
+    });
+    for (var i = 0; i < success.length; i++) {
+      if (success[i] == "false") {
+        alertError.present();
+        return;
+      }
+    }
+    alertSuccess.present();
   }
 
   loadUserData() {
@@ -156,4 +190,5 @@ export class HomePage {
           console.log(JSON.stringify(error));
       });
   }
+ 
 }

@@ -20,7 +20,7 @@ export class ListPage {
   postmilkPage = PostmilkPage;
   lactocoderPage = LactocoderPage;
 
-  public listMap: any
+  public listMap: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.listMap = (navParams != undefined)?NavParams:{}
