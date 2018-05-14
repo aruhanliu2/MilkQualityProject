@@ -50,7 +50,7 @@ export class LactocoderPage {
       this.herd_size = (navParams.get('lactoHerd') != undefined)?navParams.get('lactoHerd'):""
       this.size = (navParams.get('lactoSize') != undefined)?navParams.get('lactoSize'):""
       this.procedures = (navParams.get('lactoProcedures') != undefined)?navParams.get('lactoProcedures'):""
-      this.frequency = (navParams.get('lactoFreq') != undefined)?navParams.get('lactoFreq'):"frequency2X"
+      this.frequency = (navParams.get('lactoFreq') != undefined)?navParams.get('lactoFreq'):"2X"
       this.operators = (navParams.get('lactoOp') != undefined)?navParams.get('lactoOp'):""
       this.prep = (navParams.get('lactoPrep') != undefined)?navParams.get('lactoPrep'):""
       this.routine = (navParams.get('lactoRoutine') != undefined)?navParams.get('lactoRoutine'):""

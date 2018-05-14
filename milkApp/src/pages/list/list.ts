@@ -23,7 +23,41 @@ export class ListPage {
   public listMap: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-    this.listMap = (navParams != undefined)?NavParams:{}
+    this.listMap = NavParams
+    NavParams['teatFarm'] = ""
+    NavParams['teatDate'] = moment().format('YYYY-MM-DD')
+    NavParams['teatObserver'] = ""
+    NavParams['teatMilker'] = ""
+
+    NavParams['hygieneFarm'] = ""
+    NavParams['hygieneDate'] = moment().format('YYYY-MM-DD')
+    NavParams['hygieneObserver'] = ""
+    NavParams['hygieneGroup'] = ""
+
+    NavParams['alignmentFarm'] = ""
+    NavParams['alignmentDate'] = moment().format('YYYY-MM-DD')
+    NavParams['alignmentObserver'] = ""
+
+    NavParams['stripFarm'] = ""
+    NavParams['stripDate'] = moment().format('YYYY-MM-DD')
+    NavParams['stripObserver'] = ""
+
+    NavParams['postFarm'] = ""
+    NavParams['postDate'] = moment().format('YYYY-MM-DD')
+    NavParams['postObserver'] = ""
+    NavParams['postGroup'] = ""
+
+    NavParams['lactoFarm'] = ""
+    NavParams['lactoDate'] = moment().format('YYYY-MM-DD')
+    NavParams['lactoParlor'] = ""
+    NavParams['lactoPre_Milking'] = ""
+    NavParams['lactoHerd'] = ""
+    NavParams['lactoSize'] = ""
+    NavParams['lactoProcedures'] = ""
+    NavParams['lactoFreq'] = ""
+    NavParams['lactoOp'] = ""
+    NavParams['lactoPrep'] = ""
+    NavParams['lactoRoutine'] = ""
   }
 
   goTeat() {
