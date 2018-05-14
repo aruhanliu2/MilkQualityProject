@@ -55,7 +55,13 @@
 
   <hr>
 
-  <Button class="btn" ion-button (click)="saveData()"> Save </Button>
-  <Button class="btn" ion-button (click)="back()"> Back </Button>
+  <ion-row>
+    <ion-col>
+        <button class="btn" ion-button (click)="saveData()">Save</button>
+    </ion-col>
+    <ion-col>
+        <button class="btn" ion-button (click)="back()"> Back </button>
+    </ion-col>
+  </ion-row>
 
 </ion-content>

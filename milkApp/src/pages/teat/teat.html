@@ -57,71 +57,70 @@
     </ion-select>
   </ion-item>
 
-  <ion-card class="card1" margin="0px">
-    <img src="assets/imgs/clean.png"/>
-    <ion-card-content>
-      <ion-card-title>
-        <p>Clean: {{clean}}</p>
-      </ion-card-title>
-      <Button ion-button (tap)="tapDecrease($event,1)"> - </Button>
-      <Button ion-button (tap)="tapIncrease($event,1)"> + </Button>
-    </ion-card-content>
-  </ion-card>
-
-  <ion-card class="card2" margin="0px">
-    <img src="assets/imgs/dipPresent.png"/>
-    <ion-card-content>
-      <ion-card-title>
-        <p>Dip Present: {{dipPresent}}</p>
-      </ion-card-title>
-      <Button ion-button (tap)="tapDecrease($event,2)"> - </Button>
-      <Button ion-button (tap)="tapIncrease($event,2)"> + </Button>
-    </ion-card-content>
-  </ion-card>
-
-  <hr>
-
-  <ion-card class="card3" margin="0px">
-    <img src="assets/imgs/smallDirt.png"/>
-    <ion-card-content>
-      <ion-card-title>
-        <p>Small Dirt: {{smallDirt}}</p>
-      </ion-card-title>
-      <Button ion-button (tap)="tapDecrease($event,3)"> - </Button>
-      <Button ion-button (tap)="tapIncrease($event,3)"> + </Button>
-    </ion-card-content>
-  </ion-card>
-
-  <ion-card class="card4" margin="0px">
-    <img src="assets/imgs/largeDirt.png"/>
-    <ion-card-content>
-      <ion-card-title>
-        <p>Large Dirt: {{largeDirt}}</p>
-      </ion-card-title>
-      <Button ion-button (tap)="tapDecrease($event,4)"> - </Button>
-      <Button ion-button (tap)="tapIncrease($event,4)"> + </Button>
-    </ion-card-content>
-  </ion-card>
-
-  <hr>
-  <hr>
-<ion-grid>
   <ion-row>
-      <Button class="btn" ion-button (click)="saveData()"> Save </Button>
+      <ion-card class="card1" margin="0px">
+          <img src="assets/imgs/clean.png"/>
+          <ion-card-content>
+            <ion-card-title>
+              <p style="font-size: 12px">Clean: {{clean}}</p>
+            </ion-card-title>
+            <ion-row>
+                  <Button class="btn" ion-button (tap)="tapDecrease($event,1)"> - </Button>
+                  <Button class="btn" ion-button (tap)="tapIncrease($event,1)"> + </Button>
+            </ion-row>
+          </ion-card-content>
+        </ion-card>
+      
+        <ion-card class="card2" margin="0px">
+          <img src="assets/imgs/dipPresent.png"/>
+          <ion-card-content>
+            <ion-card-title>
+              <p style="font-size: 12px">Dip Present: {{dipPresent}}</p>
+            </ion-card-title>
+            <ion-row>
+                  <Button class="btn" ion-button (tap)="tapDecrease($event,2)"> - </Button>
+                  <Button class="btn" ion-button (tap)="tapIncrease($event,2)"> + </Button>
+              </ion-row>
+          </ion-card-content>
+        </ion-card>
   </ion-row>
 
-  <!-- <ion-row>
-      <button class="btn" ion-button (click)="submitData()"> Submit </button>
-    </ion-row> -->
 
-    <ion-row>
-        <Button class="btn" ion-button (click)="back()"> Back </Button>
-      </ion-row>
+  <ion-row>
+      <ion-card class="card3" margin="0px">
+          <img src="assets/imgs/smallDirt.png"/>
+          <ion-card-content>
+            <ion-card-title>
+              <p style="font-size: 12px">Small Dirt: {{smallDirt}}</p>
+            </ion-card-title>
+            <ion-row>
+                <Button class="btn" ion-button (tap)="tapDecrease($event,3)"> - </Button>
+                <Button class="btn" ion-button (tap)="tapIncrease($event,3)"> + </Button>
+              </ion-row>
+          </ion-card-content>
+        </ion-card>
+      
+        <ion-card class="card4" margin="0px">
+          <img src="assets/imgs/largeDirt.png"/>
+          <ion-card-content>
+            <ion-card-title>
+              <p style="font-size: 12px">Large Dirt: {{largeDirt}}</p>
+            </ion-card-title>
+            <ion-row>
+                <Button class="btn" ion-button (tap)="tapDecrease($event,4)"> - </Button>
+                <Button class="btn" ion-button (tap)="tapIncrease($event,4)"> + </Button>
+              </ion-row>
+          </ion-card-content>
+        </ion-card>
+  </ion-row>
 
-</ion-grid>
 
-
-
-
-
+  <ion-row>
+    <ion-col>
+        <button class="btn" ion-button (click)="saveData()">Save</button>
+    </ion-col>
+    <ion-col>
+        <button class="btn" ion-button (click)="back()"> Back </button>
+    </ion-col>
+  </ion-row>
 </ion-content>

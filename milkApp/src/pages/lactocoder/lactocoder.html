@@ -133,8 +133,18 @@
     <Button class="sbtn" ion-button [disabled]="buttons[2][2]" (click)="buttonControl(2,2)"> Wipe </Button>
     <Button class="sbtn" ion-button [disabled]="buttons[2][3]" (click)="buttonControl(2,3)"> Attach </Button>
     <Button class="sbtn" ion-button [disabled]="buttons[2][4]" (click)="buttonControl(2,4)"> Remove </Button>
-    <hr>
+    <br>
 
-    <button class="btn" ion-button (click)="saveData()">Save</button>
-    <Button class="btn" ion-button (click)="back()"> Back </Button>
+  <ion-item>
+      <ion-row>
+          <ion-col>
+            <button class="btn" ion-button (click)="saveData()">Save</button>
+          </ion-col>
+          <ion-col>
+            <button class="btn" ion-button (click)="back()"> Back </button>
+          </ion-col>
+      </ion-row>
+  </ion-item>
+
+
 </ion-content>
