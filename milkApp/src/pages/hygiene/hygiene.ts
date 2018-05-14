@@ -63,7 +63,6 @@ export class HygienePage {
     } else if(param==4){
       this.cakedOnDirt = Math.max(this.cakedOnDirt-1,0)
     }
-
   }
 
   // increase the value of data

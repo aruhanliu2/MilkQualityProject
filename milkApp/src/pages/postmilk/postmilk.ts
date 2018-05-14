@@ -13,7 +13,12 @@ import { ListPage } from '../../pages/list/list';
   selector: 'page-postmilk',
   templateUrl: 'postmilk.html',
 })
+
+/*
+* The postmilk form
+*/
 export class PostmilkPage {
+  // data in the form
   public farm: string
   public myDate: string
   public observer: string
@@ -44,9 +49,12 @@ export class PostmilkPage {
   public scoreRH: string
   public scoreRF: string
 
+  // for user test display in html
   private ListUser : any
+  // for global storage
   public listMap: any
 
+  // construct the data by reading from global or initialize with default value
   constructor(public alerCtrl: AlertController,
     private postmilkService: PostmilkService,
     private http: Http,
@@ -86,14 +94,9 @@ export class PostmilkPage {
       this.scoreRF = (navParams.get('scoreRF') != undefined)?navParams.get('scoreRF'):"N"
   }
 
+  // save the data both in online firebase and into local storage
   saveData(){
-    let alert = this.alerCtrl.create({
-      title: 'Saved!',
-      message: 'Data have been saved locally!',
-      buttons: ['Ok']
-    });
-
-    //add Item
+    // back up the data in firebase (unabled when without network)
     this.postmilkService.updateItems(0,
       this.farm,
       this.myDate,
@@ -121,28 +124,24 @@ export class PostmilkPage {
       this.scoreRF,
     );
 
-      console.log("浏览器存储:")
-      //console.log(Object.entries(this.teatService.getItems()));
-      console.log(this.postmilkService.getItems()[0].farm)
+    //pushing data to firebase database
+    this.authService.getActiveUser().getIdToken()
+      .then(
+        (token: string) => {
+          this.postmilkService.storeList(token)
+            .subscribe(
+              () => console.log('Success!'),
+              error => {
+                console.log(error);
+              }
+            );
+        }
+      );
 
-      //pushing data to firebase database
-      this.authService.getActiveUser().getIdToken()
-        .then(
-          (token: string) => {
-            this.postmilkService.storeList(token)
-              .subscribe(
-                () => console.log('Success!'),
-                error => {
-                  console.log(error);
-                }
-              );
-          }
-        );
-
-    //local storage
+    //save it to local storage (sqlite)
     this.pushPostmilkData();
 
-    //this.group = ""
+    // reset flexible data to default
     this.teatSkinLH = "N"
     this.teatSkinLF = "N"
     this.teatSkinRH = "N"
@@ -168,19 +167,30 @@ export class PostmilkPage {
     this.scoreRH = "N"
     this.scoreRF = "N"
 
+    // alert
+    let alert = this.alerCtrl.create({
+      title: 'Saved!',
+      message: 'Data have been saved locally!',
+      buttons: ['Ok']
+    });
     alert.present()
   }
 
+  // alert when initiate this page
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad PostmilkPage');
+  }
+
+  // get the data out (for user test)
   loadPostmilkData() {
     this.database.getPostmilkData().then((data: any) => {
-      console.log("数据库里的数据:")
-      console.log(data)
       this.ListUser = data
     }, (error) => {
       console.log(error);
     })
   }
 
+  // push the data into local storage
   pushPostmilkData() {
     this.database.addPostmilkData(this.farm,
       this.myDate,
@@ -207,14 +217,14 @@ export class PostmilkPage {
       this.scoreRH,
       this.scoreRF)
       .then((data) => {
+        // test by getting the data and displaying it in the top of app screen
         this.loadPostmilkData();
-        console.log("当前传输的一条数据:")
-        console.log(data);
       }, (error) => {
         console.log(error);
       });
   }
 
+  // pop the current form, and save all current data into global
   back() {
     this.listMap = NavParams
     this.listMap['postFarm'] = this.farm
@@ -248,6 +258,5 @@ export class PostmilkPage {
     this.listMap['scoreRF'] = this.scoreRF
 
     this.navCtrl.pop();
-    //this.navCtrl.push(ListPage, this.listMap);
   }
 }

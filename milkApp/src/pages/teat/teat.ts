@@ -13,7 +13,12 @@ import { ListPage } from '../../pages/list/list';
   selector: 'page-teat',
   templateUrl: 'teat.html'
 })
+
+/*
+* The teat form
+*/
 export class TeatPage {
+  // data in the form
   public farm: string
   public myDate: string
   public observer: string
@@ -23,10 +28,14 @@ export class TeatPage {
   public smallDirt: number
   public largeDirt: number
   public beforeAfter: string
+
+  // for user test display in html
   private ListUser : any
+
+  // for global storage
   public listMap: any
 
-
+  // construct the data by reading from global or initialize with default value
   constructor(public alerCtrl: AlertController,
     private teatService: TeatService,
     private http: Http,
@@ -44,6 +53,8 @@ export class TeatPage {
       this.largeDirt = (navParams.get('teatLarge') != undefined)?navParams.get('teatLarge'):0
       this.beforeAfter = (navParams.get('teatBA') != undefined)?navParams.get('teatBA'):"b"
   }
+
+  // decrease the value of data
   tapDecrease(e,param:number){
     if(param==1){
       this.clean = Math.max(this.clean-1,0)
@@ -54,10 +65,9 @@ export class TeatPage {
     } else if(param==4){
       this.largeDirt = Math.max(this.largeDirt-1,0)
     }
-
-
-
   }
+
+  // increase the value of data
   tapIncrease(e,param:number) {
     if(param==1){
       this.clean++
@@ -70,13 +80,9 @@ export class TeatPage {
     }
   }
 
+  // save the data both in online firebase and into local storage
   saveData() {
-    let alert = this.alerCtrl.create({
-      title: 'Saved!',
-      message: 'Data have been saved locally!',
-      buttons: ['Ok']
-    });
-    //add new item
+    // back up the data in firebase (unabled when without network)
     this.teatService.updateItems(0,
       this.farm,
       this.myDate,
@@ -88,10 +94,6 @@ export class TeatPage {
       this.largeDirt,
       this.beforeAfter
     );
-
-    console.log("浏览器存储:")
-    //console.log(Object.entries(this.teatService.getItems()));
-    console.log(this.teatService.getItems()[0].farm)
 
     //pushing data to firebase database
     this.authService.getActiveUser().getIdToken()
@@ -107,76 +109,59 @@ export class TeatPage {
         }
       );
 
-    //local storage to sqlite
+    //save it to local storage (sqlite)
     this.pushTeatData();
 
+    // reset flexible data to default
     this.clean = 0
     this.dipPresent = 0
     this.smallDirt = 0
     this.largeDirt = 0
     this.beforeAfter = "b"
 
+    // alert
+    let alert = this.alerCtrl.create({
+      title: 'Saved!',
+      message: 'Data have been saved locally!',
+      buttons: ['Ok']
+    });
     alert.present()
   }
 
-  submitData() {
-    this.database.getTeatData().then((data: any) => {
-      this.ListUser = data;
-      /*
-      var headers = new Headers();
-
-      headers.append('Content-Type', 'application/json');
-      this.http.post('http://localhost:8080/mobile/teat', JSON.stringify(data), {headers:headers})
-      .map((response:Response) => {
-         console.log(response);
-         // response.json();
-      }).subscribe();*/
-      // console.log(data);
-      console.log("I'm here");
-      var headers = new Headers();
-
-    headers.append('Content-Type', 'application/json');
-    this.http.post('http://localhost:3000/teat', JSON.stringify(data), {headers:headers}).map((response:Response) => {
-                console.log("I'm here");
-                console.log(response);
-                // response.json();
-            }).subscribe();
-
-
-
-    }, (error) => {
-      console.log("I'm here");
-      console.log(error);
-    })
-
-    this.database.cleanTeatData();
-  }
-
+  // alert when initiate this page
   ionViewDidLoad() {
     console.log('ionViewDidLoad TeatPage')
   }
 
+  // get the data out (for user test)
   loadTeatData() {
     this.database.getTeatData().then((data: any) => {
-      console.log("数据库里的数据:")
-      console.log(data)
       this.ListUser = data
     }, (error) => {
       console.log(error);
     })
   }
 
+  // push the data into local storage
   pushTeatData() {
-    this.database.addTeatData(this.farm, this.myDate, this.observer, this.milker, this.clean, this.dipPresent, this.smallDirt, this.largeDirt, this.beforeAfter)
+    this.database.addTeatData(this.farm,
+      this.myDate,
+      this.observer,
+      this.milker,
+      this.clean,
+      this.dipPresent,
+      this.smallDirt,
+      this.largeDirt,
+      this.beforeAfter)
       .then((data) => {
+        // test by getting the data and displaying it in the top of app screen
         this.loadTeatData();
-        console.log("当前传输的一条数据:")
-        console.log(data);
       }, (error) => {
         console.log(error);
       });
   }
 
+  // pop the current form, and save all current data into global
   back() {
     this.listMap = NavParams
     this.listMap['teatFarm'] = this.farm
@@ -188,8 +173,8 @@ export class TeatPage {
     this.listMap['teatSmall'] = this.smallDirt
     this.listMap['teatLarge'] = this.largeDirt
     this.listMap['teatBA'] = this.beforeAfter
+
     this.navCtrl.pop();
-    //this.navCtrl.push(ListPage, this.listMap);
   }
 
 }

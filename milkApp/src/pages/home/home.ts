@@ -17,10 +17,13 @@ import { AlertController } from 'ionic-angular';
   templateUrl: 'home.html'
 })
 
+/*
+* The homepage
+*/
 export class HomePage {
   public ListUser: any;
   public success = ["false","false","false","false","false","false"];
-  
+
   constructor(public navCtrl: NavController,
     private database: DatabaseProvider,
     private teatService: TeatService,
@@ -33,12 +36,12 @@ export class HomePage {
     private authService: AuthService,
     private alerCtrl: AlertController,) {
   }
-  
+
   public items = this.teatService.getItems();
   public email: string;
   public password: string;
 
-  
+
   // getInfo() {
   //     // this.email = this.authService.email;
   //     // this.password = this.authService.password;
@@ -97,19 +100,19 @@ export class HomePage {
   }
 
   submitData() {
-    //get user info 
+    //get user info
     this.loadUserData();
     this.loadUserData();
     //push teat
     console.log(this.ListUser);
-   
+
     this.database.getTeatData().then((data: any) => {
     var headers = new Headers();
     headers.append('Content-Type', 'application/json');
     headers.append('username', this.ListUser[0].email);
     headers.append('password', this.ListUser[0].password);
-    
-    this.http.post('http://localhost:3000/teat', JSON.stringify(data), {headers:headers}).subscribe(response =>{ 
+
+    this.http.post('http://localhost:3000/teat', JSON.stringify(data), {headers:headers}).subscribe(response =>{
       this.success[0] = response.text();
       if (response.text() == "true"){
         // this.database.cleanTeatData();
@@ -128,14 +131,14 @@ export class HomePage {
     this.http.post('http://localhost:3000/unit', JSON.stringify(data), {headers:headers}).subscribe(response => {
       this.success[1] = response.text();
       if (response.text() == "true"){
-      
+
         //  this.database.cleanAlignmentData();
     }
     });
     }, (error) => {
       console.log(error);
     })
-    
+
     //push udder
     this.database.getHygieneData().then((data: any) => {
     var headers = new Headers();
@@ -151,7 +154,7 @@ export class HomePage {
     }, (error) => {
       console.log(error);
     })
-    
+
     //push strip
     this.database.getStripData().then((data: any) => {
     var headers = new Headers();
@@ -167,7 +170,7 @@ export class HomePage {
     }, (error) => {
       console.log(error);
     })
-    
+
     //push post
     this.database.getPostmilkData().then((data: any) => {
     var headers = new Headers();
@@ -177,14 +180,14 @@ export class HomePage {
     this.http.post('http://localhost:3000/post', JSON.stringify(data), {headers:headers}).subscribe(response => {
       this.success[4] = response.text();
       if (response.text() == "true"){
-      
+
       // this.database.cleanPostmilkData();
     }
     });
     }, (error) => {
       console.log(error);
     })
-    
+
     //push latco
     this.database.getLactocoderData().then((data: any) => {
     var headers = new Headers();
@@ -194,7 +197,7 @@ export class HomePage {
     this.http.post('http://localhost:3000/latco', JSON.stringify(data), {headers:headers}).subscribe(response => {
       this.success[5] = response.text();
       if (response.text() == "true"){
-      
+
       // this.database.cleanLactocoderData();
     }
     });
@@ -203,7 +206,7 @@ export class HomePage {
     })
 
     this.setAlert(this.success);
-    
+
   }
 
   setAlert(success: any) {
@@ -247,5 +250,5 @@ export class HomePage {
           console.log(JSON.stringify(error));
       });
   }
- 
+
 }

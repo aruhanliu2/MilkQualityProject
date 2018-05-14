@@ -13,7 +13,12 @@ import { ListPage } from '../../pages/list/list';
   selector: 'page-lactocoder',
   templateUrl: 'lactocoder.html',
 })
+
+/*
+* The lactocoder form
+*/
 export class LactocoderPage {
+  // data in the form
   public farm: string
   public myDate: string
   public parlor: string
@@ -25,17 +30,23 @@ export class LactocoderPage {
   public operators: string
   public prep: string
   public routine: string
-
+  // data in the form (with array types)
   public cowName: string[]
   public milk: string[]
   public remark: string[]
   public cowList: number[][]
-  public DLU: number[][]
   public buttons: boolean[][]
 
+  // arrays to store time intervals short for Dip contact time, Lag contact time, Unit on time
+  public DLU: number[][]
+
+  // for user test display in html
   public ListUser : any
+
+  // for global storage
   public listMap: any
 
+  // construct the data by reading from global or initialize with default value
   constructor(public alerCtrl: AlertController,
     private lactocoderService: LactocoderService,
     private http: Http,
@@ -63,6 +74,7 @@ export class LactocoderPage {
       this.buttons = (navParams.get('buttons') != undefined)?navParams.get('buttons'):[[false,false,true,true,true],[false,false,true,true,true],[false,false,true,true,true]]
   }
 
+  // adjust buttons and also store time slots or time intervals into corresponding lists
   buttonControl(cow: number, step: number){
     this.cowList[cow][step] = +moment().format("X")
     this.buttons[cow][step] = true
@@ -88,91 +100,39 @@ export class LactocoderPage {
     } else if(step==4){
       this.DLU[cow][2] = (+this.cowList[cow][4]-this.cowList[cow][3])
     }
-    console.log(this.cowList[cow])
-    console.log(this.DLU[cow])
   }
 
+  // save the data both in online firebase and into local storage
   saveData() {
-
-    let alert = this.alerCtrl.create({
-      title: 'Saved!',
-      message: 'Data have been saved locally!',
-      buttons: ['Ok']
-    });
-
+    // first clear the local Service
     while(this.lactocoderService.getItems().length>0){
         this.lactocoderService.removeItem(this.lactocoderService.getItems().length-1);
     }
-
-    if(!(this.cowName[0]==="")){
-      console.log("store1")
-      this.lactocoderService.addItem(
-        this.farm,
-        this.myDate,
-        this.parlor,
-        this.pre_milking,
-        this.herd_size,
-        this.size,
-        this.procedures,
-        this.frequency,
-        this.operators,
-        this.prep,
-        this.routine,
-        this.cowName[0],
-        this.milk[0],
-        this.remark[0],
-        this.DLU[0][0],
-        this.DLU[0][1],
-        this.DLU[0][2]
-      );
+    // back up the data in firebase (unabled when without network)
+    for(var i = 0; i < 3; i++){
+      if(!(this.cowName[i]==="")){
+        this.lactocoderService.addItem(
+          this.farm,
+          this.myDate,
+          this.parlor,
+          this.pre_milking,
+          this.herd_size,
+          this.size,
+          this.procedures,
+          this.frequency,
+          this.operators,
+          this.prep,
+          this.routine,
+          this.cowName[i],
+          this.milk[i],
+          this.remark[i],
+          this.DLU[i][0],
+          this.DLU[i][1],
+          this.DLU[i][2]
+        );
+      }
     }
-
-    if(!(this.cowName[1]==="")){
-      console.log("store2")
-      this.lactocoderService.addItem(
-        this.farm,
-        this.myDate,
-        this.parlor,
-        this.pre_milking,
-        this.herd_size,
-        this.size,
-        this.procedures,
-        this.frequency,
-        this.operators,
-        this.prep,
-        this.routine,
-        this.cowName[1],
-        this.milk[1],
-        this.remark[1],
-        this.DLU[1][0],
-        this.DLU[1][1],
-        this.DLU[1][2]
-      );
-    }
-
-    if(!(this.cowName[2]==="")){
-      console.log("store3")
-      this.lactocoderService.addItem(
-        this.farm,
-        this.myDate,
-        this.parlor,
-        this.pre_milking,
-        this.herd_size,
-        this.size,
-        this.procedures,
-        this.frequency,
-        this.operators,
-        this.prep,
-        this.routine,
-        this.cowName[2],
-        this.milk[2],
-        this.remark[2],
-        this.DLU[2][0],
-        this.DLU[2][1],
-        this.DLU[2][2]
-      );
-    }
-
+    //pushing data to firebase database
     this.authService.getActiveUser().getIdToken()
       .then(
         (token: string) => {
@@ -186,15 +146,10 @@ export class LactocoderPage {
         }
       );
 
-    console.log("浏览器存储:")
-    //console.log(Object.entries(this.teatService.getItems()));
-    console.log(this.lactocoderService.getItems()[0]);
-
-    //pushing data to firebase database
+    //save it to local storage (sqlite)
     this.pushLactocoderData();
 
-
-
+    // reset flexible data to default
     this.cowList= [[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0]]
     this.DLU = [[0,0,0],[0,0,0],[0,0,0]]
     this.buttons= [[false,false,true,true,true],[false,false,true,true,true],[false,false,true,true,true]]
@@ -203,108 +158,63 @@ export class LactocoderPage {
     this.milk = ["","",""]
     this.remark = ["","",""]
 
+    // alert
+    let alert = this.alerCtrl.create({
+      title: 'Saved!',
+      message: 'Data have been saved locally!',
+      buttons: ['Ok']
+    });
     alert.present()
   }
 
+  // alert when initiate this page
   ionViewDidLoad() {
     console.log('ionViewDidLoad LactocoderPage');
   }
 
+  // get the data out (for user test)
   loadLactocoderData() {
     this.database.getLactocoderData().then((data: any) => {
-      console.log("数据库里的数据:")
       this.ListUser = data
     }, (error) => {
       console.log(error);
     })
   }
 
+  // push the data into local storage
   pushLactocoderData() {
-    if(!(this.cowName[0]==="")) {
-      console.log("push1")
-      this.database.addLactocoderData(this.farm,
-        this.myDate,
-        this.parlor,
-        this.pre_milking,
-        this.herd_size,
-        this.size,
-        this.procedures,
-        this.frequency,
-        this.operators,
-        this.prep,
-        this.routine,
-        this.cowName[0],
-        this.milk[0],
-        this.remark[0],
-        this.DLU[0][0],
-        this.DLU[0][1],
-        this.DLU[0][2])
-        .then((data) => {
-          this.loadLactocoderData();
-          console.log("当前传输的一条数据:")
-          console.log(data);
-        }, (error) => {
-          console.log(error);
-        });
-    }
-
-    if(!(this.cowName[1]==="")) {
-      console.log("push2")
-      this.database.addLactocoderData(this.farm,
-        this.myDate,
-        this.parlor,
-        this.pre_milking,
-        this.herd_size,
-        this.size,
-        this.procedures,
-        this.frequency,
-        this.operators,
-        this.prep,
-        this.routine,
-        this.cowName[1],
-        this.milk[1],
-        this.remark[1],
-        this.DLU[1][0],
-        this.DLU[1][1],
-        this.DLU[1][2])
-        .then((data) => {
-          this.loadLactocoderData();
-          console.log("当前传输的一条数据:")
-          console.log(data);
-        }, (error) => {
-          console.log(error);
-      });
-    }
-
-    if(!(this.cowName[2]==="")) {
-      console.log("push3")
-      this.database.addLactocoderData(this.farm,
-        this.myDate,
-        this.parlor,
-        this.pre_milking,
-        this.herd_size,
-        this.size,
-        this.procedures,
-        this.frequency,
-        this.operators,
-        this.prep,
-        this.routine,
-        this.cowName[2],
-        this.milk[2],
-        this.remark[2],
-        this.DLU[2][0],
-        this.DLU[2][1],
-        this.DLU[2][2])
-        .then((data) => {
-          this.loadLactocoderData();
-          console.log("当前传输的一条数据:")
-          console.log(data);
-        }, (error) => {
-          console.log(error);
-      });
+    // check if each of the 3 cows was recorded by its name
+    // if has been recorded, push it to local storage(sqlite)
+    for(var i = 0; i < 3; i++){
+      if(!(this.cowName[i]==="")) {
+        this.database.addLactocoderData(this.farm,
+          this.myDate,
+          this.parlor,
+          this.pre_milking,
+          this.herd_size,
+          this.size,
+          this.procedures,
+          this.frequency,
+          this.operators,
+          this.prep,
+          this.routine,
+          this.cowName[i],
+          this.milk[i],
+          this.remark[i],
+          this.DLU[i][0],
+          this.DLU[i][1],
+          this.DLU[i][2])
+          .then((data) => {
+            // test by getting the data and displaying it in the top of app screen
+            this.loadLactocoderData();
+          }, (error) => {
+            console.log(error);
+          });
+      }
     }
   }
 
+  // pop the current form, and save all current data into global
   back() {
     this.listMap = NavParams
     this.listMap['lactoFarm'] = this.farm
@@ -318,14 +228,6 @@ export class LactocoderPage {
     this.listMap['lactoOp'] = this.operators
     this.listMap['lactoPrep'] = this.prep
     this.listMap['lactoRoutine'] = this.routine
-
-    console.log(this.cowName)
-    console.log(this.milk)
-    console.log(this.remark)
-    console.log(this.cowList)
-    console.log(this.DLU)
-    console.log(this.buttons)
-
     this.listMap['cowName'] = this.cowName
     this.listMap['milk'] = this.milk
     this.listMap['remark'] = this.remark
@@ -334,7 +236,6 @@ export class LactocoderPage {
     this.listMap['buttons'] = this.buttons
 
     this.navCtrl.pop();
-    //this.navCtrl.push(ListPage, this.listMap);
   }
 
 }

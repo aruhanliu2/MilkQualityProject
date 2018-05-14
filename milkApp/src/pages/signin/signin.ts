@@ -7,6 +7,10 @@ import { LoadingController, AlertController } from "ionic-angular";
   selector: 'page-signin',
   templateUrl: 'signin.html',
 })
+
+/*
+* The signin page required the email and password of user to log in
+*/
 export class SigninPage {
     constructor(private authService: AuthService,
       private loadingCtrl: LoadingController,
