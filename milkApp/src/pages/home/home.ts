@@ -50,6 +50,52 @@ export class HomePage {
   //     return this.ListUser;
   // }
 
+  //manually clear the data
+  clearData() {
+      let alert = this.alerCtrl.create({
+        title: 'Clean all the data',
+        message: 'Are you sure to clean all the data?',
+        buttons: [
+          {
+            text: 'Yes',
+            handler: () => {
+              this.database.cleanTeatData();
+              this.database.cleanAlignmentData();
+              this.database.cleanHygieneData();
+              this.database.cleanStripData();
+              this.database.cleanPostmilkData();
+              this.database.cleanLactocoderData();
+            }
+          },
+          {
+            text: 'Cancel',
+            role: 'cancel'
+          }
+        ]
+      });
+      alert.present();
+  }
+
+  triggerSubmitData() {
+    let alert = this.alerCtrl.create({
+      title: 'Submit all the data',
+      message: 'Are you sure to submit all the data?',
+      buttons: [
+        {
+          text: 'Yes',
+          handler: () => {
+            this.submitData();
+          }
+        },
+        {
+          text: 'Cancel',
+          role: 'cancel'
+        }
+      ]
+    });
+    alert.present();
+  }
+
   submitData() {
     //get user info 
     this.loadUserData();
@@ -66,16 +112,13 @@ export class HomePage {
     this.http.post('http://localhost:3000/teat', JSON.stringify(data), {headers:headers}).subscribe(response =>{ 
       this.success[0] = response.text();
       if (response.text() == "true"){
-        this.database.cleanTeatData();
+        // this.database.cleanTeatData();
     }});
 
     }, (error) => {
       console.log(error);
     })
-    // console.log(this.success);
-    // if (this.success=="true"){
-    // this.database.cleanTeatData();
-    // }
+
     //push align
     this.database.getAlignmentData().then((data: any) => {
     var headers = new Headers();
@@ -86,7 +129,7 @@ export class HomePage {
       this.success[1] = response.text();
       if (response.text() == "true"){
       
-         this.database.cleanAlignmentData();
+        //  this.database.cleanAlignmentData();
     }
     });
     }, (error) => {
@@ -102,8 +145,8 @@ export class HomePage {
     this.http.post('http://localhost:3000/udder', JSON.stringify(data), {headers:headers}).subscribe(response => {
       this.success[2] = response.text();
       if (response.text() == "true"){
-      
-      this.database.cleanHygieneData();}
+      // this.database.cleanHygieneData();
+    }
     });
     }, (error) => {
       console.log(error);
@@ -118,8 +161,8 @@ export class HomePage {
     this.http.post('http://localhost:3000/strip', JSON.stringify(data), {headers:headers}).subscribe(response => {
       this.success[3] = response.text();
       if (response.text() == "true"){
-      
-      this.database.cleanStripData();}
+      // this.database.cleanStripData();
+    }
     });
     }, (error) => {
       console.log(error);
@@ -135,7 +178,8 @@ export class HomePage {
       this.success[4] = response.text();
       if (response.text() == "true"){
       
-      this.database.cleanPostmilkData();}
+      // this.database.cleanPostmilkData();
+    }
     });
     }, (error) => {
       console.log(error);
@@ -151,7 +195,8 @@ export class HomePage {
       this.success[5] = response.text();
       if (response.text() == "true"){
       
-      this.database.cleanLactocoderData();}
+      // this.database.cleanLactocoderData();
+    }
     });
     }, (error) => {
       console.log(error);
