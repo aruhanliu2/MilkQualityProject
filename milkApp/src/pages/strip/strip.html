@@ -45,11 +45,11 @@
   <ion-list>
     <ion-item>
       <ion-label>Stall No:</ion-label>
-      <ion-input text-right type="text" [(ngModel)]="stall"></ion-input>
+      <ion-input text-right type="text" pattern="[0-9]*" decimal="true" [(ngModel)]="stall"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label>ML</ion-label>
-      <ion-input text-right type="text" [(ngModel)]="ml"></ion-input>
+      <ion-input text-right type="text" pattern="[0-9]*" decimal="true" [(ngModel)]="ml"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label>If Balanced</ion-label>
