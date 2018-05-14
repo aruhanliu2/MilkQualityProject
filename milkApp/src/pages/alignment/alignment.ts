@@ -13,15 +13,25 @@ import { ListPage } from '../../pages/list/list';
   selector: 'page-alignment',
   templateUrl: 'alignment.html',
 })
+
+/*
+* The alignment form
+*/
 export class AlignmentPage {
+  // data in the form
   public farm: string
   public myDate: string
   public observer: string
   public good: number
   public bad: number
+
+  // for user test display in html
   private ListUser : any
+
+  // for global storage
   public listMap: any
 
+  // construct the data by reading from global or initialize with default value
   constructor(public alerCtrl: AlertController,
     private http: Http,
     private navParams: NavParams,
@@ -36,7 +46,7 @@ export class AlignmentPage {
       this.bad = (navParams.get('alignmentBad') != undefined)?navParams.get('alignmentBad'):0
     }
 
-
+  // decrease the value of good/bad
   tapDecrease(e,param:number){
     if(param==1){
       this.good = Math.max(this.good-1,0)
@@ -44,6 +54,8 @@ export class AlignmentPage {
       this.bad = Math.max(this.bad-1,0)
     }
   }
+
+  // increase the value of good/bad
   tapIncrease(e,param:number) {
     if(param==1){
       this.good++
@@ -51,13 +63,10 @@ export class AlignmentPage {
       this.bad++
     }
   }
-  saveData() {
-    let alert = this.alerCtrl.create({
-      title: 'Saved!',
-      message: 'Data have been saved locally!',
-      buttons: ['Ok']
-    });
 
+  // save the data both in online firebase and into local storage
+  saveData() {
+    // back up the data in firebase (unabled when without network)
     this.alignmentService.updateItems(0,
       this.farm,
       this.myDate,
@@ -65,11 +74,6 @@ export class AlignmentPage {
       this.good,
       this.bad);
 
-      console.log("浏览器存储:")
-      //console.log(Object.entries(this.teatService.getItems()));
-      console.log(this.alignmentService.getItems()[0].farm);
-
-      //pushing data to firebase database
       this.authService.getActiveUser().getIdToken()
         .then(
           (token: string) => {
@@ -83,29 +87,37 @@ export class AlignmentPage {
           }
         );
 
-      //local storage
-      this.pushAlignmentData();
+    //save it to local storage (sqlite)
+    this.pushAlignmentData();
 
+    // reset flexible data to default
     this.good = 0
     this.bad = 0
 
+    // alert
+    let alert = this.alerCtrl.create({
+      title: 'Saved!',
+      message: 'Data have been saved locally!',
+      buttons: ['Ok']
+    });
     alert.present()
   }
 
+  // alert when initiate this page
   ionViewDidLoad() {
     console.log('ionViewDidLoad AlignmentPage');
   }
 
+  // get the data out (for user test)
   loadAlignmentData() {
     this.database.getAlignmentData().then((data: any) => {
-      console.log("数据库里的数据:")
-      console.log(data)
       this.ListUser = data
     }, (error) => {
       console.log(error);
     })
   }
 
+  // push the data into local storage
   pushAlignmentData() {
     this.database.addAlignmentData(this.farm,
       this.myDate,
@@ -113,14 +125,14 @@ export class AlignmentPage {
       this.good,
       this.bad)
       .then((data) => {
+        // test by getting the data and displaying it in the top of app screen
         this.loadAlignmentData();
-        console.log("当前传输的一条数据:")
-        console.log(data);
       }, (error) => {
         console.log(error);
       });
   }
 
+  // pop the current form, and save all current data into global
   back() {
     this.listMap = NavParams
     this.listMap['alignmentFarm'] = this.farm
@@ -130,7 +142,6 @@ export class AlignmentPage {
     this.listMap['alignmentBad'] = this.bad
 
     this.navCtrl.pop();
-    //this.navCtrl.push(ListPage, this.listMap);
   }
 
 }

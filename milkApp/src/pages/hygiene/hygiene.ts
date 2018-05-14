@@ -13,7 +13,12 @@ import { ListPage } from '../../pages/list/list';
   selector: 'page-hygiene',
   templateUrl: 'hygiene.html',
 })
+
+/*
+* The hygiene form
+*/
 export class HygienePage {
+  // data in the form
   public farm: string
   public myDate: string
   public observer: string
@@ -22,9 +27,14 @@ export class HygienePage {
   public slightlyDirt: number
   public moderatelyDirt: number
   public cakedOnDirt: number
+
+  // for user test display in html
   private ListUser : any
+
+  // for global storage
   public listMap: any
 
+  // construct the data by reading from global or initialize with default value
   constructor(public alerCtrl: AlertController,
     private hygieneService: HygieneService,
     private http: Http,
@@ -42,7 +52,7 @@ export class HygienePage {
       this.cakedOnDirt = (navParams.get('hygieneCakedOn') != undefined)?navParams.get('hygieneCakedOn'):0
   }
 
-
+  // decrease the value of data
   tapDecrease(e,param:number){
     if(param==1){
       this.clean = Math.max(this.clean-1,0)
@@ -55,6 +65,8 @@ export class HygienePage {
     }
 
   }
+
+  // increase the value of data
   tapIncrease(e,param:number) {
     if(param==1){
       this.clean++
@@ -66,12 +78,10 @@ export class HygienePage {
       this.cakedOnDirt++
     }
   }
+
+  // save the data both in online firebase and into local storage
   saveData() {
-    let alert = this.alerCtrl.create({
-      title: 'Saved!',
-      message: 'Data have been saved locally!',
-      buttons: ['Ok']
-    });
+    // back up the data in firebase (unabled when without network)
     this.hygieneService.updateItems(0,
       this.farm,
       this.myDate,
@@ -82,10 +92,6 @@ export class HygienePage {
       this.moderatelyDirt,
       this.cakedOnDirt
     );
-
-    console.log("浏览器存储:")
-    //console.log(Object.entries(this.teatService.getItems()));
-    console.log(this.hygieneService.getItems()[0].farm);
 
     //pushing data to firebase database
     this.authService.getActiveUser().getIdToken()
@@ -101,31 +107,39 @@ export class HygienePage {
         }
       );
 
-    //local storage to sqlite
+    //save it to local storage (sqlite)
     this.pushHygieneData();
 
-    // empty the form
+    // reset flexible data to default
     this.clean = 0
     this.slightlyDirt = 0
     this.moderatelyDirt = 0
     this.cakedOnDirt = 0
 
+    // alert
+    let alert = this.alerCtrl.create({
+      title: 'Saved!',
+      message: 'Data have been saved locally!',
+      buttons: ['Ok']
+    });
     alert.present()
   }
 
+  // alert when initiate this page
   ionViewDidLoad() {
     console.log('ionViewDidLoad HygienePage');
   }
+
+  // get the data out (for user test)
   loadHygieneData() {
     this.database.getHygieneData().then((data: any) => {
-      console.log("数据库里的数据:")
-      console.log(data)
       this.ListUser = data
     }, (error) => {
       console.log(error);
     })
   }
 
+  // push the data into local storage
   pushHygieneData() {
     this.database.addHygieneData(this.farm,
       this.myDate,
@@ -136,15 +150,16 @@ export class HygienePage {
       this.moderatelyDirt,
       this.cakedOnDirt)
       .then((data) => {
+        // test by getting the data and displaying it in the top of app screen
         this.loadHygieneData();
-        console.log("当前传输的一条数据:")
-        console.log(data);
       }, (error) => {
         console.log(error);
       });
   }
 
-  back() {this.listMap = NavParams
+  // pop the current form, and save all current data into global
+  back() {
+    this.listMap = NavParams
     this.listMap['hygieneFarm'] = this.farm
     this.listMap['hygieneDate'] = this.myDate
     this.listMap['hygieneObserver'] = this.observer
@@ -155,7 +170,6 @@ export class HygienePage {
     this.listMap['hygieneCakedOn'] = this.cakedOnDirt
 
     this.navCtrl.pop();
-    //this.navCtrl.push(ListPage, this.listMap);
   }
 
 }
