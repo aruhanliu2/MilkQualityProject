@@ -48,11 +48,11 @@
     </ion-item>
     <ion-item>
       <ion-label>Herd Size</ion-label>
-      <ion-input text-right type="text" [(ngModel)]="herd_size"></ion-input>
+      <ion-input text-right type="text" pattern="[0-9]*" decimal="true" [(ngModel)]="herd_size"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label>Size</ion-label>
-      <ion-input text-right type="text" [(ngModel)]="size"></ion-input>
+      <ion-input text-right type="text" pattern="[0-9]*" decimal="true" [(ngModel)]="size"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label>Procedures</ion-label>
@@ -67,7 +67,7 @@
     </ion-item>
     <ion-item>
       <ion-label>No. Operators</ion-label>
-      <ion-input text-right type="text" [(ngModel)]="operators"></ion-input>
+      <ion-input text-right type="text" pattern="[0-9]*" decimal="true" [(ngModel)]="operators"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label>(Prep)</ion-label>
@@ -86,7 +86,7 @@
     </ion-item>
     <ion-item>
       <ion-label fixed>Total Milk</ion-label>
-      <ion-input text-right type="text" [(ngModel)]="milk[0]"></ion-input>
+      <ion-input text-right type="text" pattern="[0-9]*" decimal="true" [(ngModel)]="milk[0]"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label fixed>Remark</ion-label>
@@ -104,7 +104,7 @@
     </ion-item>
     <ion-item>
       <ion-label fixed>Total Milk</ion-label>
-      <ion-input text-right type="text" [(ngModel)]="milk[1]"></ion-input>
+      <ion-input text-right type="text" pattern="[0-9]*" decimal="true" [(ngModel)]="milk[1]"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label fixed>Remark</ion-label>
@@ -122,7 +122,7 @@
     </ion-item>
     <ion-item>
       <ion-label fixed>Total Milk</ion-label>
-      <ion-input text-right type="text" [(ngModel)]="milk[2]"></ion-input>
+      <ion-input text-right type="text" pattern="[0-9]*" decimal="true" [(ngModel)]="milk[2]"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label fixed>Remark</ion-label>
