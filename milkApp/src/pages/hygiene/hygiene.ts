@@ -149,8 +149,8 @@ export class HygienePage {
     this.listMap['hygieneDate'] = this.myDate
     this.listMap['hygieneObserver'] = this.observer
     this.listMap['hygieneGroup'] = this.group
-    this.listMap['teatClean'] = this.clean
-    this.listMap['teatSlightly'] = this.slightlyDirt
+    this.listMap['hygieneClean'] = this.clean
+    this.listMap['hygieneSlightly'] = this.slightlyDirt
     this.listMap['hygieneModerately'] = this.moderatelyDirt
     this.listMap['hygieneCakedOn'] = this.cakedOnDirt
 
